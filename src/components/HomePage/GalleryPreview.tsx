@@ -1,0 +1,48 @@
+import React from "react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { galleryImages } from "@/lib/data";
+
+export function GalleryPreview() {
+  // Show only the first 6 images for the preview
+  const previewImages = galleryImages.slice(0, 6);
+  
+  return (
+    <section className="page-container">
+      <div className="flex justify-between items-baseline mb-6">
+        <h2 className="section-title">Galeria de Fotos</h2>
+        <Link to="/galeria" className="text-primary hover:underline">
+          Ver Todas
+        </Link>
+      </div>
+      
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {previewImages.map((image) => (
+          <Link 
+            key={image.id}
+            to="/galeria" 
+            className="overflow-hidden rounded-lg group"
+          >
+            <AspectRatio ratio={1 / 1} className="bg-muted">
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <p className="text-white text-sm font-medium">{image.title}</p>
+              </div>
+            </AspectRatio>
+          </Link>
+        ))}
+      </div>
+      
+      <div className="mt-8 text-center">
+        <Button asChild>
+          <Link to="/galeria">Ver Galeria Completa</Link>
+        </Button>
+      </div>
+    </section>
+  );
+}
