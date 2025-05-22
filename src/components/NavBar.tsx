@@ -16,13 +16,13 @@ type NavItemProps = {
 
 function NavItem({ to, label, isMobile, onClick }: NavItemProps) {
   return (
-    <Link 
-      to={to} 
+    <Link
+      to={to}
       onClick={onClick}
       className={cn(
         "transition-colors duration-200",
-        isMobile 
-          ? "block py-3 px-4 hover:bg-primary/10 rounded-md font-medium" 
+        isMobile
+          ? "block py-3 px-4 hover:bg-primary/10 rounded-md font-medium"
           : "px-3 py-2 text-sm font-medium rounded-md hover:bg-primary/10"
       )}
     >
@@ -34,9 +34,9 @@ function NavItem({ to, label, isMobile, onClick }: NavItemProps) {
 export function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
-  
+
   const closeMobileMenu = () => setMobileMenuOpen(false);
-  
+
   const navItems = [
     { to: "/", label: "Início" },
     { to: "/programacao", label: "Programação" },
@@ -51,21 +51,21 @@ export function NavBar() {
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link to="/" className="flex items-center space-x-2">
-              <Radio className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl">Rádio Brasil FM</span>
+              <img src="/src/images/RadioBraba.png" alt="Logo Rádio Braba FM" className="h-20 w-20" />
+              <span className="font-bold text-xl">Rádio Braba</span>
             </Link>
           </div>
-          
+
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
                 <NavItem key={item.to} to={item.to} label={item.label} />
               ))}
             </nav>
-            
+
             <div className="flex items-center space-x-2">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={() => setShowPlayer(!showPlayer)}
                 aria-label="Toggle radio player"
@@ -75,10 +75,10 @@ export function NavBar() {
               <ThemeToggle />
             </div>
           </div>
-          
+
           <div className="flex flex-1 items-center justify-end md:hidden">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="icon"
               onClick={() => setShowPlayer(!showPlayer)}
               aria-label="Toggle radio player"
@@ -86,9 +86,9 @@ export function NavBar() {
             >
               <Radio className="h-5 w-5" />
             </Button>
-            
+
             <ThemeToggle />
-            
+
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="ml-2">
@@ -101,20 +101,17 @@ export function NavBar() {
                   <div className="flex items-center justify-between mb-8">
                     <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
                       <Radio className="h-6 w-6 text-primary" />
-                      <span className="font-bold text-xl">Rádio Brasil FM</span>
+                      <span className="font-bold text-xl">Rádio Braba FM</span>
                     </Link>
-                    <Button variant="ghost" size="icon" onClick={closeMobileMenu}>
-                      <X className="h-5 w-5" />
-                      <span className="sr-only">Close menu</span>
-                    </Button>
+
                   </div>
                   <nav className="flex flex-col">
                     {navItems.map((item) => (
-                      <NavItem 
-                        key={item.to} 
-                        to={item.to} 
-                        label={item.label} 
-                        isMobile 
+                      <NavItem
+                        key={item.to}
+                        to={item.to}
+                        label={item.label}
+                        isMobile
                         onClick={closeMobileMenu}
                       />
                     ))}
@@ -125,7 +122,7 @@ export function NavBar() {
           </div>
         </div>
       </header>
-      
+
       {showPlayer && (
         <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-80">
           <RadioPlayer />
