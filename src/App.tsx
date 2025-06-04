@@ -8,6 +8,7 @@ import { SchedulePage } from '@/pages/SchedulePage';
 import { GalleryPage } from '@/pages/GalleryPage';
 import { PrizesPage } from '@/pages/PrizesPage';
 import { ContactPage } from '@/pages/ContactPage';
+import { News } from '@/components/News/News.tsx';  
 
 function App() {
   const [mounted, setMounted] = useState(false);
