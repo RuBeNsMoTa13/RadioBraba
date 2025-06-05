@@ -263,7 +263,7 @@ const News: React.FC = () => {
                     <Calendar size={12} className="mr-1" />
                     {news.date}
                   </span>
-                </div>
+                </div>'
                 <h3 className="font-bold text-lg mb-2">{news.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{news.summary}</p>
                 <a 
@@ -326,11 +326,11 @@ const News: React.FC = () => {
         </div>
         
         {/* Fala Povo Section */}
-        <div className="bg-[#1E1E1E] rounded-xl p-6 md:p-8 mb-8">
+        <div className=" p-6 md:p-8 mb-8 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <div className="flex items-center mb-6">
             <MessageSquare size={24} className="text-[#F63A9C] mr-2" />
-            <h3 className="text-2xl font-bold text-white">Fala Povo</h3>
-            <span className="ml-3 text-sm bg-[#F63A9C] text-white px-2 py-1 rounded">
+            <h3 className="text-2xl font-bold text-black">Fala Povo</h3>
+            <span className="ml-3 text-sm bg-[#F63A9C] text-black px-2 py-1 rounded">
               O OUVINTE É A NOTÍCIA
             </span>
           </div>
@@ -343,7 +343,7 @@ const News: React.FC = () => {
               >
                 <div className="flex items-start mb-3">
                   <div className="w-10 h-10 bg-[#F63A9C] rounded-full flex items-center justify-center mr-3">
-                    <Users size={18} className="text-white" />
+                    <Users size={18} className="text-" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">{post.name}</h4>
@@ -377,8 +377,8 @@ const News: React.FC = () => {
           
           <div className="mt-6 flex flex-col md:flex-row items-center justify-between bg-black bg-opacity-50 p-4 rounded-lg">
             <div className="text-white mb-4 md:mb-0">
-              <h4 className="font-medium">Tem algo a dizer?</h4>
-              <p className="text-sm text-gray-400">Seu recado pode virar notícia na Braba FM!</p>
+              <h4 className="font-medium text-black">Tem algo a dizer?</h4>
+              <p className="text-sm text-gray-800">Seu recado pode virar notícia na Braba FM!</p>
             </div>
             
             <a 
