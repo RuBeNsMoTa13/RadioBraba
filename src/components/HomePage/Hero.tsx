@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <div className="relative overflow-hidden bg-cover bg-center py-16 md:py-24" 
          style={{ 
-           backgroundImage: "url('src/images/RadioBraba.png')",
+          backgroundColor: "#1a202c", // Fallback color
            backgroundSize: "cover",
            backgroundPosition: "center"
          }}>
@@ -27,16 +27,27 @@ export function Hero() {
           </p>
           
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="font-semibold">
+            <Button
+              asChild
+              size="lg"
+              className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+            >
               <Link to="/programacao">
                 Ver Programação
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             
-            <Button asChild variant="secondary" size="lg" className="font-semibold">
+            <Button
+              asChild
+              variant="secondary"
+              size="lg"
+              className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+            >
               <Link to="/premios">
                 Prêmios e Sorteios
+                                <ArrowRight className="ml-2 h-4 w-4" />
+
               </Link>
             </Button>
           </div>

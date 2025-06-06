@@ -39,10 +39,15 @@ export function GalleryPreview() {
       </div>
       
       <div className="mt-8 text-center">
-        <Button asChild>
-          <Link to="/galeria">Ver Galeria Completa</Link>
+        <Button 
+        asChild
+      size="lg"
+      className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+        >
+          <Link to="/galeria" className="">Ver Galeria Completa</Link>
         </Button>
       </div>
+
     </section>
   );
 }
