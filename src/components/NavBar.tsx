@@ -59,7 +59,9 @@ export function NavBar() {
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
-                <NavItem key={item.to} to={item.to} label={item.label} />
+                <div className="text-black hover:text-pink-600 transition-colors font-medium">
+                  <NavItem key={item.to} to={item.to} label={item.label} />
+                </div>
               ))}
             </nav>
 
