@@ -164,8 +164,17 @@ const Announcer: React.FC = () => {
             ))}
           </div>
         </div>
+        {/* Novo botão ao final do carrossel */}
+        <div className="flex justify-center mt-8">
+          <Button 
+                asChild
+                size="lg"
+                className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+                  >
+                    <Link to="/locutores" className="">Ver Locutores Completo</Link>
+                  </Button>
+        </div>
       </div>
-
       {/* Modal */}
       {selectedLocutor && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
