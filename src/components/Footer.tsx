@@ -194,7 +194,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
+        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500 mb-8">
           <p>&copy; {new Date().getFullYear()} Rádio Brasil FM. Todos os direitos reservados.</p>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { RadioPlayer } from "@/components/RadioPlayer";
 import { ArrowRight } from "lucide-react";
@@ -30,7 +29,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+              className="font-semibold bg-white text-primary border-[1px]1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
             >
               <Link to="/programacao">
                 Ver Programação
@@ -42,7 +41,7 @@ export function Hero() {
               asChild
               variant="secondary"
               size="lg"
-              className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+              className="font-semibold bg-white text-primary border-[1px]1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
             >
               <Link to="/premios">
                 Prêmios e Sorteios

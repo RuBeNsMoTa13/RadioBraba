@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Calendar, Users, Music, Instagram } from 'lucide-react';
-import Announcer from '@/components/Announcer/Announcer';
+// import Announcer from '@/components/Announcer/Announcer';
 
 interface Locutor {
   id: number;

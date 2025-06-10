@@ -160,7 +160,7 @@ const News: React.FC = () => {
   
   return (
     <section id="news" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="page-container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">NOTÍCIAS LOCAIS</h2>
           <p className="text-xl text-gray-600">Aqui não tem fake. Só o que rola de verdade em Capela.</p>
@@ -334,7 +334,7 @@ const News: React.FC = () => {
         <Button 
         asChild
       size="lg"
-      className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+      className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
         >
           <Link to="#" className="">Ver todas as notícias</Link>
         </Button>

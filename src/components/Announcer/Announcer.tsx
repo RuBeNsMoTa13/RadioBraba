@@ -83,12 +83,13 @@ const Announcer: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-white page-container mx-auto">
       {/* Header */}
       <div className="px-6 py-4">
-        <h1 className="text-2xl md:text-3xl font-bold text-black">
-          Vozes Por Trás da Rádio
-        </h1>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black">VOZES POR TRÁS DA RÁDIO</h2>
+          <p className="text-xl text-gray-600">E onde os feras da voz se encontram.</p>
+        </div>
       </div>
 
       {/* Gallery Container */}
@@ -169,10 +170,9 @@ const Announcer: React.FC = () => {
           <Button 
                 asChild
                 size="lg"
-                className="font-semibold bg-white text-primary border-2 border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
-                  >
-                    <Link to="/locutores" className="">Ver Locutores Completo</Link>
-                  </Button>
+                className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black">
+                <Link to="/locutores" className="">Ver Locutores Completo</Link>
+          </Button>
         </div>
       </div>
       {/* Modal */}

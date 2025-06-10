@@ -8,7 +8,7 @@ import { SchedulePage } from '@/pages/SchedulePage';
 import { GalleryPage } from '@/pages/GalleryPage';
 import { PrizesPage } from '@/pages/PrizesPage';
 import { ContactPage } from '@/pages/ContactPage';
-import { AnnouncerPage } from '@/pages/AnnouncerPage';
+import AnnouncerPage from '@/pages/AnnouncerPage';
 
 function App() {
   const [mounted, setMounted] = useState(false);

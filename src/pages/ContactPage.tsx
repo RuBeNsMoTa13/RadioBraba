@@ -203,7 +203,7 @@ export function ContactPage() {
 
           {/* Grid container para alinhar formulário e info lado a lado */}
           <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            
+
             {/* Formulário de Contato */}
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
               <div className="flex items-center mb-6">
@@ -346,15 +346,22 @@ export function ContactPage() {
                   <Building size={20} className="text-[#F63A9C] mr-3 mt-1" />
                   <div>
                     <h4 className="font-medium">Endereço</h4>
-                    <p className="text-gray-600">Rua das Comunicações, 123<br />Centro - Capela, SE<br />CEP: 49700-000</p>
+                    <p className="text-gray-600">Rua do Cruzeiro, 70<br />Centro - Capela do Alto, SP<br />CEP: 18195-078</p>
                   </div>
                 </div>
-
+{/* rubens Deus te ama */}
                 <div className="h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <MapPin size={32} className="mx-auto mb-2" />
-                    <p className="text-sm">Mapa interativo em breve</p>
-                  </div>
+                    <div className="w-[35rem] rounded-lg">
+                      <iframe
+                        title="Mapa interativo"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=R.%20do%20Cruzeiro,%2070%20-%20Centro,%20Capela%20do%20Alto%20-%20SP,%2018195-000+(Mapa%20interativo)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=pt-BR&amp;q=R.%20do%20Cruzeiro,%2070%20-%20Centro,%20Capela%20do%20Alto%20-%20SP,%2018195-000+(Mapa%20interativo)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                      ></iframe>
+                    </div>
                 </div>
               </div>
 

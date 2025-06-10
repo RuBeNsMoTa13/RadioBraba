@@ -1,7 +1,6 @@
 import React from "react";
 import { Hero } from "@/components/HomePage/Hero";
-import { UpcomingShows } from "@/components/HomePage/UpcomingShows";
-import { GalleryPreview } from "@/components/HomePage/GalleryPreview";
+import { GalleryPreview } from "@/components/GalleryPage/GalleryPreview";
 import { PrizeSection } from "@/components/HomePage/PrizeSection";
 import { ScheduleSection } from "@/components/HomePage/ScheduleSection";
 import News from "@/components/News/News";
@@ -12,11 +11,10 @@ export function HomePage() {
     <div className="flex flex-col gap-16">
       <Hero />
       <ScheduleSection />
-      <UpcomingShows />
-      <GalleryPreview />
       <PrizeSection />
       <News />
       <Announcer />
+      <GalleryPreview />
     </div>
   );
 }
