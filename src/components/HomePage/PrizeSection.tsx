@@ -1,3 +1,4 @@
+// Tem que fazer logica de premios
 import { Clock, User, Calendar, BadgeAlert, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { prizesData } from "@/lib/data";

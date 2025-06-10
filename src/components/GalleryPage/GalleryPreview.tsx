@@ -1,3 +1,4 @@
+// Tem que fazer logica de add fotos pelo user adm
 import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
