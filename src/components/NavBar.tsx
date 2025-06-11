@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RadioPlayer } from "@/components/RadioPlayer";
@@ -41,6 +41,7 @@ export function NavBar() {
     { to: "/", label: "Início" },
     { to: "/programacao", label: "Programação" },
     { to: "/galeria", label: "Galeria" },
+    { to: "/locutores", label: "Locutores" },
     { to: "/premios", label: "Prêmios" },
     { to: "/contato", label: "Contato" }
   ];
