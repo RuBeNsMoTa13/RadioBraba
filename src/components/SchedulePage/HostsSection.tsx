@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { hostsData } from "@/lib/data";
 import { Instagram, Twitter, Facebook } from "lucide-react";

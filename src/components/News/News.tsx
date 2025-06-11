@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Newspaper, Search, Calendar, MessageSquare, Users, Megaphone, Filter, ChevronRight, DollarSign, Home, Heart, BookOpen, Landmark } from 'lucide-react';
+import { Newspaper, Search, Calendar, Megaphone, Filter, ChevronRight, DollarSign, Home, Heart, BookOpen, Landmark } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 

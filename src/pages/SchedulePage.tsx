@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { HostsSection } from "@/components/SchedulePage/HostsSection";
 import { ShowCard } from "@/components/SchedulePage/ShowCard";
 import { showsData } from "@/lib/data";

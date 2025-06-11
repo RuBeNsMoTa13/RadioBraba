@@ -1,5 +1,5 @@
 // src/components/SchedulePage/ScheduleSection.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";

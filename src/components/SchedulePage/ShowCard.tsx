@@ -1,5 +1,4 @@
 // src/components/SchedulePage/ShowCard.tsx
-import React from "react";
 import { Clock, User, Calendar } from "lucide-react";
 import { getDayName } from "@/lib/utils";
 import { Show } from "@/lib/types";

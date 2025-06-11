@@ -1,5 +1,4 @@
 // src/components/PrizesPage/PrizeCard.tsx
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Prize } from "@/lib/types";
 import { BadgeAlert, Gift } from "lucide-react";

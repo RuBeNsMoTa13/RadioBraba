@@ -17,12 +17,9 @@ import {
   MapPin,
   Clock,
   Radio,
-  HeadphonesIcon,
-  Calendar,
   ChevronRight,
   Users,
   Heart,
-  Star,
   Building
 } from "lucide-react";
 
