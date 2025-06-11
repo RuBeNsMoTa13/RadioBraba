@@ -1,10 +1,9 @@
+// src/components/SchedulePage/ShowCard.tsx
 import React from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Show } from "@/lib/types";
 import { Clock, User, Calendar } from "lucide-react";
-import { cn, getDayName } from "@/lib/utils";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { getDayName } from "@/lib/utils";
+import { Show } from "@/lib/types";
+import { Link } from "react-router-dom";
 
 interface ShowCardProps {
   show: Show;
@@ -12,34 +11,33 @@ interface ShowCardProps {
 
 export function ShowCard({ show }: ShowCardProps) {
   return (
-    <Card className={cn("card-hover flex flex-col h-full")}>
-      <CardHeader className="p-0">
-        <AspectRatio ratio={16 / 9}>
-          <img
-            src={show.image}
-            alt={show.title}
-            className="object-cover w-full h-full rounded-t-lg"
-          />
-        </AspectRatio>
-      </CardHeader>
-      <CardContent className="flex-1 pt-4">
-        <h3 className="text-xl font-bold mb-2">{show.title}</h3>
-        <div className="flex items-center text-muted-foreground mb-2">
-          <Calendar className="h-4 w-4 mr-1" /> {getDayName(show.day)}
+    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div
+        className="w-full h-40 bg-cover bg-center"
+        style={{ backgroundImage: `url(${show.image})` }}
+      />
+      <div className="p-4">
+        <h3 className="text-lg font-bold text-gray-800 mb-2">{show.title}</h3>
+        <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
+          <div className="flex items-center">
+            <User className="h-4 w-4 mr-1" /> {show.host}
+          </div>
+          <div className="flex items-center">
+            <Clock className="h-4 w-4 mr-1" /> {show.time}
+          </div>
+          <div className="flex items-center">
+            <Calendar className="h-4 w-4 mr-1" /> {getDayName(show.day)}
+          </div>
         </div>
-        <div className="flex items-center text-muted-foreground mb-2">
-          <Clock className="h-4 w-4 mr-1" /> {show.time}
-        </div>
-        <div className="flex items-center text-muted-foreground mb-3">
-          <User className="h-4 w-4 mr-1" /> {show.host}
-        </div>
-        <p className="text-sm">{show.description}</p>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline" className="w-full">
-          Mais Detalhes
-        </Button>
-      </CardFooter>
-    </Card>
+        <p className="text-gray-600 text-sm mb-4">{show.description}</p>
+        <Link
+          to={`/programacao/${show.id}`}
+          className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
+        >
+          Saiba mais
+          <Calendar size={14} className="ml-1" />
+        </Link>
+      </div>
+    </div>
   );
 }

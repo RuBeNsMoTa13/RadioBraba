@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Newspaper, Search, Calendar, MessageSquare, Users, Megaphone, Filter, ChevronRight, DollarSign, Home, Heart, BookOpen, Landmark } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface NewsItem {
   id: number;
@@ -158,7 +160,7 @@ const News: React.FC = () => {
   
   return (
     <section id="news" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="page-container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">NOTÍCIAS LOCAIS</h2>
           <p className="text-xl text-gray-600">Aqui não tem fake. Só o que rola de verdade em Capela.</p>
@@ -263,7 +265,7 @@ const News: React.FC = () => {
                     <Calendar size={12} className="mr-1" />
                     {news.date}
                   </span>
-                </div>
+                </div>'
                 <h3 className="font-bold text-lg mb-2">{news.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{news.summary}</p>
                 <a 
@@ -325,83 +327,20 @@ const News: React.FC = () => {
           </div>
         </div>
         
-        {/* Fala Povo Section */}
-        <div className="bg-[#1E1E1E] rounded-xl p-6 md:p-8 mb-8">
-          <div className="flex items-center mb-6">
-            <MessageSquare size={24} className="text-[#F63A9C] mr-2" />
-            <h3 className="text-2xl font-bold text-white">Fala Povo</h3>
-            <span className="ml-3 text-sm bg-[#F63A9C] text-white px-2 py-1 rounded">
-              O OUVINTE É A NOTÍCIA
-            </span>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {communityPosts.map((post) => (
-              <div 
-                key={post.id} 
-                className="bg-gray-900 rounded-lg p-4 border border-gray-800 hover:border-gray-700 transition-colors"
-              >
-                <div className="flex items-start mb-3">
-                  <div className="w-10 h-10 bg-[#F63A9C] rounded-full flex items-center justify-center mr-3">
-                    <Users size={18} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-white">{post.name}</h4>
-                    <p className="text-xs text-gray-400">{post.neighborhood} • {post.date}</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-300 text-sm mb-3">"{post.content}"</p>
-                
-                {post.imageUrl && (
-                  <div className="h-32 mb-3 overflow-hidden rounded">
-                    <img 
-                      src={post.imageUrl} 
-                      alt="Imagem enviada pelo ouvinte" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                
-                <div className="flex justify-between items-center">
-                  <button className="text-[#F63A9C] text-xs hover:text-[#FF2C69] transition-colors">
-                    Ouvir áudio completo
-                  </button>
-                  <button className="text-white text-xs bg-gray-800 hover:bg-gray-700 px-2 py-1 rounded transition-colors">
-                    Compartilhar
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-6 flex flex-col md:flex-row items-center justify-between bg-black bg-opacity-50 p-4 rounded-lg">
-            <div className="text-white mb-4 md:mb-0">
-              <h4 className="font-medium">Tem algo a dizer?</h4>
-              <p className="text-sm text-gray-400">Seu recado pode virar notícia na Braba FM!</p>
-            </div>
-            
-            <a 
-              href="https://wa.me/5500000000000" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center bg-[#F63A9C] hover:bg-[#FF2C69] text-white px-4 py-2 rounded-md font-medium transition-colors duration-200"
-            >
-              <MessageSquare size={18} className="mr-2" />
-              Mande sua mensagem
-            </a>
-          </div>
-        </div>
+
         
         {/* Call to Action */}
-        <div className="text-center">
-          <a 
-            href="#" 
-            className="inline-block bg-[#F63A9C] hover:bg-[#FF2C69] text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-          >
-            Ver todas as notícias
-          </a>
-        </div>
+      <div className="mt-8 text-center">
+        <Button 
+        asChild
+      size="lg"
+      className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+        >
+          <Link to="#" className="">Ver todas as notícias</Link>
+        </Button>
+      </div>
+
+
       </div>
     </section>
   );

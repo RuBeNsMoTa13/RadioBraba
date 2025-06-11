@@ -1,3 +1,4 @@
+// Tem que fazer logica de add fotos pelo user adm
 import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,12 @@ export function GalleryPreview() {
   
   return (
     <section className="page-container">
-      <div className="flex justify-between items-baseline mb-6">
-        <h2 className="section-title">Galeria de Fotos</h2>
-        <Link to="/galeria" className="text-primary hover:underline">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black">GALERIA DE FOTOS</h2>
+          <p className="text-xl text-gray-600">Confira os melhores momentos, bastidores e registros especiais da Rádio Braba.</p>
+        </div>
+      <div className="flex justify-end items-baseline mb-6">
+        <Link to="/galeria" className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-800 hover:underline hover:scale-105">
           Ver Todas
         </Link>
       </div>
@@ -39,10 +43,15 @@ export function GalleryPreview() {
       </div>
       
       <div className="mt-8 text-center">
-        <Button asChild>
-          <Link to="/galeria">Ver Galeria Completa</Link>
+        <Button 
+        asChild
+      size="lg"
+      className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+        >
+          <Link to="/galeria" className="">Ver Galeria Completa</Link>
         </Button>
       </div>
+
     </section>
   );
 }

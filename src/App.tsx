@@ -8,7 +8,7 @@ import { SchedulePage } from '@/pages/SchedulePage';
 import { GalleryPage } from '@/pages/GalleryPage';
 import { PrizesPage } from '@/pages/PrizesPage';
 import { ContactPage } from '@/pages/ContactPage';
-import { News } from '@/components/News/News.tsx';  
+import AnnouncerPage from '@/pages/AnnouncerPage';
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -29,6 +29,7 @@ function App() {
             <Route path="/galeria" element={<GalleryPage />} />
             <Route path="/premios" element={<PrizesPage />} />
             <Route path="/contato" element={<ContactPage />} />
+            <Route path="/locutores" element={<AnnouncerPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
