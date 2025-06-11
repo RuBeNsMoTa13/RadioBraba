@@ -22,15 +22,6 @@ interface Interview {
   imageUrl: string;
 }
 
-interface CommunityPost {
-  id: number;
-  name: string;
-  content: string;
-  date: string;
-  neighborhood: string;
-  imageUrl?: string;
-}
-
 const News: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -122,32 +113,7 @@ const News: React.FC = () => {
       imageUrl: 'https://images.pexels.com/photos/5212335/pexels-photo-5212335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     }
   ];
-  
-  const communityPosts: CommunityPost[] = [
-    {
-      id: 1,
-      name: 'João Pereira',
-      neighborhood: 'Centro',
-      content: 'O buraco na Rua das Flores só aumenta e já causou três acidentes essa semana. Precisamos de uma solução urgente!',
-      date: '12/05/2025',
-      imageUrl: 'https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-      id: 2,
-      name: 'Ana Souza',
-      neighborhood: 'Vila Nova',
-      content: 'Gostaria de agradecer a equipe da UBS Vila Nova pelo atendimento excepcional. Fui muito bem tratada e o médico foi super atencioso!',
-      date: '10/05/2025'
-    },
-    {
-      id: 3,
-      name: 'Roberto Santos',
-      neighborhood: 'São José',
-      content: 'Nossa praça está precisando de manutenção nos brinquedos. As crianças não conseguem brincar com segurança.',
-      date: '09/05/2025',
-      imageUrl: 'https://images.pexels.com/photos/2853315/pexels-photo-2853315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    }
-  ];
+
 
   const filteredNews = newsItems.filter(news => {
     const matchesCategory = activeCategory === 'all' || news.category === activeCategory;

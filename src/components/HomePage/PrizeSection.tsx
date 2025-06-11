@@ -1,18 +1,10 @@
 // Tem que fazer logica de premios
-import { Clock, User, Calendar, BadgeAlert, Gift } from "lucide-react";
+import { BadgeAlert, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { prizesData } from "@/lib/data";
-import { getDayName } from "@/lib/utils";
+
 
 export function PrizeSection() {
-  // Calculate remaining days for each prize
-  const calculateRemainingDays = (endDate: Date) => {
-    const today = new Date();
-    const diffTime = Math.abs(endDate.getTime() - today.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-  
   return (
     <section className="page-container">
       <div className="bg-card rounded-xl border shadow-sm p-8 mb-10">
