@@ -7,12 +7,12 @@ import { cn, getDayName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 export function SchedulePage() {
-  const [activeDay, setActiveDay] = useState(new Date().getDay());
+  const [selectedDay, setSelectedDay] = useState(new Date().getDay());
   const days = Array.from({ length: 7 }, (_, i) => ({
     value: i,
     label: getDayName(i),
   }));
-  const filteredShows = showsData.filter((show: Show) => show.day === activeDay);
+  const filteredShows = showsData.filter((show: Show) => show.day === selectedDay);
 
   return (
     <div className="page-container">
@@ -24,11 +24,11 @@ export function SchedulePage() {
         {days.map((day) => (
           <Button
             key={day.value}
-            onClick={() => setActiveDay(day.value)}
-            variant={activeDay === day.value ? "default" : "outline"}
+            onClick={() => setSelectedDay(day.value)}
+            variant={selectedDay === day.value ? "default" : "outline"}
             className={cn(
-              "rounded-full bg-white text-primary border-[1px] border-primary shadow-lg px-6 py-2 font-semibold transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black",
-              activeDay === day.value && "bg-pink-300 text-white border-pink-300"
+              "rounded-full bg-white text-pink-600 border-2 border-pink-600 shadow-lg px-6 py-2 font-semibold transition-all duration-300 hover:bg-pink-600 hover:text-white hover:scale-105",
+              selectedDay === day.value && "bg-pink-300 text-white border-pink-300"
             )}
           >
             {day.label}
