@@ -1,5 +1,3 @@
-// ATENCAO AQUI TEM UM MONTE DE COISA DE ERRO
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -50,15 +48,6 @@ interface ContactMethod {
   color: string;
 }
 
-interface Testimonial {
-  id: number;
-  name: string;
-  location: string;
-  message: string;
-  rating: number;
-  date: string;
-}
-
 interface FAQ {
   id: number;
   question: string;
@@ -66,7 +55,6 @@ interface FAQ {
 }
 
 export function ContactPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -154,14 +142,6 @@ export function ContactPage() {
       question: 'Qual o horário de funcionamento da rádio?',
       answer: 'Nossa programação é 24h, mas o atendimento presencial é de segunda a sexta das 8h às 18h, e sábados das 9h às 13h.'
     }
-  ];
-
-  const categories = [
-    { id: 'all', name: 'Todos os Contatos' },
-    { id: 'urgent', name: 'Urgente' },
-    { id: 'commercial', name: 'Comercial' },
-    { id: 'journalism', name: 'Jornalismo' },
-    { id: 'programming', name: 'Programação' }
   ];
 
   return (
