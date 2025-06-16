@@ -9,6 +9,8 @@ import { GalleryPage } from '@/pages/GalleryPage';
 import { PrizesPage } from '@/pages/PrizesPage';
 import { ContactPage } from '@/pages/ContactPage';
 import AnnouncerPage from '@/pages/AnnouncerPage';
+import { LoginPage } from '@/components/LoginPage/LoginPage'; // Importar LoginPage do novo caminho
+import { RegisterPage } from '@/components/RegisterPage/RegisterPage'; // Importar RegisterPage do novo caminho
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -30,6 +32,8 @@ function App() {
             <Route path="/premios" element={<PrizesPage />} />
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/locutores" element={<AnnouncerPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/cadastro" element={<RegisterPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

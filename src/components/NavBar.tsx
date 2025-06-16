@@ -75,6 +75,10 @@ export function NavBar() {
                 <Radio className="h-5 w-5" />
               </Button>
               <ThemeToggle />
+              {/* Adicionar botão de Login aqui */}
+              <Button asChild variant="primary">
+                <Link to="/login">Login</Link>
+              </Button>
             </div>
           </div>
 
