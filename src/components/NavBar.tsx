@@ -47,7 +47,7 @@ export function NavBar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b bg-white shadow-sm">
+      <header className="sticky top-0 z-40 w-full border-b bg-red-700 ">
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link to="/" className="flex items-center space-x-2">
@@ -59,7 +59,7 @@ export function NavBar() {
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
-                <div className="text-black hover:text-pink-600 transition-colors font-medium">
+                <div className="text-primary hover:text-red-800 transition-colors font-medium">
                   <NavItem key={item.to} to={item.to} label={item.label} />
                 </div>
               ))}
@@ -76,7 +76,7 @@ export function NavBar() {
               </Button>
               <ThemeToggle />
               {/* Adicionar botão de Login aqui */}
-              <Button asChild variant="primary">
+              <Button asChild variant="default">
                 <Link to="/login">Login</Link>
               </Button>
             </div>
