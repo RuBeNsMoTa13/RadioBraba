@@ -47,7 +47,7 @@ export function NavBar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b bg-red-700 ">
+      <header className="sticky top-0 z-40 w-full  bg-primary ">
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link to="/" className="flex items-center space-x-2">
@@ -59,7 +59,7 @@ export function NavBar() {
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
-                <div className="text-primary hover:text-red-800 transition-colors font-medium">
+                <div className=" hover:text-white  font-medium">
                   <NavItem key={item.to} to={item.to} label={item.label} />
                 </div>
               ))}
@@ -130,7 +130,7 @@ export function NavBar() {
       </header>
 
       {showPlayer && (
-        <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-80">
+        <div className="fixed  bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-80">
           <RadioPlayer />
         </div>
       )}

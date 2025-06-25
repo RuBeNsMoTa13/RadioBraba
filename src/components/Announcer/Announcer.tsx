@@ -87,8 +87,8 @@ const Announcer: React.FC = () => {
       {/* Header */}
       <div className="px-6 py-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black">VOZES POR TRÁS DA RÁDIO</h2>
-          <p className="text-xl text-gray-600">E onde os feras da voz se encontram.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary">VOZES POR TRÁS DA RÁDIO</h2>
+          <p className="text-xl text-secondary">E onde os feras da voz se encontram.</p>
         </div>
       </div>
 
@@ -155,7 +155,7 @@ const Announcer: React.FC = () => {
                     
                     <h3 className="text-xl font-bold mb-3">{locutor.nome}</h3>
 
-                    <button className="border border-pink-400 text-pink-400 hover:bg-pink-600 hover:text-white px-4 py-2 rounded transition-colors duration-300 text-sm font-medium">
+                    <button className="border border-pink-400 text-pink-400 hover:bg-accent hover:text-white px-4 py-2 rounded transition-colors duration-300 text-sm font-medium">
                       VER DETALHES
                     </button>
                   </div>
@@ -170,7 +170,7 @@ const Announcer: React.FC = () => {
           <Button 
                 asChild
                 size="lg"
-                className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black">
+                className="font-semibold bg-primary text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-foreground">
                 <Link to="/locutores" className="">Ver Locutores Completo</Link>
           </Button>
         </div>
