@@ -2,6 +2,7 @@ import * as React from "react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
+import Autoplay from 'embla-carousel-autoplay'; // Importar o plugin de Autoplay
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -60,9 +61,11 @@ export const SupportsCarousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
-        duration: 40, // Alterado de 'speed' para 'duration' para controlar a velocidade da animação
+        duration: 100, // Alterado de 40 para 100 para deixar mais lento
+        loop: true, // Adicionado loop infinito
       },
-      plugins
+      // Combinar plugins existentes com o plugin de Autoplay
+      plugins ? [Autoplay({ delay: 5000, stopOnInteraction: false }), ...(Array.isArray(plugins) ? plugins : [plugins])] : [Autoplay({ delay: 5000, stopOnInteraction: false })]
     );
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -157,7 +160,7 @@ export const SupportsCarousel = React.forwardRef<
           <SupportsCarouselContent>
             {listaDeApoiadores.map((apoiador, index) => (
               <SupportsCarouselItem key={index}>
-                <div className="flex items-center justify-center p-4 border rounded-lg shadow-md bg-card"> {/* Adicionado estilos de card aqui */}
+                <div className="flex items-center justify-center  border rounded-lg shadow-md "> {/* Adicionado estilos de card aqui */}
                   <img src={apoiador.logo} alt={apoiador.name} className="w-[200px] h-[100px] object-cover" /> {/* Alterado tamanho da imagem para 1000x500 */}
                 </div>
               </SupportsCarouselItem>
@@ -207,7 +210,7 @@ const SupportsCarouselItem = React.forwardRef<
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-1/3", // Changed from basis-full to basis-1/3
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        // Removido padding condicional para colar os itens
         className
       )}
       {...props}
@@ -228,10 +231,10 @@ const SupportsCarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full z-10", // Adicionado z-10 para garantir que fiquem acima do conteúdo
         orientation === "horizontal"
-          ? "-left-12 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "left-4 top-1/2 -translate-y-1/2" // Ajustado para dentro
+          : "top-4 left-1/2 -translate-x-1/2 rotate-90", // Ajustado para dentro
         className
       )}
       disabled={!canScrollPrev}
@@ -257,10 +260,10 @@ const SupportsCarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full",
+        "absolute h-8 w-8 rounded-full z-10", // Adicionado z-10 para garantir que fiquem acima do conteúdo
         orientation === "horizontal"
-          ? "-right-12 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "right-4 top-1/2 -translate-y-1/2" // Ajustado para dentro
+          : "bottom-4 left-1/2 -translate-x-1/2 rotate-90", // Ajustado para dentro
         className
       )}
       disabled={!canScrollNext}

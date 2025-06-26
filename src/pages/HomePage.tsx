@@ -8,10 +8,9 @@ import { SupportsCarousel } from "@/components/SupportsCarousel"; // Importando 
 
 export function HomePage() {
   return (
-    <div className="flex flex-col gap-16">
+    <div >
       <Hero />
-      {/* Adicionando o SupportsCarousel aqui */}
-      <SupportsCarousel /> {/* Usando apenas o componente principal */}
+      <SupportsCarousel /> 
       <ScheduleSection />
       <PrizeSection />
       <News />
