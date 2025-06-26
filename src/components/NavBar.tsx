@@ -52,7 +52,7 @@ export function NavBar() {
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/src/images/RadioBraba.png" alt="Logo Rádio Braba FM" className="h-20 w-20" />
+              <img src="/public/images/RadioBraba.png" alt="Logo Rádio Braba FM" className="h-20 w-20" />
               <span className="font-bold text-xl">Rádio Braba</span>
             </Link>
           </div>
