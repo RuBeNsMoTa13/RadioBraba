@@ -83,7 +83,7 @@ const locutores: Locutor[] = [
   },
   {
     id: 7,
-    nome: "Sérgio Gées",
+    nome: "Sérgio Góes",
     programa: "",
     foto: "./src/images/SergioGoes.png",
     biografia: "Comerciante e músico apaixonado por musica, sempre com uma história para contar.",
@@ -110,19 +110,22 @@ const AnnouncerPage: React.FC = () => {
 
   const openModal = (locutor: Locutor) => {
     setSelectedLocutor(locutor);
+    document.body.style.overflow = 'hidden'; 
   };
 
   const closeModal = () => {
     setSelectedLocutor(null);
+    document.body.style.overflow = '';
   };
 
   return (
-    <div className="min-h-screen text-white">
-      {/* Header */}
+    <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+      {/* Header Section */}
       <div className="px-6 py-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black">VOZES POR TRÁS DA RÁDIO</h2>
-          <p className="text-xl text-gray-600">E onde os feras da voz se encontram.</p>
+          {/* Títulos e subtítulos que mudam de cor */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black dark:text-white">VOZES POR TRÁS DA RÁDIO</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400">E onde os feras da voz se encontram.</p>
         </div>
       </div>
 
@@ -136,7 +139,7 @@ const AnnouncerPage: React.FC = () => {
                 className="relative group cursor-pointer"
                 onClick={() => openModal(locutor)}
               >
-                {/* Kiss FM Logo Background Pattern */}
+                {/* Kiss FM Logo Background Pattern (Ajuste se precisar de dark mode aqui) */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="flex flex-wrap gap-4 p-4">
                     {[...Array(12)].map((_, i) => (
@@ -144,14 +147,15 @@ const AnnouncerPage: React.FC = () => {
                         key={i}
                         className="w-16 h-16 rounded-full border-2 border-red-500 flex items-center justify-center"
                       >
-                        <span className="text-xs font-bold">92.5<br/>KISS<br/>FM</span>
+                        {/* Exemplo de texto dentro do padrão que muda de cor */}
+                        <span className="text-xs font-bold text-gray-900 dark:text-white">92.5<br/>KISS<br/>FM</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Card Content */}
-                <div className="relative bg-gray-800 rounded-lg overflow-hidden h-96 group-hover:transform group-hover:scale-105 transition-transform duration-300">
+                {/* Card Content - Ajuste de cores para tema */}
+                <div className="relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden h-96 group-hover:transform group-hover:scale-105 transition-transform duration-300 shadow-lg dark:shadow-xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
                   
                   <img
@@ -163,10 +167,12 @@ const AnnouncerPage: React.FC = () => {
                   {/* Overlay Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
                     <div className="mb-2">
+                      {/* Cor do programa pode ser constante ou adaptável */}
                       <span className="rounded text-pink-400 font-medium">{locutor.programa}</span>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-3">{locutor.nome}</h3>
+                    {/* Título do locutor no card */}
+                    <h3 className="text-xl font-bold mb-3 text-white">{locutor.nome}</h3>
 
                     <button className="border border-pink-400 text-pink-400 hover:bg-pink-600 hover:text-white px-4 py-2 rounded transition-colors duration-300 text-sm font-medium">
                       VER DETALHES
@@ -182,22 +188,23 @@ const AnnouncerPage: React.FC = () => {
       {/* Modal */}
       {selectedLocutor && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row">
-            {/* Close Button */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row transition-colors duration-300">
+            {/* Close Button - Ajuste de cores para tema */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 z-60 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors"
+              className="absolute top-4 right-4 z-60 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors text-white"
             >
               <X className="w-6 h-6" />
             </button>
 
-            {/* Image Section */}
+            {/* Image Section (sem mudança de tema nas cores aqui, pois é imagem) */}
             <div className="md:w-1/2 relative">
               <div className="absolute inset-0 opacity-20">
                 <div className="flex flex-wrap gap-2 p-2">
                   {[...Array(20)].map((_, i) => (
                     <div
                       key={i}
+                      // Padrão de bolinhas no modal, se precisar de dark mode, ajuste aqui
                       className="w-12 h-12 rounded-full border border-red-500 flex items-center justify-center"
                     >
                     </div>
@@ -212,38 +219,42 @@ const AnnouncerPage: React.FC = () => {
               />
             </div>
 
-            {/* Content Section */}
-            <div className="md:w-1/2 p-8 overflow-y-auto">
+            {/* Content Section - Ajuste de cores para tema */}
+            <div className="md:w-1/2 p-8 overflow-y-auto text-gray-900 dark:text-gray-100">
               <div className="mb-4">
                 <span className="bg-pink-600 text-xs px-3 py-1 rounded text-white font-medium">
                   LOCUTOR
                 </span>
               </div>
 
-              <h2 className="text-3xl font-bold mb-2 text-black">{selectedLocutor.nome}</h2>
+              {/* Título do locutor no modal */}
+              <h2 className="text-3xl font-bold mb-2 text-black dark:text-white">{selectedLocutor.nome}</h2>
+              {/* Cor do programa pode ser constante ou adaptável */}
               <p className="text-pink-600 text-lg mb-6">{selectedLocutor.programa}</p>
 
-              <p className="text-gray-600 leading-relaxed mb-8">
+              {/* Biografia do locutor */}
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
                 {selectedLocutor.biografia}
               </p>
 
+              {/* Detalhes do locutor com ícones */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5 text-pink-400" />
                   <span className="font-semibold text-pink-600">Aniversário:</span>
-                  <span className="text-gray-600">{selectedLocutor.aniversario}</span>
+                  <span className="text-gray-600 dark:text-gray-300">{selectedLocutor.aniversario}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Users className="w-5 h-5 text-pink-400" />
                   <span className="font-semibold text-pink-600">Banda:</span>
-                  <span className="text-gray-600">{selectedLocutor.banda}</span>
+                  <span className="text-gray-600 dark:text-gray-300">{selectedLocutor.banda}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Music className="w-5 h-5 text-pink-400" />
                   <span className="font-semibold text-pink-600">Música:</span>
-                  <span className="text-gray-600">{selectedLocutor.musica}</span>
+                  <span className="text-gray-600 dark:text-gray-300">{selectedLocutor.musica}</span>
                 </div>
 
                 {selectedLocutor.instagram && (
@@ -254,7 +265,7 @@ const AnnouncerPage: React.FC = () => {
                       href={`https://instagram.com/${selectedLocutor.instagram.replace('@', '')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-pink-400 transition-colors"
+                      className="text-gray-600 dark:text-gray-300 hover:text-pink-400 transition-colors"
                     >
                       {selectedLocutor.instagram}
                     </a>

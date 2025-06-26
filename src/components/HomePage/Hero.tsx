@@ -16,7 +16,7 @@ export function Hero() {
       <div className="container relative z-10 mx-auto px-4">
         <div className="max-w-2xl text-white">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl mb-4">
-            Rádio Brasil FM
+            Rádio Braba FM
             <span className="block text-rose-950">Música para sua vida</span>
           </h1>
           
