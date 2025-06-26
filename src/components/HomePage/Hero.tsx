@@ -23,7 +23,7 @@ export function Hero() {
           </h1>
               <video
             className=""
-            autoPlay  // Para reproduzir automaticamente
+            autoPlay  // Para reproduzir automaticament
             loop      // Para reproduzir em loop contínuo
             muted     // Para silenciar o vídeo (necessário para autoplay na maioria dos navegadores)
             playsInline // Para reproduzir inline em dispositivos móveis
