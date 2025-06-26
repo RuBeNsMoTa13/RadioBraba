@@ -1,5 +1,3 @@
-// src/components/PrizesPage/PrizesPage.tsx
-import React from "react";
 import { PrizeCard } from "@/components/PrizesPage/PrizeCard";
 import { prizesData } from "@/lib/data";
 import { Prize } from "@/lib/types";

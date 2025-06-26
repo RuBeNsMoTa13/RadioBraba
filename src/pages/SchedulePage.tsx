@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { HostsSection } from "@/components/SchedulePage/HostsSection";
+import { useState } from "react";
 import { ShowCard } from "@/components/SchedulePage/ShowCard";
 import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";
@@ -18,7 +17,6 @@ export function SchedulePage() {
     <div className="page-container">
       <h1 className="page-title">Programação</h1>
 
-      <HostsSection />
 
       <div className="flex flex-wrap gap-2 mb-8">
         {days.map((day) => (
