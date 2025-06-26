@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { RadioPlayer } from "@/components/RadioPlayer";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import videohero from "@/assets/videohero.mp4";
+
 
 export function Hero() {
   return (
@@ -19,7 +21,15 @@ export function Hero() {
             Rádio Braba FM
             <span className="block text-rose-950">Música para sua vida</span>
           </h1>
-          
+              <video
+            className=""
+            autoPlay  // Para reproduzir automaticamente
+            loop      // Para reproduzir em loop contínuo
+            muted     // Para silenciar o vídeo (necessário para autoplay na maioria dos navegadores)
+            playsInline // Para reproduzir inline em dispositivos móveis
+            poster="/videos/sua-imagem-de-poster.jpg" // Substitua pelo caminho da sua imagem de poster (coloque em public/videos/)
+            src="./src/images/videohero.mp4" // Substitua pelo caminho do seu vídeo (coloque em public/videos/)
+              ></video> 
           <p className="mt-4 text-lg sm:text-xl max-w-lg">
             Transmitindo o melhor da música brasileira e internacional 24 horas por dia.
             Conecte-se à melhor experiência musical do Brasil.
