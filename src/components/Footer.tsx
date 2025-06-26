@@ -13,7 +13,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-white text-gray-800 pt-10 border-t-2 border-gray-200">
+    <footer className="bg-background text-gray-800 pt-10 border-t-2 border-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo e descrição */}
@@ -22,7 +22,7 @@ export function Footer() {
               <Radio className="h-6 w-6 text-pink-600 mr-2" />
               <span className="font-semibold text-xl text-pink-600">Rádio Brasil FM</span>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-secondary-foreground mb-4">
               A rádio que fala como o povo fala. Música e bate-papo 24h por dia!
             </p>
             <div className="flex space-x-4 mt-auto">
@@ -72,7 +72,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Início
                 </Link>
@@ -80,7 +80,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Programação
                 </Link>
@@ -88,7 +88,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/galeria"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Galeria
                 </Link>
@@ -96,7 +96,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/premios"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Prêmios
                 </Link>
@@ -104,7 +104,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/contato"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Contato
                 </Link>
@@ -119,7 +119,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Manhã Animada
                 </Link>
@@ -127,7 +127,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Tarde Brasileira
                 </Link>
@@ -135,7 +135,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Show da Noite
                 </Link>
@@ -143,7 +143,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Sexta Eletrônica
                 </Link>
@@ -151,7 +151,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   Domingo Relaxante
                 </Link>
@@ -165,7 +165,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={18} className="text-pink-600 mr-2 mt-0.5" />
-                <span className="text-black">
+                <span className="text-secondary-foreground">
                   Av. Paulista, 1000<br />
                   São Paulo - SP<br />
                   Brasil
@@ -175,7 +175,7 @@ export function Footer() {
                 <Phone size={18} className="text-pink-600 mr-2" />
                 <a
                   href="tel:+551199999999"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   +55 11 9999-9999
                 </a>
@@ -184,7 +184,7 @@ export function Footer() {
                 <Mail size={18} className="text-pink-600 mr-2" />
                 <a
                   href="mailto:contato@radiobrasil.fm"
-                  className="text-black hover:text-pink-600 transition-colors font-medium"
+                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
                   contato@radiobrasil.fm
                 </a>
@@ -193,7 +193,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500 mb-8">
+        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-secondary-foreground mb-8">
           <p>&copy; {new Date().getFullYear()} Rádio Brasil FM. Todos os direitos reservados.</p>
         </div>
       </div>

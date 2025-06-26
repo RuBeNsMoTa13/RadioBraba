@@ -20,14 +20,14 @@ export function ScheduleSection() {
   }));
 
   return (
-    <section className="page-container bg-gray-50 py-8">
+    <section className="page-container bg-background py-8">
       <div className="flex justify-between items-baseline mb-6">
         <h2 className="section-title text-2xl font-bold text-pink-600">
           Programação da Semana
         </h2>
         <Link
           to="/programacao"
-          className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-800 hover:underline hover:scale-105"
+          className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105"
         >
           Ver Programação Completa
         </Link>
@@ -40,8 +40,8 @@ export function ScheduleSection() {
             onClick={() => setSelectedDay(day.value)}
             variant={selectedDay === day.value ? "default" : "outline"}
             className={cn(
-              "rounded-full bg-white text-pink-600 border-2 border-pink-600 shadow-lg px-6 py-2 font-semibold transition-all duration-300 hover:bg-pink-600 hover:text-white hover:scale-105",
-              selectedDay === day.value && "bg-pink-300 text-white border-pink-300"
+              "rounded-full bg-background text-pink-600 border-2 border-pink-600 shadow-lg px-6 py-2 font-semibold transition-all duration-300 hover:bg-pink-300 hover:text-white hover:scale-105",
+              selectedDay === day.value && "bg-pink-500 text-white border-pink-600"
             )}
           >
             {day.label}

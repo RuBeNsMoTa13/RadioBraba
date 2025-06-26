@@ -125,11 +125,11 @@ const News: React.FC = () => {
   const featuredNews = newsItems.find(news => news.featured);
   
   return (
-    <section id="news" className="py-16 bg-gray-50">
+    <section id="news" className="py-16 bg-background">
       <div className="page-container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">NOTÍCIAS LOCAIS</h2>
-          <p className="text-xl text-gray-600">Aqui não tem fake. Só o que rola de verdade em Capela.</p>
+          <h2 className="text-3xl md:text-4xl text-primary font-bold mb-2">NOTÍCIAS LOCAIS</h2>
+          <p className="text-xl text-secondary ">Aqui não tem fake. Só o que rola de verdade em Capela.</p>
         </div>
         
         {/* Featured News */}
@@ -154,7 +154,7 @@ const News: React.FC = () => {
                     <span className="mx-2 text-gray-300">|</span>
                     <span className="text-sm text-gray-500 uppercase">{categories.find(c => c.id === featuredNews.category)?.name}</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">{featuredNews.title}</h3>
+                  <h3 className="text-2xl text-primary font-bold mb-4">{featuredNews.title}</h3>
                   <p className="text-gray-600 mb-4">{featuredNews.summary}</p>
                 </div>
                 <a 
@@ -170,7 +170,7 @@ const News: React.FC = () => {
         )}
         
         {/* Search and Filters */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-8">
+        <div className="bg-background rounded-lg shadow-md p-4 mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -232,11 +232,11 @@ const News: React.FC = () => {
                     {news.date}
                   </span>
                 </div>'
-                <h3 className="font-bold text-lg mb-2">{news.title}</h3>
+                <h3 className="font-bold  text-gray-800 text-lg mb-2">{news.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{news.summary}</p>
                 <a 
                   href="#" 
-                  className="text-[#F63A9C] text-sm font-medium flex items-center hover:text-[#FF2C69] transition-colors"
+                  className="text-secondary text-sm font-medium flex items-center hover:text-[#FF2C69] transition-colors"
                 >
                   Ler mais
                   <ChevronRight size={16} className="ml-1" />
@@ -249,8 +249,8 @@ const News: React.FC = () => {
         {/* Interview Section */}
         <div className="mb-12">
           <div className="flex items-center mb-6">
-            <Megaphone size={24} className="text-[#F63A9C] mr-2" />
-            <h3 className="text-2xl font-bold">Entrevistas Exclusivas</h3>
+            <Megaphone size={24} className="text-primary mr-2" />
+            <h3 className="text-2xl font-bold text-primary ">Entrevistas Exclusivas</h3>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -267,22 +267,22 @@ const News: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                   <div className="absolute bottom-3 left-3 right-3">
-                    <span className="bg-[#F63A9C] text-white text-xs font-medium px-2 py-1 rounded">
+                    <span className="bg-ring text-white text-xs font-medium px-2 py-1 rounded">
                       ENTREVISTA
                     </span>
                     <h4 className="text-white font-bold mt-1">{interview.name}</h4>
                     <p className="text-white text-sm opacity-90">{interview.role}</p>
                   </div>
                 </div>
-                <div className="p-4">
+                <div className="p-4 ">
                   <div className="flex items-center text-xs text-gray-500 mb-2">
                     <Calendar size={12} className="mr-1" />
                     {interview.date}
                   </div>
-                  <p className="font-medium">{interview.topic}</p>
+                  <p className="font-medium text-gray-800">{interview.topic}</p>
                   <a 
                     href="#" 
-                    className="mt-3 inline-flex items-center text-[#F63A9C] text-sm font-medium hover:text-[#FF2C69] transition-colors"
+                    className="mt-3 inline-flex items-center text-secondary text-sm font-medium hover:text-accent transition-colors"
                   >
                     Assistir entrevista
                     <ChevronRight size={16} className="ml-1" />
@@ -300,7 +300,7 @@ const News: React.FC = () => {
         <Button 
         asChild
       size="lg"
-      className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+      className="font-semibold bg-primary  border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-foreground"
         >
           <Link to="#" className="">Ver todas as notícias</Link>
         </Button>
