@@ -26,7 +26,7 @@
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     
-    --accent: 325 90% 65%;
+    --accent: 325 90% 65%; 
     --accent-foreground: 0 0% 98%;
     
     --destructive: 343, 85%, 55%;  /*ROSA: #ee2a62 */
@@ -37,6 +37,8 @@
     --ring:  343, 85%, 55%;  /*ROSA: #ee2a62 */
     
     --radius: 0.5rem;
+
+    --emphasis:  60, 100%, 50% ;  /* AMARELO: #ffff00  */
   }
   
   .dark {
@@ -71,6 +73,8 @@
     --ring: 343, 85%, 55%;  /*ROSA: #ee2a62 */
 
     --radius: 0.5rem;
+
+     --emphasis:  60, 100%, 50% ;  /* AMARELO: #ffff00  */
   }
 }
 
