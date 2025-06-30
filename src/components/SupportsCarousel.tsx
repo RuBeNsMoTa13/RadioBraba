@@ -123,16 +123,16 @@ export const SupportsCarousel = React.forwardRef<
     }, [api, onSelect]);
 
     const listaDeApoiadores = [
-      { name: "Apoiador 1", logo: "public/images/Apoiadores/Ifnc.png" },
-      { name: "Apoiador 2", logo: "public/images/Apoiadores/ColegioObjetivo.png" },
-      { name: "Apoiador 3", logo: "public/images/Apoiadores/Love.png" },
-      { name: "Apoiador 4", logo: "public/images/Apoiadores/NaXinxa.png" },
-      { name: "Apoiador 5", logo: "public/images/Apoiadores/NetCores.png" },
-      { name: "Apoiador 6", logo: "public/images/Apoiadores/Panda.png" },
-      { name: "Apoiador 7", logo: "public/images/logoChorme.png" },
-      { name: "Apoiador 8", logo: "public/images/logoChorme.png" },
-      { name: "Apoiador 9", logo: "public/images/logoChorme.png" },
-      { name: "Apoiador 10", logo: "public/images/logoChorme.png" },
+      { name: "Apoiador 1", logo: "src/images/Apoiadores/Ifnc.png" },
+      { name: "Apoiador 2", logo: "src/images/Apoiadores/ColegioObjetivo.png" },
+      { name: "Apoiador 3", logo: "src/images/Apoiadores/Love.png" },
+      { name: "Apoiador 4", logo: "src/images/Apoiadores/NaXinxa.png" },
+      { name: "Apoiador 5", logo: "src/images/Apoiadores/NetCores.png" },
+      { name: "Apoiador 6", logo: "src/images/Apoiadores/Panda.png" },
+      { name: "Apoiador 7", logo: "src/images/logoChorme.png" },
+      { name: "Apoiador 8", logo: "src/images/logoChorme.png" },
+      { name: "Apoiador 9", logo: "src/images/logoChorme.png" },
+      { name: "Apoiador 10", logo: "src/images/logoChorme.png" },
     ];
 
     return (
