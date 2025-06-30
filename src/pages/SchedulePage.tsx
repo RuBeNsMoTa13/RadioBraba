@@ -1,28 +1,34 @@
+// src/components/SchedulePage/SchedulePage.tsx
+
 import { useState } from "react";
-import { ShowCard } from "@/components/SchedulePage/ShowCard";
 import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";
-import { cn, getDayName } from "@/lib/utils"; // Certifique-se de que getDayName está configurado para abreviações
+import { cn, getDayName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
+// Importações para o conteúdo do ShowCard que agora está embutido
+import { Clock, User, Calendar } from "lucide-react";
+import { Link } from "react-router-dom"; // Assumindo que Link é do react-router-dom
+
+
 export function SchedulePage() {
-  // Pega o dia atual (0 = Domingo, 1 = Segunda, etc.)
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
 
   // Gera os dias da semana, usando nomes abreviados para economizar espaço
+  // Certifique-se que sua função getDayName em "@/lib/utils"
+  // tenha o parâmetro 'abbreviated' e retorne a abreviação se 'true'.
   const days = Array.from({ length: 7 }, (_, i) => ({
     value: i,
-    label: getDayName(i),
+    label: getDayName(i), 
   }));
 
-  // Filtra os programas com base no dia selecionado
   const filteredShows = showsData.filter((show: Show) => show.day === selectedDay);
 
   return (
     <div className="page-container">
       <h1 className="page-title">Programação</h1>
 
-      {/* Contêiner dos botões com scroll horizontal para telas pequenas */}
+      {/* Contêiner dos botões com scroll horizontal e responsividade */}
       <div className="flex overflow-x-auto whitespace-nowrap gap-2 mb-8 p-2 custom-scrollbar">
         {days.map((day) => (
           <Button
@@ -51,7 +57,38 @@ export function SchedulePage() {
       {filteredShows.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredShows.map((show: Show) => (
-            <ShowCard key={show.id} show={show} />
+            // Conteúdo do ShowCard embutido diretamente aqui
+            <div
+              key={show.id} // Mantenha a chave aqui
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <div
+                className="w-full h-40 bg-cover bg-center"
+                style={{ backgroundImage: `url(${show.image})` }}
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">{show.title}</h3>
+                <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
+                  <div className="flex items-center">
+                    <User className="h-4 w-4 mr-1" /> {show.host}
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="h-4 w-4 mr-1" /> {show.time}
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-1" /> {getDayName(show.day)}
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm mb-4">{show.description}</p>
+                <Link
+                  to={`/programacao/${show.id}`}
+                  className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
+                >
+                  Saiba mais
+                  <Calendar size={14} className="ml-1" />
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       ) : (
