@@ -8,21 +8,21 @@ interface DayFilterProps {
 }
 
 export function DayFilter({ activeDay, onChange }: DayFilterProps) {
-  // Create array of days for the filter
   const days = Array.from({ length: 7 }, (_, i) => ({
     value: i,
-    label: getDayName(i)
+    label: getDayName(i) // Ou getDayName(i, true) para abreviações
   }));
-  
+
   return (
-    <div className="flex flex-wrap gap-2">
+    // Adicionando overflow-x-auto e whitespace-nowrap para scroll horizontal
+    <div className="flex overflow-x-auto whitespace-nowrap gap-2 p-2 scrollbar-hide"> {/* scrollbar-hide é uma classe comum do Tailwind para esconder a barra de rolagem */}
       {days.map((day) => (
         <Button
           key={day.value}
           onClick={() => onChange(day.value)}
           variant={activeDay === day.value ? "default" : "outline"}
           className={cn(
-            "rounded-full",
+            "rounded-full shrink-0", // shrink-0 evita que os botões encolham
             activeDay === day.value && "bg-primary text-white"
           )}
         >

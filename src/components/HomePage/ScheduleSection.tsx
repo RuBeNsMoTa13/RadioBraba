@@ -1,4 +1,3 @@
-// src/components/SchedulePage/ScheduleSection.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { showsData } from "@/lib/data";
@@ -10,10 +9,8 @@ import { cn, getDayName } from "@/lib/utils";
 export function ScheduleSection() {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
 
-  // Filtra os shows pelo dia selecionado
   const dayShows = showsData.filter((show) => show.day === selectedDay);
 
-  // Array de dias da semana para o filtro
   const days = Array.from({ length: 7 }, (_, i) => ({
     value: i,
     label: getDayName(i),
@@ -21,26 +18,30 @@ export function ScheduleSection() {
 
   return (
     <section className="page-container bg-background py-8">
-      <div className="flex justify-between items-baseline mb-6">
-        <h2 className="section-title text-2xl font-bold text-pink-600">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-6 gap-2">
+        <h2 className="section-title font-bold text-pink-600 text-xl xs:text-2xl sm:text-3xl md:text-4xl leading-tight break-words">
           Programação da Semana
         </h2>
         <Link
           to="/programacao"
-          className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105"
+          className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105 text-base xs:text-lg"
         >
           Ver Programação Completa
         </Link>
       </div>
 
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex overflow-x-auto whitespace-nowrap gap-2 mb-8 p-2 custom-scrollbar">
         {days.map((day) => (
           <Button
             key={day.value}
             onClick={() => setSelectedDay(day.value)}
             variant={selectedDay === day.value ? "default" : "outline"}
             className={cn(
-              "rounded-full bg-background text-pink-600 border-2 border-pink-600 shadow-lg px-6 py-2 font-semibold transition-all duration-300 hover:bg-pink-300 hover:text-white hover:scale-105",
+              "rounded-full bg-background text-pink-600 border-2 border-pink-600 shadow-lg font-semibold transition-all duration-300 hover:bg-pink-300 hover:text-white hover:scale-105",
+              "shrink-0",
+              "px-3 py-1 text-xs",
+              "sm:px-4 sm:py-1 sm:text-sm",
+              "md:px-6 md:py-2 md:text-base",
               selectedDay === day.value && "bg-pink-500 text-white border-pink-600"
             )}
           >
