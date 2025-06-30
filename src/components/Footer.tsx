@@ -20,7 +20,7 @@ export function Footer() {
           <div className="flex flex-col">
             <div className="flex items-center mb-4">
               <Radio className="h-6 w-6 text-pink-600 mr-2" />
-              <span className="font-semibold text-xl text-pink-600">Rádio Brasil FM</span>
+              <span className="font-semibold text-xl text-pink-600">Rádio Braba FM</span>
             </div>
             <p className="text-secondary-foreground mb-4">
               A rádio que fala como o povo fala. Música e bate-papo 24h por dia!
@@ -166,8 +166,8 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin size={18} className="text-pink-600 mr-2 mt-0.5" />
                 <span className="text-secondary-foreground">
-                  Av. Paulista, 1000<br />
-                  São Paulo - SP<br />
+                  Rua do Cruzeiro, 70<br />
+                  Capela do Alto - SP<br />
                   Brasil
                 </span>
               </li>
@@ -177,7 +177,7 @@ export function Footer() {
                   href="tel:+551199999999"
                   className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
-                  +55 11 9999-9999
+                  +55 15 99615-6506
                 </a>
               </li>
               <li className="flex items-center">
@@ -186,7 +186,7 @@ export function Footer() {
                   href="mailto:contato@radiobrasil.fm"
                   className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
-                  contato@radiobrasil.fm
+                  contato@radiobraba.fm
                 </a>
               </li>
             </ul>
@@ -194,7 +194,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-secondary-foreground mb-8">
-          <p>&copy; {new Date().getFullYear()} Rádio Brasil FM. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Rádio Braba FM. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
