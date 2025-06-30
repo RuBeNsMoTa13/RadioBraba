@@ -11,7 +11,7 @@ export function Hero() {
                backgroundSize: "cover",
                backgroundPosition: "center"
              }}>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/60 to-accent/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent/80"></div>
       
       <div className="container relative z-10 mx-auto px-4">
 

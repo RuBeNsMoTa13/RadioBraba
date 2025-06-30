@@ -65,7 +65,7 @@ export const SupportsCarousel = React.forwardRef<
         loop: true, // Adicionado loop infinito
       },
       // Combinar plugins existentes com o plugin de Autoplay
-      plugins ? [Autoplay({ delay: 5000, stopOnInteraction: false }), ...(Array.isArray(plugins) ? plugins : [plugins])] : [Autoplay({ delay: 5000, stopOnInteraction: false })]
+      plugins ? [Autoplay({ delay: 3000, stopOnInteraction: false }), ...(Array.isArray(plugins) ? plugins : [plugins])] : [Autoplay({ delay: 3000, stopOnInteraction: false })]
     );
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -123,16 +123,14 @@ export const SupportsCarousel = React.forwardRef<
     }, [api, onSelect]);
 
     const listaDeApoiadores = [
-      { name: "Apoiador 1", logo: "src/images/Apoiadores/Ifnc.png" },
-      { name: "Apoiador 2", logo: "src/images/Apoiadores/ColegioObjetivo.png" },
-      { name: "Apoiador 3", logo: "src/images/Apoiadores/Love.png" },
-      { name: "Apoiador 4", logo: "src/images/Apoiadores/NaXinxa.png" },
-      { name: "Apoiador 5", logo: "src/images/Apoiadores/NetCores.png" },
-      { name: "Apoiador 6", logo: "src/images/Apoiadores/Panda.png" },
-      { name: "Apoiador 7", logo: "src/images/logoChorme.png" },
-      { name: "Apoiador 8", logo: "src/images/logoChorme.png" },
-      { name: "Apoiador 9", logo: "src/images/logoChorme.png" },
-      { name: "Apoiador 10", logo: "src/images/logoChorme.png" },
+      { name: "Apoiador 1", logo: "src/images/Apoiadores/1.png" },
+      { name: "Apoiador 2", logo: "src/images/Apoiadores/2.png" },
+      { name: "Apoiador 3", logo: "src/images/Apoiadores/3.png" },
+      { name: "Apoiador 4", logo: "src/images/Apoiadores/4.png" },
+      { name: "Apoiador 5", logo: "src/images/Apoiadores/5.png" },
+      { name: "Apoiador 6", logo: "src/images/Apoiadores/6.png" },
+      { name: "Apoiador 7", logo: "src/images/Apoiadores/7.png" },
+
     ];
 
     return (
@@ -157,11 +155,16 @@ export const SupportsCarousel = React.forwardRef<
           aria-roledescription="carousel"
           {...props}
         >
+        {/* Título centralizado, com cor primária e padding inferior */}
+        <h1 className="text-center text-primary font-bold text-2xl pb-8">Apoiadores</h1> {/* Alterado mb-0 para pb-4 */}
+        {/* Fim do título */}
+
           <SupportsCarouselContent>
             {listaDeApoiadores.map((apoiador, index) => (
               <SupportsCarouselItem key={index}>
-                <div className="flex items-center justify-center  border rounded-lg shadow-md "> {/* Adicionado estilos de card aqui */}
-                  <img src={apoiador.logo} alt={apoiador.name} className="w-[200px] h-[100px] object-cover" /> {/* Alterado tamanho da imagem para 1000x500 */}
+                {/* Adicionado justify-center para centralizar a imagem horizontalmente */}
+                <div className="flex items-center justify-center"> {/* Adicionado estilos de card aqui */}
+                  <img src={apoiador.logo} alt={apoiador.name} className="w-[100px] h-[100px] object-cover" /> {/* Alterado tamanho da imagem para 1000x500 */}
                 </div>
               </SupportsCarouselItem>
             ))}
@@ -187,7 +190,8 @@ const SupportsCarouselContent = React.forwardRef<
         ref={ref}
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          // Gap horizontal: nenhum no mobile, gap-x-2 no web (md e acima)
+          orientation === "horizontal" ? "md:gap-x-2" : "gap-y-4 flex-col", // Use gap-y-4 para vertical
           className
         )}
         {...props}
@@ -209,8 +213,10 @@ const SupportsCarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-1/3", // Changed from basis-full to basis-1/3
-        // Removido padding condicional para colar os itens
+        // Ajuste a base: basis-full para mobile (1 item), basis-1/3 para web (3 itens)
+        "min-w-0 shrink-0 grow-0 basis-full md:basis-1/3", // basis-full para mobile, basis-1/3 para web (md e acima)
+        // Removido padding horizontal, usando gap no container (gap removido para mobile)
+        orientation === "vertical" ? "py-4" : "", // Mantenha py-4 para vertical se necessário, remova para horizontal
         className
       )}
       {...props}
@@ -276,3 +282,4 @@ const SupportsCarouselNext = React.forwardRef<
   );
 });
 SupportsCarouselNext.displayName = "SupportsCarouselNext";
+
