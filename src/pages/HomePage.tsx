@@ -12,9 +12,9 @@ export function HomePage() {
       <Hero />
       <SupportsCarousel /> 
       <ScheduleSection />
+      <Announcer />
       <PrizeSection />
       <News />
-      <Announcer />
       <GalleryPreview />
     </div>
   );

@@ -1,7 +1,8 @@
 import * as React from "react";
 import useEmblaCarousel, {
-  type UseEmblaCarouselType,
+  type UseEmblaCarouselType
 } from "embla-carousel-react";
+import type { EmblaPluginType } from "embla-carousel";
 import Autoplay from 'embla-carousel-autoplay'; // Importar o plugin de Autoplay
 
 import { cn } from "@/lib/utils";
@@ -11,11 +12,13 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 export type SupportsCarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
-type CarouselPlugin = UseCarouselParameters[1];
+// Removida a definição de tipo para CarouselPlugin, pois a prop plugins será removida
+// type CarouselPlugin = UseCarouselParameters[1];
 
 export type SupportsCarouselProps = {
   opts?: CarouselOptions;
-  plugins?: CarouselPlugin;
+  // Removida a prop plugins
+  // plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: SupportsCarouselApi) => void;
 };
@@ -50,7 +53,8 @@ export const SupportsCarousel = React.forwardRef<
       orientation = "horizontal",
       opts,
       setApi,
-      plugins,
+      // Removida a prop plugins dos parâmetros
+      // plugins,
       className,
       children,
       ...props
@@ -64,8 +68,8 @@ export const SupportsCarousel = React.forwardRef<
         duration: 100, // Alterado de 40 para 100 para deixar mais lento
         loop: true, // Adicionado loop infinito
       },
-      // Combinar plugins existentes com o plugin de Autoplay
-      plugins ? [Autoplay({ delay: 3000, stopOnInteraction: false }), ...(Array.isArray(plugins) ? plugins : [plugins])] : [Autoplay({ delay: 3000, stopOnInteraction: false })]
+      // Apenas o plugin de Autoplay com delay de 3000ms
+      [Autoplay({ delay: 3000, stopOnInteraction: false }) as EmblaPluginType] // Simplificado para apenas o Autoplay
     );
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
