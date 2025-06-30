@@ -4,11 +4,13 @@ import { PrizeSection } from "@/components/HomePage/PrizeSection";
 import { ScheduleSection } from "@/components/HomePage/ScheduleSection";
 import News from "@/components/News/News";
 import Announcer from "@/components/Announcer/Announcer";
+import { SupportsCarousel } from "@/components/SupportsCarousel"; // Importando apenas o componente principal
 
 export function HomePage() {
   return (
-    <div className="flex flex-col gap-16">
+    <div >
       <Hero />
+      <SupportsCarousel /> 
       <ScheduleSection />
       <PrizeSection />
       <News />
