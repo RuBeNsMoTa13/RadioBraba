@@ -127,13 +127,13 @@ export const SupportsCarousel = React.forwardRef<
     }, [api, onSelect]);
 
     const listaDeApoiadores = [
-      { name: "Apoiador 1", logo: "src/images/Apoiadores/1.png" },
-      { name: "Apoiador 2", logo: "src/images/Apoiadores/2.png" },
-      { name: "Apoiador 3", logo: "src/images/Apoiadores/3.png" },
-      { name: "Apoiador 4", logo: "src/images/Apoiadores/4.png" },
-      { name: "Apoiador 5", logo: "src/images/Apoiadores/5.png" },
-      { name: "Apoiador 6", logo: "src/images/Apoiadores/6.png" },
-      { name: "Apoiador 7", logo: "src/images/Apoiadores/7.png" },
+      { name: "Apoiador 1", logo: "/images/Apoiadores/1.png" },
+      { name: "Apoiador 2", logo: "/images/Apoiadores/2.png" },
+      { name: "Apoiador 3", logo: "images/Apoiadores/3.png" },
+      { name: "Apoiador 4", logo: "images/Apoiadores/4.png" },
+      { name: "Apoiador 5", logo: "images/Apoiadores/5.png" },
+      { name: "Apoiador 6", logo: "images/Apoiadores/6.png" },
+      { name: "Apoiador 7", logo: "images/Apoiadores/7.png" },
 
     ];
 
