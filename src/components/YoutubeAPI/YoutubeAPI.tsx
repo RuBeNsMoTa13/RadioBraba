@@ -23,7 +23,6 @@ export async function getVideos(): Promise<YoutubeVideo[]> {
     );
 
     if (!response.ok) {
-        const ErrorData = await response.json();
         throw new Error('Videos não encontrados');
     }
 

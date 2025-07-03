@@ -21,8 +21,19 @@ const VideoGallery: React.FC = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const fetchedRawVideos = await getVideos();
 
+                // Tenta carregar do localStorage
+                const cached = localStorage.getItem('videos');
+                if (cached) {
+                    const cachedVideos: DisplayVideo[] = JSON.parse(cached);
+                    setVideos(cachedVideos);
+                    if (cachedVideos.length > 0) setSelectedVideoId(cachedVideos[0].id);
+                    setLoading(false);
+                    return;
+                }
+
+                // Se não houver cache, busca da API
+                const fetchedRawVideos = await getVideos();
                 const formattedVideos: DisplayVideo[] = fetchedRawVideos.map(video => ({
                     id: video.id.videoId,
                     title: video.snippet.title,
@@ -31,9 +42,8 @@ const VideoGallery: React.FC = () => {
                 }));
 
                 setVideos(formattedVideos);
-                if (formattedVideos.length > 0) {
-                    setSelectedVideoId(formattedVideos[0].id);
-                }
+                localStorage.setItem('videos', JSON.stringify(formattedVideos));
+                if (formattedVideos.length > 0) setSelectedVideoId(formattedVideos[0].id);
             } catch (err) {
                 console.error("Erro ao carregar vídeos:", err);
                 setError("Não foi possível carregar os vídeos do YouTube. Tente novamente mais tarde.");
