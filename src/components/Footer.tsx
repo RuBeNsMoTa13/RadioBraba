@@ -183,10 +183,10 @@ export function Footer() {
               <li className="flex items-center">
                 <Mail size={18} className="text-pink-600 mr-2" />
                 <a
-                  href="mailto:contato@radiobrasil.fm"
+                  href="mailto:contato@ifnc.com.br"
                   className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
                 >
-                  contato@radiobraba.fm
+                  contato@ifnc.com.br
                 </a>
               </li>
             </ul>
