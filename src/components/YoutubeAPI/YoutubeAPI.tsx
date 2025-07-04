@@ -1,5 +1,5 @@
-const API_KEY = import.meta.env.API_KEY as string;
-const CHANNEL_ID = import.meta.env.CHANNEL_ID as string;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
+const CHANNEL_ID = import.meta.env.VITE_CHANNEL_ID as string;
 
 interface YoutubeVideo {
     id: {
@@ -8,19 +8,15 @@ interface YoutubeVideo {
     snippet: {
         title: string;
         description: string;
-        thumbnails: {
-            high: {
-                url: string;
-            };
-        };
+        thumbnails: { high: { url: string; }; };
     };
 }
 
 export async function getVideos(): Promise<YoutubeVideo[]> {
  try {
     const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10`
-    );
+    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10&type=video`
+);
 
     if (!response.ok) {
         throw new Error('Videos não encontrados');
@@ -48,9 +44,8 @@ const PlayerYoutube: React.FC<PlayerYoutubeProps> = ({ videoId }) => {
             <div className="relative w-full max-w-3xl aspect-video">
                 <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+                    src={`http://youtube.com/embed/${videoId}?rel=0`}
                     title="YouTube video player"
-                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                 ></iframe>

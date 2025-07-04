@@ -22,9 +22,14 @@ const VideoGallery: React.FC = () => {
                 setLoading(true);
                 setError(null);
 
-                // Tenta carregar do localStorage
                 const cached = localStorage.getItem('videos');
-                if (cached) {
+                const cachedTime = localStorage.getItem('videos_time');
+                const now = Date.now();
+
+                // Define validade de cache (ex: 1 hora)
+                const cacheValidity = 1000 * 60 * 60;
+
+                if (cached && cachedTime && now - parseInt(cachedTime) < cacheValidity) {
                     const cachedVideos: DisplayVideo[] = JSON.parse(cached);
                     setVideos(cachedVideos);
                     if (cachedVideos.length > 0) setSelectedVideoId(cachedVideos[0].id);
@@ -43,6 +48,7 @@ const VideoGallery: React.FC = () => {
 
                 setVideos(formattedVideos);
                 localStorage.setItem('videos', JSON.stringify(formattedVideos));
+                localStorage.setItem('videos_time', now.toString());
                 if (formattedVideos.length > 0) setSelectedVideoId(formattedVideos[0].id);
             } catch (err) {
                 console.error("Erro ao carregar vídeos:", err);
