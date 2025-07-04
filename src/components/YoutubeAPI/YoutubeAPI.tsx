@@ -1,5 +1,5 @@
-const API_KEY = "AIzaSyAaXUX_Fri-mVfOG2j7KatLp1ZlpjJweG4";
-const CHANNEL_ID = "UCFB5fmqPC0XilvMTFnzxFig";
+const API_KEY = import.meta.env.API_KEY as string;
+const CHANNEL_ID = import.meta.env.CHANNEL_ID as string;
 
 interface YoutubeVideo {
     id: {
@@ -44,16 +44,17 @@ const PlayerYoutube: React.FC<PlayerYoutubeProps> = ({ videoId }) => {
         return <div className="w-full h-64 flex items-center justify-center">Nenhum vídeo disponível</div>;
     }
     return (
-        <div className="w-full h-64">
-            <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${videoId}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
+        <div className="w-full flex items-center justify-center mt-8">
+            <div className="relative w-full max-w-3xl aspect-video">
+                <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                ></iframe>
+            </div>
         </div>
     );
 };
