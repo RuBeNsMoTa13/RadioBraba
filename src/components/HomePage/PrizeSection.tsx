@@ -21,7 +21,7 @@ export function PrizeSection() {
           </div>
           <Link
             to="/premios"
-            className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 text-black"
+            className="font-semibold bg-card text-primary border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 text-black"
           >
             Ver Todos os Prêmios
           </Link>

@@ -87,7 +87,7 @@ export function ContactPage() {
       icon: <Phone size={24} />,
       title: 'WhatsApp',
       description: 'Resposta imediata durante o horário comercial',
-      value: '(11) 99999-9999',
+      value: '(15) 99615-6506',
       action: 'Enviar mensagem',
       color: 'bg-green-500' // Cor específica para o WhatsApp
     },
@@ -105,7 +105,7 @@ export function ContactPage() {
       icon: <Mail size={24} />,
       title: 'Email',
       description: 'Envie sua mensagem detalhada',
-      value: 'contato@brabafm.com',
+      value: 'contato@ifnc.com.br',
       action: 'Enviar email',
       color: 'bg-[#F63A9C]' // Cor da sua paleta
     },
@@ -302,7 +302,7 @@ export function ContactPage() {
                     </div>
 
                     <a
-                      href="https://wa.me/5500000000000"
+                      href="https://wa.me/5515996156506"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm"
@@ -448,14 +448,14 @@ export function ContactPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-[#F63A9C] to-[#-[#FF2C69]] text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-[#F63A9C] to-[#FF2C69] text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">AINDA TEM DÚVIDAS?</h2>
           <p className="text-base sm:text-xl mb-6 md:mb-8">Nossa equipe está sempre pronta para ajudar você!</p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
-              href="https://wa.me/5500000000000"
+              href="https://wa.me/5515996156506"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center bg-white text-[#F63A9C] px-5 py-2 sm:px-6 sm:py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors duration-200 text-sm sm:text-base"
@@ -465,7 +465,7 @@ export function ContactPage() {
             </a>
 
             <a
-              href="tel:+5511333333333"
+              href="tel:+5515996156506"
               className="flex items-center bg-transparent border-2 border-white text-white px-5 py-2 sm:px-6 sm:py-3 rounded-lg font-bold hover:bg-white hover:text-[#F63A9C] transition-colors duration-200 text-sm sm:text-base"
             >
               <Phone size={18} className="mr-2" />

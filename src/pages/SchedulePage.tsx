@@ -5,18 +5,13 @@ import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";
 import { cn, getDayName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-// Importações para o conteúdo do ShowCard que agora está embutido
 import { Clock, User, Calendar } from "lucide-react";
-import { Link } from "react-router-dom"; // Assumindo que Link é do react-router-dom
+import { Link } from "react-router-dom"; 
 
 
 export function SchedulePage() {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
 
-  // Gera os dias da semana, usando nomes abreviados para economizar espaço
-  // Certifique-se que sua função getDayName em "@/lib/utils"
-  // tenha o parâmetro 'abbreviated' e retorne a abreviação se 'true'.
   const days = Array.from({ length: 7 }, (_, i) => ({
     value: i,
     label: getDayName(i), 
@@ -26,7 +21,7 @@ export function SchedulePage() {
 
   return (
     <div className="page-container">
-      <h1 className="page-title">Programação</h1>
+      <h1 className="page-title text-primary">Programação</h1>
 
       {/* Contêiner dos botões com scroll horizontal e responsividade */}
       <div className="flex overflow-x-auto whitespace-nowrap gap-2 mb-8 p-2 custom-scrollbar">
@@ -36,16 +31,12 @@ export function SchedulePage() {
             onClick={() => setSelectedDay(day.value)}
             variant={selectedDay === day.value ? "default" : "outline"}
             className={cn(
-              // Estilos base para todos os tamanhos (mobile first)
-              "rounded-full bg-white text-pink-600 border-2 border-pink-600 shadow-lg font-semibold transition-all duration-300 hover:bg-pink-600 hover:text-white hover:scale-105",
-              "shrink-0", // Impede que os botões encolham no scroll horizontal
+              "rounded-full bg-card text-pink-600 border-2 border-pink-600 shadow-lg font-semibold transition-all duration-300 hover:bg-pink-600 hover:text-white hover:scale-105",
+              "shrink-0", 
+              "px-3 py-1 text-xs", 
+              "sm:px-4 sm:py-1 sm:text-sm", 
+              "md:px-6 md:py-2 md:text-base",
 
-              // Estilos responsivos de padding e fonte (diminuem em telas menores)
-              "px-3 py-1 text-xs", // Muito pequeno (extra small screens)
-              "sm:px-4 sm:py-1 sm:text-sm", // Pequeno (small screens)
-              "md:px-6 md:py-2 md:text-base", // Médio (medium screens) - o tamanho original
-
-              // Estilo para o botão selecionado
               selectedDay === day.value && "bg-pink-300 text-white border-pink-300"
             )}
           >
@@ -59,15 +50,15 @@ export function SchedulePage() {
           {filteredShows.map((show: Show) => (
             // Conteúdo do ShowCard embutido diretamente aqui
             <div
-              key={show.id} // Mantenha a chave aqui
-              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              key={show.id} 
+              className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div
                 className="w-full h-40 bg-cover bg-center"
                 style={{ backgroundImage: `url(${show.image})` }}
               />
               <div className="p-4">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">{show.title}</h3>
+                <h3 className="text-lg font-bold text-primary mb-2">{show.title}</h3>
                 <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
                   <div className="flex items-center">
                     <User className="h-4 w-4 mr-1" /> {show.host}

@@ -5,6 +5,7 @@ import { ScheduleSection } from "@/components/HomePage/ScheduleSection";
 import News from "@/components/News/News";
 import Announcer from "@/components/Announcer/Announcer";
 import { SupportsCarousel } from "@/components/SupportsCarousel"; // Importando apenas o componente principal
+import VideoGallery from "@/components/YoutubeAPI/VideoGallery"; 
 
 export function HomePage() {
   return (
@@ -14,6 +15,7 @@ export function HomePage() {
       <ScheduleSection />
       <Announcer />
       <PrizeSection />
+      <VideoGallery />
       <News />
       <GalleryPreview />
     </div>
