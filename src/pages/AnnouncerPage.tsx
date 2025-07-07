@@ -102,6 +102,28 @@ const locutores: Locutor[] = [
     banda: "Charlie Brown Jr. / Supertramp / SOJA",
     musica: "Bob Dylan - Hurricane",
     instagram: "@fredericolc"
+  },
+  {
+    id: 9,
+    nome: "Gersinho",
+    programa: "",
+    foto: "/images/Gersinho.png",
+    biografia: "Iniciou a carreira de notícias em 2020 sendo o maior canal de notícias da cidade de Capela do Alto.",
+    aniversario: "05/05",
+    banda: "Roupa Nova / RPM",
+    musica: "Whisky à go-go-go - Roupa Nova",
+    instagram: "@gersinho_radio_tv"
+  },
+  {
+    id: 10,
+    nome: "Sandro Aparecido",
+    programa: "",
+    foto: "/images/SandroAparecido.png",
+    biografia: "Mais conhecido como Ksandra, vocalista da banda Rock Mesclado. Meu lema e 'Viver com alegria, um dia de cada vez'.",
+    aniversario: "18/04",
+    banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
+    musica: "November Rain - Guns N' Roses",
+    instagram: "@sandroaparecidomachado"
   }
 ];
 
@@ -119,7 +141,7 @@ const AnnouncerPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+    <div className="min-h-screen bg-background text-primary transition-colors duration-500">
       {/* Header Section */}
       <div className="px-6 py-4">
         <div className="text-center mb-10">
@@ -155,7 +177,7 @@ const AnnouncerPage: React.FC = () => {
                 </div>
 
                 {/* Card Content - Ajuste de cores para tema */}
-                <div className="relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden h-96 group-hover:transform group-hover:scale-105 transition-transform duration-300 shadow-lg dark:shadow-xl">
+                <div className="relative bg-card rounded-lg overflow-hidden h-96 group-hover:transform group-hover:scale-105 transition-transform duration-300 shadow-lg dark:shadow-xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
                   
                   <img
@@ -188,11 +210,11 @@ const AnnouncerPage: React.FC = () => {
       {/* Modal */}
       {selectedLocutor && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row transition-colors duration-300">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row transition-colors duration-300">
             {/* Close Button - Ajuste de cores para tema */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 z-60 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors text-white"
+              className="absolute top-4 right-4 z-[70] bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors text-white"
             >
               <X className="w-6 h-6" />
             </button>
