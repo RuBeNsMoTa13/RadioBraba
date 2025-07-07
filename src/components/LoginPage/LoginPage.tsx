@@ -40,10 +40,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast"; // Assumindo que este toast é do seu shadcn/ui
-import { Mail, Lock, LogIn, Sun, Moon } from "lucide-react"; // Ícones do Lucide React
+import { Mail, Lock, LogIn} from "lucide-react"; 
 
-// Esquema de validação do formulário de login com Zod
 const loginFormSchema = z.object({
   email: z.string().email({
     message: "Email inválido.",
@@ -55,7 +53,6 @@ const loginFormSchema = z.object({
 
 export function LoginPage() {
 
-  // Inicializa o formulário com React Hook Form e Zod resolver
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -64,20 +61,15 @@ export function LoginPage() {
     },
   });
 
-  // Função onSubmit para o formulário de login
   function onSubmit(values: z.infer<typeof loginFormSchema>) {
     console.log("Credenciais de login:", values);
-    toast({
-      title: "Tentativa de Login",
-      description: `Email: ${values.email}`,
-    });
-    // Aqui você faria a lógica de autenticação real (e.g., chamada API)
-    form.reset(); // Limpa o formulário após o "envio"
+    form.reset(); 
+    // Aqui você faria a lógica de autenticação real 
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 p-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 relative">
+    <div className="min-h-screen flex items-center justify-center bg-background text-gray-900 dark:text-gray-100 transition-colors duration-500 p-4">
+      <div className="w-full max-w-md bg-card rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 relative">
         
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2 text-gray-800 dark:text-white">LOGIN</h1>

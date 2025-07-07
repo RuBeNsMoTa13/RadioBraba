@@ -49,10 +49,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { toast } from '@/hooks/use-toast'; // Assuming this toast is from your shadcn/ui
-import { User, Mail, Lock, CheckSquare, Sun, Moon, PlusCircle } from 'lucide-react'; // Lucide React Icons
+import { User, Mail, Lock, CheckSquare, PlusCircle } from 'lucide-react'; 
 
-// Zod validation schema for the registration form
 const registerFormSchema = z.object({
   name: z.string().min(2, {
     message: 'Nome deve ter pelo menos 2 caracteres.',
@@ -70,12 +68,11 @@ const registerFormSchema = z.object({
   }),
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'As senhas não coincidem.',
-  path: ['confirmPassword'], // Set the error on the confirmPassword field
+  path: ['confirmPassword'], 
 });
 
 export function RegisterPage() {
 
-  // Initialize the form with React Hook Form and Zod resolver
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -86,28 +83,17 @@ export function RegisterPage() {
     },
   });
 
-  // onSubmit function for the registration form
-  function onSubmit(values: z.infer<typeof registerFormSchema>) {
+  
+ function onSubmit(values: z.infer<typeof registerFormSchema>) {
     console.log('Dados de registro:', values);
-    toast({
-      title: 'Cadastro em progresso',
-      description: 'Estamos registrando sua conta...',
-    });
-    // Here you would typically make an API call to register the user
-    // For demonstration, we'll just reset the form after a short delay
-    setTimeout(() => {
-      toast({
-        title: 'Cadastro realizado!',
-        description: 'Sua conta foi criada com sucesso. Você já pode fazer login!',
-      });
-      form.reset(); // Clear the form upon "successful" submission
-      // Optionally redirect to login page: router.push('/login');
-    }, 1500);
-  }
+      form.reset(); 
+      // Aqui você faria a lógica de registro real, como uma chamada API
+    };
+
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 flex flex-col items-center justify-center p-4">
-      <div className="relative w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
+    <div className="min-h-screen bg-background text-gray-900 dark:text-gray-100 transition-colors duration-500 flex flex-col items-center justify-center p-4">
+      <div className="relative w-full max-w-md bg-card rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
     
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">CADASTRO</h2>
