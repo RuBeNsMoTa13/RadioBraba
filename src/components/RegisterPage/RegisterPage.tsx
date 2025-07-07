@@ -51,6 +51,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { User, Mail, Lock, CheckSquare, PlusCircle } from 'lucide-react'; 
 
+// Esquema de validação do formulário com Zod
 const registerFormSchema = z.object({
   name: z.string().min(2, {
     message: 'Nome deve ter pelo menos 2 caracteres.',

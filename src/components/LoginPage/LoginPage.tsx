@@ -42,6 +42,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Mail, Lock, LogIn} from "lucide-react"; 
 
+// Esquema de validação do formulário com Zod
 const loginFormSchema = z.object({
   email: z.string().email({
     message: "Email inválido.",
