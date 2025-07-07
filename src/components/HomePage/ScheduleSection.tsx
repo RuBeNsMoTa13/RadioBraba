@@ -54,11 +54,11 @@ export function ScheduleSection() {
         {dayShows.map((show: Show) => (
           <div
             key={show.id}
-            className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <div className="w-full h-40 bg-cover bg-center" style={{ backgroundImage: `url(${show.image})` }} />
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-800 mb-2">{show.title}</h3>
+              <h3 className="text-lg font-bold text-primary mb-2">{show.title}</h3>
               <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
                 <div className="flex items-center">
                   <User className="h-4 w-4 mr-1" /> {show.host}

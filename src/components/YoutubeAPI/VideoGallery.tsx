@@ -98,7 +98,7 @@ const VideoGallery: React.FC = () => {
                     <div
                         key={video.id}
                         className={`
-              bg-white rounded-lg shadow-md overflow-hidden
+              bg-card rounded-lg shadow-md overflow-hidden
               transition-transform-shadow transform hover:scale-105 duration-300
               cursor-pointer border-1 hover:shadow-lg 
               ${selectedVideoId === video.id ? 'border-primary' : 'border-transparent'}
