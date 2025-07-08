@@ -185,7 +185,7 @@ const News: React.FC = () => {
               />
             </div>
             
-            <div className="flex items-center overflow-x-auto md:overflow-visible scrollbar-hide space-x-2 pb-2 md:pb-0">
+            <div className="flex items-center overflow-x-auto md:overflow-visible custom-scrollbar space-x-2 pb-2 md:pb-0">
               <div className="text-sm font-medium text-gray-500 flex items-center whitespace-nowrap">
                 <Filter size={16} className="mr-1" />
                 Filtrar:

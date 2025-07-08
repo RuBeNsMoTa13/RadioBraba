@@ -6,22 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast"; // Assumindo que este toast é do seu shadcn/ui
-import { ContactFormData } from "@/lib/types"; // Certifique-se que esta interface está definida
-import { // Ícones do Lucide React
-  Send,
-  User,
-  Mail,
-  Phone,
-  MessageSquare,
-  MapPin,
-  Clock,
-  Radio,
-  ChevronRight,
-  Users,
-  Heart,
-  Building
-} from "lucide-react";
+import { toast } from "@/hooks/use-toast"; 
+import { ContactFormData } from "@/lib/types"; 
+import {  Send, User, Mail, Phone, MessageSquare, MapPin, Clock, Radio, ChevronRight, Users, Heart, Building } from "lucide-react";
 
 // Esquema de validação do formulário com Zod
 const formSchema = z.object({
@@ -59,7 +46,6 @@ interface FAQ {
 export function ContactPage() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
 
-  // Inicializa o formulário com React Hook Form e Zod resolver
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -80,7 +66,6 @@ export function ContactPage() {
     form.reset(); // Limpa o formulário após o envio
   }
 
-  // Dados para os métodos de contato
   const contactMethods: ContactMethod[] = [
     {
       id: 'whatsapp',
@@ -89,7 +74,7 @@ export function ContactPage() {
       description: 'Resposta imediata durante o horário comercial',
       value: '(15) 99615-6506',
       action: 'Enviar mensagem',
-      color: 'bg-green-500' // Cor específica para o WhatsApp
+      color: 'bg-green-500' 
     },
     {
       id: 'phone',
@@ -98,7 +83,7 @@ export function ContactPage() {
       description: 'Ligue diretamente para nossa central',
       value: '(11) 3333-3333',
       action: 'Fazer ligação',
-      color: 'bg-blue-500' // Cor específica para o Telefone
+      color: 'bg-blue-500' 
     },
     {
       id: 'email',
@@ -107,7 +92,7 @@ export function ContactPage() {
       description: 'Envie sua mensagem detalhada',
       value: 'contato@ifnc.com.br',
       action: 'Enviar email',
-      color: 'bg-[#F63A9C]' // Cor da sua paleta
+      color: 'bg-primary' 
     },
     {
       id: 'radio',
@@ -116,7 +101,7 @@ export function ContactPage() {
       description: 'Participe dos programas ao vivo',
       value: 'Segunda à Sexta, 8h às 18h',
       action: 'Participar agora',
-      color: 'bg-orange-500' // Cor específica para o Ao Vivo
+      color: 'bg-orange-500' 
     }
   ];
 
@@ -152,7 +137,7 @@ export function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500">
+    <div className="min-h-screen bg-background text-gray-900 dark:text-gray-100 transition-colors duration-500">
       {/* Hero Section */}
       <section className="py-12 md:py-16 bg-gradient-to-br from-[#F63A9C] to-[#FF2C69] text-white">
         <div className="container mx-auto px-4">
@@ -180,7 +165,7 @@ export function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+      <section className="py-12 md:py-16 bg-background transition-colors duration-500">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-800 dark:text-white">ENVIE SUA MENSAGEM</h2>
@@ -191,7 +176,7 @@ export function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto">
 
             {/* Formulário de Contato */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-card rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6">
                 <div className="flex items-center mb-2 sm:mb-0">
                     <MessageSquare size={24} className="text-[#F63A9C] mr-2" />
@@ -225,7 +210,7 @@ export function ContactPage() {
                     )}
                   />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"> {/* Ajuste aqui para 2 colunas em md */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"> 
                     <FormField
                       control={form.control}
                       name="email"
@@ -295,7 +280,7 @@ export function ContactPage() {
                   />
 
                   {/* Botão WhatsApp Direto no formulário */}
-                  <div className="flex flex-col items-center justify-between bg-gray-50 dark:bg-gray-700 p-4 rounded-lg transition-colors duration-200">
+                  <div className="flex flex-col items-center justify-between bg-card p-4 rounded-lg transition-colors duration-200">
                     <div className="text-gray-700 dark:text-gray-200 mb-4 text-center">
                       <h4 className="font-medium text-base">Precisa de resposta rápida?</h4>
                       <p className="text-sm text-gray-600 dark:text-gray-300">Entre em contato direto pelo WhatsApp!</p>
@@ -324,7 +309,7 @@ export function ContactPage() {
             </div>
 
             {/* Informações do Escritório e Horários */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-card rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300">
               <div className="flex items-center mb-6">
                 <MapPin size={24} className="text-[#F63A9C] mr-2" />
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Nossa Localização</h3>
@@ -339,7 +324,7 @@ export function ContactPage() {
                   </div>
                 </div>
                 {/* Rubens, ajuste o src do iframe do mapa aqui! */}
-                <div className="relative overflow-hidden w-full h-48 sm:h-64 rounded-lg"> {/* Definindo altura para responsividade */}
+                <div className="relative overflow-hidden w-full h-48 sm:h-64 rounded-lg"> 
                   <iframe
                     title="Mapa interativo"
                     width="100%"
@@ -347,7 +332,6 @@ export function ContactPage() {
                     style={{ border: 0 }}
                     loading="lazy"
                     allowFullScreen
-                    // ** SUBSTITUA ESTE SRC PELO URL EMBED DO GOOGLE MAPS CORRETO PARA SUA LOCALIZAÇÃO **
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0773600000003!2d-47.88607102439002!3d-23.528405059695843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf54805e5d36e7%3A0x6b4c10398b1e4f40!2sR.%20do%20Cruzeiro%2C%2070%20-%20Centro%2C%20Capela%20do%20Alto%20-%20SP%2C%2018195-000!5e0!3m2!1spt-BR!2sbr!4v1719438012345!5m2!1spt-BR!2sbr"
                   ></iframe>
                 </div>
@@ -383,7 +367,7 @@ export function ContactPage() {
       </section>
 
       {/* Contact Methods Section */}
-      <section className="py-12 md:py-16 bg-white dark:bg-gray-800 transition-colors duration-500">
+      <section className="py-12 md:py-16 bg-background transition-colors duration-500">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-800 dark:text-white">ESCOLHA COMO FALAR CONOSCO</h2>
@@ -394,7 +378,7 @@ export function ContactPage() {
             {contactMethods.map((method) => (
               <div
                 key={method.id}
-                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-card rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className={`w-16 h-16 ${method.color} rounded-full flex items-center justify-center text-white mb-4 mx-auto`}>
                   {method.icon}
@@ -412,7 +396,7 @@ export function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 md:py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
+      <section className="py-12 md:py-16 bg-background transition-colors duration-500">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-800 dark:text-white">DÚVIDAS FREQUENTES</h2>
@@ -423,7 +407,7 @@ export function ContactPage() {
             {faqs.map((faq) => (
               <div
                 key={faq.id}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-card rounded-lg shadow-md mb-4 overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <button
                   className="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-gray-800 dark:text-white"

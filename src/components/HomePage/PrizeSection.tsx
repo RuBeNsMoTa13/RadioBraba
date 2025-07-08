@@ -31,14 +31,14 @@ export function PrizeSection() {
         {prizesData.map((prize) => (
           <div
             key={prize.id}
-            className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <div
               className="w-full h-40 bg-cover bg-center"
               style={{ backgroundImage: `url(${prize.image})` }}
             />
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-800 mb-2">{prize.title}</h3>
+              <h3 className="text-lg font-bold text-primary mb-2">{prize.title}</h3>
               <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
                 <div className="flex items-center">
                   <BadgeAlert className="h-4 w-4 mr-1 text-primary" />

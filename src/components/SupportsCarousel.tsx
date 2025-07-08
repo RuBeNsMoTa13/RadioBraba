@@ -7,7 +7,7 @@ import Autoplay from 'embla-carousel-autoplay'; // Importar o plugin de Autoplay
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export type SupportsCarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -236,24 +236,18 @@ const SupportsCarouselPrevious = React.forwardRef<
   const { orientation, scrollPrev, canScrollPrev } = useSupportsCarousel();
 
   return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      className={cn(
-        "absolute h-8 w-8 rounded-full z-10", // Adicionado z-10 para garantir que fiquem acima do conteúdo
-        orientation === "horizontal"
-          ? "left-4 top-1/2 -translate-y-1/2" // Ajustado para dentro
-          : "top-4 left-1/2 -translate-x-1/2 rotate-90", // Ajustado para dentro
-        className
-      )}
-      disabled={!canScrollPrev}
-      onClick={scrollPrev}
-      {...props}
+
+  <Button
+     ref={ref}
+     variant={variant}
+     size={size}
+     className="absolute left-2 top-1/2 -translate-y-1/2 z-10 hover:bg-primary rounded-full p-2 transition-colors border-primary"
+     disabled={!canScrollPrev}
+     onClick={scrollPrev}
+     {...props}
     >
-      <ArrowLeftIcon className="h-4 w-4" />
-      <span className="sr-only">Previous slide</span>
-    </Button>
+      <ChevronLeft className="w-6 h-6" />
+  </Button>
   );
 });
 SupportsCarouselPrevious.displayName = "SupportsCarouselPrevious";
@@ -265,24 +259,37 @@ const SupportsCarouselNext = React.forwardRef<
   const { orientation, scrollNext, canScrollNext } = useSupportsCarousel();
 
   return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      className={cn(
-        "absolute h-8 w-8 rounded-full z-10", // Adicionado z-10 para garantir que fiquem acima do conteúdo
-        orientation === "horizontal"
-          ? "right-4 top-1/2 -translate-y-1/2" // Ajustado para dentro
-          : "bottom-4 left-1/2 -translate-x-1/2 rotate-90", // Ajustado para dentro
-        className
-      )}
-      disabled={!canScrollNext}
-      onClick={scrollNext}
-      {...props}
+  <Button
+     ref={ref}
+     variant={variant}
+     size={size}
+     className="absolute right-2 top-1/2 -translate-y-1/2 z-10 hover:bg-primary rounded-full p-2 transition-colors border-primary"
+     disabled={!canScrollNext}
+     onClick={scrollNext}
+     {...props}
     >
-      <ArrowRightIcon className="h-4 w-4" />
-      <span className="sr-only">Next slide</span>
-    </Button>
+      <ChevronRight className="w-6 h-6" />
+  </Button>
+
+
+    // <Button
+    //   ref={ref}
+    //   variant={variant}
+    //   size={size}
+    //   className={cn(
+    //     "absolute h-8 w-8 rounded-full z-10", // Adicionado z-10 para garantir que fiquem acima do conteúdo
+    //     orientation === "horizontal"
+    //       ? "right-4 top-1/2 -translate-y-1/2" // Ajustado para dentro
+    //       : "bottom-4 left-1/2 -translate-x-1/2 rotate-90", // Ajustado para dentro
+    //     className
+    //   )}
+    //   disabled={!canScrollNext}
+    //   onClick={scrollNext}
+    //   {...props}
+    // >
+    //   <ChevronRight className="w-6 h-6" />
+    //   <span className="sr-only">Next slide</span>
+    // </Button>
   );
 });
 SupportsCarouselNext.displayName = "SupportsCarouselNext";

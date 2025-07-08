@@ -48,8 +48,9 @@
     --card: 0 0% 7%;
     --card-foreground: 0 0% 98%;
     
-    --popover:207, 100%, 2%;  /* PRETO: #000509*/
-    --popover-foreground: 0 0% 98%;
+    --popover: 207, 100%, 5%;
+    --popover-foreground: 0 0% 95%;
+
 
    
     --primary: 343, 85%, 55%;  /*ROSA: #ee2a62 */
