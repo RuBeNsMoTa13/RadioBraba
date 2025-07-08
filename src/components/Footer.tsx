@@ -9,11 +9,12 @@ import {
   Mail,
   Phone,
   MapPin,
+  ExternalLink,
 } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-background text-gray-800 pt-10 border-t-2 border-gray-200">
+    <footer className="bg-background text-gray-800 pt-10 border-t border-background dark:border-border">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo e descrição */}
@@ -22,7 +23,7 @@ export function Footer() {
               <Radio className="h-6 w-6 text-pink-600 mr-2" />
               <span className="font-semibold text-xl text-pink-600">Rádio Braba FM</span>
             </div>
-            <p className="text-secondary-foreground mb-4">
+            <p className="text-popover-foreground mb-4">
               A rádio que fala como o povo fala. Música e bate-papo 24h por dia!
             </p>
             <div className="flex space-x-4 mt-auto">
@@ -72,41 +73,46 @@ export function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Início
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Programação
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/galeria"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Galeria
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/premios"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Prêmios
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/contato"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Contato
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
             </ul>
@@ -119,41 +125,46 @@ export function Footer() {
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Manhã Animada
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Tarde Brasileira
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Show da Noite
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Sexta Eletrônica
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
               <li>
                 <Link
                   to="/programacao"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   Domingo Relaxante
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
             </ul>
@@ -165,7 +176,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={18} className="text-pink-600 mr-2 mt-0.5" />
-                <span className="text-secondary-foreground">
+                <span className="text-popover-foreground">
                   Rua do Cruzeiro, 70<br />
                   Capela do Alto - SP<br />
                   Brasil
@@ -175,25 +186,27 @@ export function Footer() {
                 <Phone size={18} className="text-pink-600 mr-2" />
                 <a
                   href="tel:+551199999999"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   +55 15 99615-6506
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-pink-600 mr-2" />
                 <a
                   href="mailto:contato@ifnc.com.br"
-                  className="text-secondary-foreground hover:text-pink-600 transition-colors font-medium"
+                  className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
                   contato@ifnc.com.br
+                  <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-secondary-foreground mb-8">
+        <div className="mt-10 border-t-2 border-background dark:border-border pt-6 text-center text-sm text-popover-foreground mb-8">
           <p>&copy; {new Date().getFullYear()} Rádio Braba FM. Todos os direitos reservados.</p>
         </div>
       </div>
