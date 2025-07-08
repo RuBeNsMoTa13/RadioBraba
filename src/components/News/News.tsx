@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react';
 import { Newspaper, Search, Calendar, Megaphone, Filter, ChevronRight, DollarSign, Home, Heart, BookOpen, Landmark } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -132,7 +133,6 @@ const News: React.FC = () => {
           <p className="text-xl text-secondary ">Aqui não tem fake. Só o que rola de verdade em Capela.</p>
         </div>
         
-        {/* Featured News */}
         {featuredNews && (
           <div className="mb-10 overflow-hidden rounded-xl shadow-lg group bg-white">
             <div className="grid md:grid-cols-2">
@@ -169,7 +169,7 @@ const News: React.FC = () => {
           </div>
         )}
         
-        {/* Search and Filters */}
+    
         <div className="bg-background rounded-lg shadow-md p-4 mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="relative flex-1">
@@ -208,7 +208,6 @@ const News: React.FC = () => {
           </div>
         </div>
         
-        {/* News Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {filteredNews.filter(news => !news.featured).map((news) => (
             <div 
@@ -246,7 +245,6 @@ const News: React.FC = () => {
           ))}
         </div>
         
-        {/* Interview Section */}
         <div className="mb-12">
           <div className="flex items-center mb-6">
             <Megaphone size={24} className="text-primary mr-2" />
@@ -295,7 +293,6 @@ const News: React.FC = () => {
         
 
         
-        {/* Call to Action */}
       <div className="mt-8 text-center">
         <Button 
         asChild
@@ -311,5 +308,5 @@ const News: React.FC = () => {
     </section>
   );
 };
-
-export default News;
+ 
+export default News; */
