@@ -45,7 +45,7 @@ export function GalleryPreview() {
         <Button 
         asChild
       size="lg"
-      className="font-semibold bg-primary text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-foreground"
+      className="font-semibold bg-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-foreground"
         >
           <Link to="/galeria" className="">Ver Galeria Completa</Link>
         </Button>

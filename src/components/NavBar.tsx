@@ -48,24 +48,25 @@ export function NavBar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full  bg-background border-b border-border">
+      <header className="sticky top-0 z-40 w-full bg-background border-b border-border">
         <div className="container flex h-16 items-center">
-          <div className="mr-4 flex">
-            <Link to="/" className="flex items-center space-x-2">
+          {/* Desktop logo */}
+          <div className="mr-4 flex md:flex">
+            <Link to="/" className="hidden md:flex items-center space-x-2">
               <img src="/images/RadioBraba.png" alt="Logo Rádio Braba FM" className="h-20 w-20" />
               <span className="font-bold text-xl">Rádio Braba</span>
             </Link>
           </div>
 
+          {/* Desktop nav */}
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
-                <div className=" hover:text-white  font-medium">
-                  <NavItem key={item.to} to={item.to} label={item.label} />
+                <div className="hover:text-white font-medium" key={item.to}>
+                  <NavItem to={item.to} label={item.label} />
                 </div>
               ))}
             </nav>
-
             <div className="flex items-center space-x-2">
               <Button
                 variant="ghost"
@@ -76,13 +77,19 @@ export function NavBar() {
                 <Radio className="h-5 w-5" />
               </Button>
               <ThemeToggle />
-              {/* Adicionar botão de Login aqui */}
               <Button asChild variant="default">
                 <Link to="/login">Login</Link>
               </Button>
             </div>
           </div>
-
+          {/* Mobile logo */}
+          <div className="flex items-center absolute left-0 z-20 md:hidden ml-2 sm:ml-4">
+            <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
+              <img src="/images/RadioBraba.png" alt="Logo Rádio Braba FM" className="h-12 w-12" />
+              <span className="font-bold text-lg whitespace-nowrap ml-2">Rádio Braba</span>
+            </Link>
+          </div>
+          {/* Right side buttons */}
           <div className="flex flex-1 items-center justify-end md:hidden">
             <Button
               variant="ghost"
@@ -93,9 +100,7 @@ export function NavBar() {
             >
               <Radio className="h-5 w-5" />
             </Button>
-
             <ThemeToggle />
-
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="ml-2">
@@ -108,9 +113,8 @@ export function NavBar() {
                   <div className="flex items-center justify-between mb-8">
                     <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
                       <Radio className="h-6 w-6 text-primary" />
-                      <span className="font-bold text-xl">Rádio Braba FM</span>
+                      <span className="font-bold text-xl whitespace-nowrap">Rádio Braba FM</span>
                     </Link>
-
                   </div>
                   <nav className="flex flex-col">
                     {navItems.map((item) => (
@@ -122,6 +126,19 @@ export function NavBar() {
                         onClick={closeMobileMenu}
                       />
                     ))}
+                    <div className="mt-4 px-4">
+                      <Button
+                        asChild
+                        variant="default"
+                        className="w-full"
+                        onClick={closeMobileMenu}
+                      >
+                        <Link to="/login" className="flex justify-center">
+                          Login
+                        </Link>
+                      </Button>
+                    </div>
+
                   </nav>
                 </div>
               </SheetContent>
@@ -131,7 +148,7 @@ export function NavBar() {
       </header>
 
       {showPlayer && (
-        <div className="fixed  bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-80">
+        <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-80">
           <RadioPlayer />
         </div>
       )}
