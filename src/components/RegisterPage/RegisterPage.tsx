@@ -50,6 +50,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { User, Mail, Lock, CheckSquare, PlusCircle } from 'lucide-react'; 
+import Google from "@/components/google"; 
 
 // Esquema de validação do formulário com Zod
 const registerFormSchema = z.object({
@@ -200,7 +201,7 @@ export function RegisterPage() {
             </Button>
           </form>
         </Form>
-
+        <Google /> 
         <div className="mt-6 text-center text-sm">
           <p className="text-gray-600 dark:text-gray-400">
             Já tem uma conta?{" "}

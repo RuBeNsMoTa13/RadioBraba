@@ -40,7 +40,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Mail, Lock, LogIn} from "lucide-react"; 
+import { Mail, Lock, LogIn} from "lucide-react";
+import Google from "@/components/google"; 
 
 // Esquema de validação do formulário com Zod
 const loginFormSchema = z.object({
@@ -132,7 +133,7 @@ export function LoginPage() {
             </Button>
           </form>
         </Form>
-
+    <Google /> 
         <div className="mt-6 text-center text-sm">
           <p className="text-gray-600 dark:text-gray-400">
             Esqueceu sua senha?{" "}
