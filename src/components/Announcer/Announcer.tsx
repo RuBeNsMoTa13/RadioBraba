@@ -178,7 +178,7 @@ const Announcer: React.FC = () => {
                 <Button
                     onClick={scrollPrev}
                     disabled={!canScrollPrev}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors border-primary"
                     size="icon"
                     variant="outline"
                 >
@@ -187,7 +187,7 @@ const Announcer: React.FC = () => {
                 <Button
                     onClick={scrollNext}
                     disabled={!canScrollNext}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors border-primary"
                     size="icon"
                     variant="outline"
                 >
