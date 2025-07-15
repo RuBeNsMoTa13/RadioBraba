@@ -113,7 +113,7 @@ export function LoginPage() {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Sua senha secreta"
+                      placeholder="Digite sua senha"
                       type="password"
                       className="bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 focus:ring-[#F63A9C] focus:border-[#F63A9C] rounded-lg transition-colors duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-400"
                       {...field}
