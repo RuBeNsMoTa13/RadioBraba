@@ -2,10 +2,9 @@ import { GalleryImage, Prize, Show, Host } from "./types";
 
 export const radioStations = [
   {
-    name: "Rádio Brasil FM",
-    streamUrl: "https://stream.example.com/brasil-fm", // This is a placeholder URL
-    logo: "/logo-brasil-fm.png",
-    currentSong: "Música Brasileira - Artista Popular"
+    name: "Brabo FM",
+    streamUrl: "https://uk3freenew.listen2myradio.com/live.mp3?typeportmount=s1_24105_stream_386281298", // <-- Use esta URL!
+    currentSong: "Sem informação"
   }
 ];
 
