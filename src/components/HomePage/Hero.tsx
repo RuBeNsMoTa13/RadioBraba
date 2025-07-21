@@ -2,8 +2,18 @@ import { Button } from "@/components/ui/button";
 import { RadioPlayer } from "@/components/RadioPlayer";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { RadioPlayerHero } from "@/components/RadioPlayerHero";
 
 export function Hero() {
+  const [showPlayer, setShowPlayer] = useState(false);
+  const [forcePlay, setForcePlay] = useState(false);
+
+  const handleGifClick = () => {
+    setShowPlayer(true);
+    setForcePlay(true);
+  };
+
   return (
     <div className="relative overflow-hidden bg-cover bg-center py-16 md:py-24"
              style={{
@@ -27,13 +37,18 @@ export function Hero() {
                 </h1>
             </div>
 
-            {/* Bloco do GIF - Ordem 2 no mobile, Ordem 2 no desktop (coluna direita) */}
-            <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center items-center cursor-pointer order-2 md:order-2"> {/* order-2 para mobile, md:order-2 para desktop */}
-                <img
-                    className="w-full max-w-sm md:max-w-none rounded-lg shadow-xl"
+            {/* Bloco do GIF ou Player - Ordem 2 no mobile, Ordem 2 no desktop (coluna direita) */}
+            <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col justify-center items-center order-2 md:order-2">
+                {!showPlayer ? (
+                  <img
+                    className="w-full max-w-sm md:max-w-none rounded-lg shadow-xl hover:scale-105 transition-transform duration-200 cursor-pointer"
                     src="/images/videohero.gif"
                     alt="Animação de destaque da Rádio Braba"
-                />
+                    onClick={handleGifClick}
+                  />
+                ) : (
+                  <RadioPlayerHero forcePlay={forcePlay} />
+                )}
             </div>
 
             {/* Bloco do Parágrafo, Botões e Player - Ordem 3 no mobile, Ordem 1 no desktop */}

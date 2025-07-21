@@ -4,7 +4,8 @@ export const radioStations = [
   {
     name: "Brabo FM",
     streamUrl: "https://uk3freenew.listen2myradio.com/live.mp3?typeportmount=s1_24105_stream_386281298", // <-- Use esta URL!
-    currentSong: "Sem informação"
+    currentSong: "Sem informação",
+    currentSongImage: ""
   }
 ];
 

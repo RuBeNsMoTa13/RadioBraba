@@ -11,6 +11,7 @@ import { ContactPage } from '@/pages/ContactPage';
 import AnnouncerPage from '@/pages/AnnouncerPage';
 import { LoginPage } from '@/components/LoginPage/LoginPage'; // Importar LoginPage do novo caminho
 import { RegisterPage } from '@/components/RegisterPage/RegisterPage'; // Importar RegisterPage do novo caminho
+import { RadioPlayerProvider } from "@/context/RadioPlayerContext";
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -22,23 +23,25 @@ function App() {
   if (!mounted) return null;
   
   return (
-    <ThemeProvider defaultTheme="light">
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/programacao" element={<SchedulePage />} />
-            <Route path="/galeria" element={<GalleryPage />} />
-            <Route path="/premios" element={<PrizesPage />} />
-            <Route path="/contato" element={<ContactPage />} />
-            <Route path="/locutores" element={<AnnouncerPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/cadastro" element={<RegisterPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      <Toaster />
-    </ThemeProvider>
+    <RadioPlayerProvider>
+      <ThemeProvider defaultTheme="light">
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/programacao" element={<SchedulePage />} />
+              <Route path="/galeria" element={<GalleryPage />} />
+              <Route path="/premios" element={<PrizesPage />} />
+              <Route path="/contato" element={<ContactPage />} />
+              <Route path="/locutores" element={<AnnouncerPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/cadastro" element={<RegisterPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <Toaster />
+      </ThemeProvider>
+    </RadioPlayerProvider>
   );
 }
 
