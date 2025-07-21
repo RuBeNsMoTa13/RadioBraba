@@ -7,11 +7,9 @@ import { RadioPlayerHero } from "@/components/RadioPlayerHero";
 
 export function Hero() {
   const [showPlayer, setShowPlayer] = useState(false);
-  const [forcePlay, setForcePlay] = useState(false);
 
   const handleGifClick = () => {
     setShowPlayer(true);
-    setForcePlay(true);
   };
 
   return (
@@ -47,7 +45,7 @@ export function Hero() {
                     onClick={handleGifClick}
                   />
                 ) : (
-                  <RadioPlayerHero forcePlay={forcePlay} />
+                  <RadioPlayerHero />
                 )}
             </div>
 
