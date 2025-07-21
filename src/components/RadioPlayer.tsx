@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,109 +9,214 @@ import { radioStations } from "@/lib/data"; // Certifique-se que esta URL está 
 import { cn } from "@/lib/utils";
 
 export function RadioPlayer({ className }: { className?: string }) {
+  // Persistência do volume no localStorage
+  function getInitialVolume() {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('radio_volume');
+      if (saved !== null) return parseFloat(saved);
+    }
+    return 0.5;
+  }
+
+  // Adicione estado para música atual e foto
+  const [currentSong, setCurrentSong] = useState<string | null>(null);
+  const [currentSongImage, setCurrentSongImage] = useState<string | null>(null);
+
   const [radioState, setRadioState] = useState<RadioState>({
     isPlaying: false,
-    volume: 0.8,
-    station: radioStations[0], // Usará a primeira estação da sua lista
+    volume: getInitialVolume(), // Começa com 50% ou valor salvo
+    station: radioStations[0],
   });
-
-  const [currentSong, setCurrentSong] = useState(radioStations[0].currentSong);
+  const [previousVolume, setPreviousVolume] = useState(radioState.volume);
+  const [status, setStatus] = useState<'idle' | 'connecting' | 'playing' | 'error'>('idle');
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const reconnectTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // === CÓDIGO ALTERADO (useEffects separados e otimizados) ===
+  // Persistir volume no localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('radio_volume', String(radioState.volume));
+    }
+  }, [radioState.volume]);
+
+  // Simulação: Atualize aqui para buscar dados reais da música se houver endpoint/metadata
+  useEffect(() => {
+    // Exemplo: polling a cada 10s para buscar música atual
+    const interval = setInterval(() => {
+      // Aqui você pode fazer um fetch para um endpoint que retorna a música atual
+      // Exemplo fictício:
+      // fetch('/api/current-song').then(res => res.json()).then(data => {
+      //   setCurrentSong(data.title);
+      //   setCurrentSongImage(data.imageUrl);
+      // });
+      // Por enquanto, usa o dado da estação (mock)
+      setCurrentSong(radioState.station.currentSong || 'Sem informação');
+      setCurrentSongImage(radioState.station.currentSongImage || null);
+    }, 10000);
+    // Atualiza imediatamente ao trocar estação
+    setCurrentSong(radioState.station.currentSong || 'Sem informação');
+    setCurrentSongImage(radioState.station.currentSongImage || null);
+    return () => clearInterval(interval);
+  }, [radioState.station]);
 
   // 1. useEffect para inicialização do objeto Audio e atualização da URL do stream
-  // Este efeito é responsável por criar o objeto Audio e garantir que ele tenha a URL correta.
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio();
-      // Opcional: Adicionar listeners globais aqui para depuração ou estado da rádio
-      // audioRef.current.oncanplay = () => console.log("Stream pode começar a tocar.");
-      // audioRef.current.onplaying = () => console.log("Stream está tocando.");
-      // audioRef.current.onpause = () => console.log("Stream pausado.");
-      // audioRef.current.onended = () => {
-      //   console.log("Stream terminou.");
-      //   setRadioState(prev => ({...prev, isPlaying: false}));
-      // };
+      // Listeners para status e reconexão
+      audioRef.current.oncanplay = () => {
+        // Só mostra 'playing' se realmente pode tocar
+        if (audioRef.current && !audioRef.current.paused) {
+          setStatus('playing');
+        } else {
+          setStatus('idle');
+        }
+        console.log("Stream pronto para tocar (canplay).");
+      };
+      audioRef.current.onplaying = () => {
+        setStatus('playing');
+        console.log("Conexão feita com sucesso! Stream está tocando (playing).");
+      };
+      audioRef.current.onpause = () => {
+        setStatus('idle');
+        console.log("Stream pausado.");
+      };
+      audioRef.current.onended = () => {
+        setStatus('error');
+        console.log("Stream terminou.");
+        tentarReconectar();
+      };
       audioRef.current.onerror = (e) => {
-        console.error("Erro no elemento de áudio (src/load):", e);
-        // Em caso de erro ao carregar a fonte, pare de tentar tocar
-        setRadioState(prev => ({...prev, isPlaying: false}));
+        setStatus('error');
+        const error = audioRef.current?.error;
+        if (error) {
+          console.error("Erro no áudio:", error, "Código:", error.code);
+          switch (error.code) {
+            case 1: console.error("Abortado pelo usuário."); break;
+            case 2: console.error("Erro de rede."); break;
+            case 3: console.error("Erro ao decodificar o stream."); break;
+            case 4: console.error("Formato do stream não suportado."); break;
+            default: console.error("Erro desconhecido.");
+          }
+        } else {
+          console.error("Erro desconhecido no elemento de áudio.", e);
+        }
+        tentarReconectar();
+      };
+      audioRef.current.onstalled = () => {
+        setStatus('connecting');
+        console.warn("Stream travou (stalled).");
+        tentarReconectar();
       };
     }
-
     // Atualiza a URL da fonte e carrega o stream apenas quando a estação muda
     if (audioRef.current.src !== radioState.station.streamUrl) {
+      setStatus('connecting');
       audioRef.current.src = radioState.station.streamUrl;
-      audioRef.current.load(); // Carrega o novo stream
-      // Se estava tocando antes e a URL mudou, pause a anterior
-      // O play será re-tentado no próximo useEffect se isPlaying for true
+      audioRef.current.load();
       if (radioState.isPlaying) {
-        audioRef.current.pause();
+        audioRef.current.play().catch(() => {
+          setStatus('error');
+          setRadioState(prev => ({...prev, isPlaying: false}));
+        });
       }
     }
+    // Limpeza dos listeners e reconexão
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current.load();
+        audioRef.current.oncanplay = null;
+        audioRef.current.onplaying = null;
+        audioRef.current.onpause = null;
+        audioRef.current.onended = null;
+        audioRef.current.onerror = null;
+        audioRef.current.onstalled = null;
+      }
+      if (reconnectTimeout.current) {
+        clearTimeout(reconnectTimeout.current);
+      }
+    };
+  }, [radioState.station.streamUrl]);
 
-    // Não há retorno de limpeza aqui, a limpeza global será no useEffect final
-  }, [radioState.station.streamUrl]); // Este efeito depende APENAS da URL da estação
+  // Função para tentar reconectar
+  function tentarReconectar() {
+    setStatus('connecting');
+    if (reconnectTimeout.current) clearTimeout(reconnectTimeout.current);
+    reconnectTimeout.current = setTimeout(() => {
+      if (audioRef.current && radioState.isPlaying) {
+        audioRef.current.load();
+        audioRef.current.play().catch(() => {
+          setStatus('error');
+          setRadioState(prev => ({...prev, isPlaying: false}));
+        });
+      }
+    }, 3000);
+  }
 
   // 2. useEffect para controle de play/pause
-  // Este efeito é responsável APENAS por iniciar ou pausar a reprodução.
   useEffect(() => {
-    if (!audioRef.current) return; // Garante que o objeto Audio existe
-
+    if (!audioRef.current) return;
     if (radioState.isPlaying) {
-      // Tenta tocar o áudio. Esta chamada é feita APENAS quando isPlaying muda para true.
-      audioRef.current.play().catch(error => {
+      setStatus('connecting');
+      audioRef.current.play().then(() => {
+        setStatus('playing');
+      }).catch(error => {
+        setStatus('error');
         console.error("Erro ao tentar reproduzir áudio (play):", error);
-        // Captura e informa sobre o bloqueio de autoplay
         if (error.name === "NotAllowedError" || error.name === "AbortError") {
           console.warn("Reprodução automática bloqueada pelo navegador. O usuário precisa interagir ou o contexto não permite.");
         }
-        // Em caso de falha no play, defina isPlaying para false para refletir o estado real
-        setRadioState(prev => ({...prev, isPlaying: false})); // Define para false se não conseguir tocar
+        setRadioState(prev => ({...prev, isPlaying: false}));
       });
     } else {
-      // Pausa o áudio
       audioRef.current.pause();
+      setStatus('idle');
     }
-  }, [radioState.isPlaying]); // Este efeito depende APENAS do estado isPlaying
+  }, [radioState.isPlaying]);
 
   // 3. useEffect para controle de volume
-  // Este efeito é responsável APENAS por ajustar o volume.
   useEffect(() => {
     if (!audioRef.current) return;
     audioRef.current.volume = radioState.volume;
-  }, [radioState.volume]); // Este efeito depende APENAS do estado volume
+  }, [radioState.volume]);
 
-  // 4. useEffect de limpeza global (roda uma vez ao desmontar o componente)
-  // Garante que o áudio pare e os recursos sejam liberados quando o player não estiver mais em uso.
+  // 4. useEffect de limpeza global
   useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current.src = ''; // Limpa a fonte para liberar recursos
+        audioRef.current.src = '';
         audioRef.current.load();
-        // Se você adicionou event listeners no primeiro useEffect, remova-os aqui também
+      }
+      if (reconnectTimeout.current) {
+        clearTimeout(reconnectTimeout.current);
       }
     };
-  }, []); // Array de dependências vazio para rodar apenas na montagem/desmontagem
+  }, []);
 
-  // === FIM DO CÓDIGO ALTERADO ===
-
-
+  // Acessibilidade: aria-labels e roles
   const togglePlay = () => {
     setRadioState(prev => ({...prev, isPlaying: !prev.isPlaying}));
   };
 
   const handleVolumeChange = (value: number[]) => {
-    setRadioState(prev => ({...prev, volume: value[0]}));
+    setRadioState(prev => ({ ...prev, volume: value[0] }));
+    if (value[0] > 0) {
+      setPreviousVolume(value[0]);
+    }
   };
 
   const toggleMute = () => {
-    setRadioState(prev => ({
-      ...prev,
-      volume: prev.volume === 0 ? 0.8 : 0
-    }));
+    setRadioState(prev => {
+      if (prev.volume === 0) {
+        return { ...prev, volume: previousVolume || 0.5 };
+      } else {
+        setPreviousVolume(prev.volume);
+        return { ...prev, volume: 0 };
+      }
+    });
   };
 
   return (
@@ -121,6 +227,7 @@ export function RadioPlayer({ className }: { className?: string }) {
           variant="secondary"
           size="icon"
           className="h-12 w-12 rounded-full bg-white hover:bg-gray-100 shadow-lg border-0 text-black hover:text-pink-500 transition-colors"
+          aria-label={radioState.isPlaying ? "Pausar rádio" : "Tocar rádio"}
         >
           {radioState.isPlaying ? (
             <Pause className="h-6 w-6" />
@@ -132,11 +239,21 @@ export function RadioPlayer({ className }: { className?: string }) {
           </span>
         </Button>
 
-        <div className="flex-1 min-w-0 bg-white rounded-lg overflow-x-hidden">
-          <h3 className="font-bold truncate text-black">{radioState.station.name}</h3>
-          <p className="text-xs text-pink-500 truncate font-medium">
-            ♪ Tocando agora: Ao vivo
-          </p>
+        <div className="flex-1 min-w-0 bg-white rounded-lg overflow-x-hidden flex items-center gap-2">
+          {/* Exibe a foto da música se houver */}
+          {currentSongImage && (
+            <img src={currentSongImage} alt="Capa da música" className="w-12 h-12 rounded shadow border object-cover" />
+          )}
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold truncate text-black">{radioState.station.name}</h3>
+            <p className="text-xs text-pink-500 truncate font-medium">
+              {/* Exibe o nome da música se houver */}
+              {currentSong ? `♪ Tocando agora: ${currentSong}` : '♪ Tocando agora: Ao vivo'}
+            </p>
+            {/* Feedback visual de status */}
+            {status === 'connecting' && <span className="text-xs text-yellow-600">Conectando...</span>}
+            {status === 'error' && <span className="text-xs text-red-600">Erro ao conectar. Tentando novamente...</span>}
+          </div>
         </div>
 
         <div className="flex items-center h-16 bg-white rounded-lg">
@@ -145,6 +262,7 @@ export function RadioPlayer({ className }: { className?: string }) {
             variant="ghost"
             size="icon"
             className="text-black hover:text-pink-500 hover:bg-gray-100 transition-colors rounded-full"
+            aria-label={radioState.volume === 0 ? "Desmutar" : "Mutar"}
           >
             {radioState.volume === 0 ? (
               <VolumeX className="h-5 w-5" />
@@ -161,6 +279,7 @@ export function RadioPlayer({ className }: { className?: string }) {
               step={0.01}
               onValueChange={handleVolumeChange}
               className="w-full [&>span:first-child]:bg-gradient-to-r [&>span:first-child]:from-pink-400 [&>span:first-child]:to-pink-600 [&>span:first-child]:shadow-sm [&_[role=slider]]:bg-white [&_[role=slider]]:border-2 [&_[role=slider]]:border-pink-400 [&_[role=slider]]:shadow-md"
+              aria-label="Controle de volume"
             />
           </div>
         </div>

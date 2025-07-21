@@ -44,6 +44,8 @@ export interface RadioState {
   station: {
     name: string;
     streamUrl: string;
+    currentSong?: string;
+    currentSongImage?: string;
   };
 }
 
