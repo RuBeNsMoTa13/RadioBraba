@@ -3,7 +3,7 @@ import { GalleryImage, Prize, Show, Host } from "./types";
 export const radioStations = [
   {
     name: "Brabo FM",
-    streamUrl: "https://uk3freenew.listen2myradio.com/live.mp3?typeportmount=s1_24105_stream_386281298", // <-- Use esta URL!
+    streamUrl: "http://78.129.150.207:24105/;", // ou https://uk3freenew.listen2myradio.com/live.mp3?typeportmount=s1_24105_stream_386281298 
     currentSong: "Sem informação",
     currentSongImage: ""
   }
