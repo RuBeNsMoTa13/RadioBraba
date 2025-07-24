@@ -68,14 +68,14 @@ export function NavBar() {
               ))}
             </nav>
             <div className="flex items-center space-x-2">
-              <Button
+              {/* <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setShowPlayer(!showPlayer)}
                 aria-label="Toggle radio player"
               >
                 <Radio className="h-5 w-5" />
-              </Button>
+              </Button> */}
               <ThemeToggle />
               <Button asChild variant="default">
                 <Link to="/login">Login</Link>
