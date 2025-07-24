@@ -91,7 +91,7 @@ export function NavBar() {
           </div>
           {/* Right side buttons */}
           <div className="flex flex-1 items-center justify-end md:hidden">
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setShowPlayer(!showPlayer)}
@@ -99,7 +99,7 @@ export function NavBar() {
               className="mr-2"
             >
               <Radio className="h-5 w-5" />
-            </Button>
+            </Button> */}
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
