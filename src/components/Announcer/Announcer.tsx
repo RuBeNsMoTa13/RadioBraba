@@ -19,6 +19,17 @@ interface Locutor {
 const locutores: Locutor[] = [
     {
         id: 1,
+        nome: "Felipe Branco",
+        programa: "",
+        foto: "/images/FelipeBranco.png",
+        biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
+        aniversario: "26/09",
+        banda: "Guns, Mamonas Assassinas",
+        musica: "Lá vem o Alemão - Mamonas Assassinas",
+        instagram: "@felipebrancostandup"
+    },
+     {
+        id: 2,
         nome: "Lais Moraes",
         programa: "",
         foto: "/images/LaisMoraes.png",
@@ -27,17 +38,6 @@ const locutores: Locutor[] = [
         banda: "Evanescence / Miley Cyrus",
         musica: "Good Enough - Amy Lee",
         instagram: "@laismoraesv"
-    },
-    {
-        id: 2,
-        nome: "Marco Nissani",
-        programa: "",
-        foto: "/images/MarcoNissani.png",
-        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
-        aniversario: "19/12",
-        banda: "Victor e Leo / Barão Vermelho",
-        musica: "Chuva de bruxaria - Victor e Leo",
-        instagram: "@marco_nissani"
     },
     {
         id: 3,
@@ -52,17 +52,6 @@ const locutores: Locutor[] = [
     },
     {
         id: 4,
-        nome: "Felipe Branco",
-        programa: "",
-        foto: "/images/FelipeBranco.png",
-        biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
-        aniversario: "26/09",
-        banda: "Guns, Mamonas Assassinas",
-        musica: "Lá vem o Alemão - Mamonas Assassinas",
-        instagram: "@felipebrancostandup"
-    },
-    {
-        id: 5,
         nome: "Toninho",
         programa: "",
         foto: "/images/Toninho.png",
@@ -71,6 +60,17 @@ const locutores: Locutor[] = [
         banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
         musica: "Obrigado ao Homem do Campo - Dom & Ravel",
         instagram: "@terra.tecnica"
+    },
+        {
+        id: 5,
+        nome: "Marco Nissani",
+        programa: "",
+        foto: "/images/MarcoNissani.png",
+        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
+        aniversario: "19/12",
+        banda: "Victor e Leo / Barão Vermelho",
+        musica: "Chuva de bruxaria - Victor e Leo",
+        instagram: "@marco_nissani"
     },
     {
         id: 6,
