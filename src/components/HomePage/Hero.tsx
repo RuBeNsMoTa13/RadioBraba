@@ -1,17 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { RadioPlayer } from "@/components/RadioPlayer";
+import { RadioPlayer } from "@/components/RadioPlayer"; // Mantido caso ainda seja usado em outro lugar
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { RadioPlayerHero } from "@/components/RadioPlayerHero";
+// import { useState } from "react"; // Não é mais necessário
+// import { RadioPlayerHero } from "@/components/RadioPlayerHero"; // Não é mais necessário
 
 export function Hero() {
-  const [showPlayer, setShowPlayer] = useState(false);
-
-  const handleGifClick = () => {
-    setShowPlayer(true);
-  };
-
   return (
     <div className="relative overflow-hidden bg-cover bg-center py-16 md:py-24"
              style={{
@@ -24,34 +18,37 @@ export function Hero() {
       <div className="container relative z-10 mx-auto px-4">
 
         {/* Contêiner flexível principal com gap-8 */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8"> {/* Mantido gap-8 */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
             {/* Bloco do Título e Span - Ordem 1 no mobile, Ordem 1 no desktop */}
-            {/* No desktop, este bloco e o próximo (Parágrafo/Botões/Player) formarão a coluna esquerda */}
-            <div className="w-full md:w-1/2 text-white text-center md:text-left order-1 md:order-1"> {/* order-1 para mobile, md:order-1 para desktop */}
+            <div className="w-full md:w-1/2 text-white text-center md:text-left order-1 md:order-1">
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl mb-4">
                     Rádio Braba FM
                     <span className="block text-emphasis">Música para sua vida</span>
                 </h1>
             </div>
 
-            {/* Bloco do GIF ou Player - Ordem 2 no mobile, Ordem 2 no desktop (coluna direita) */}
+            {/* Bloco do IFRAME (Player da Rádio) - Ordem 2 no mobile, Ordem 2 no desktop (coluna direita) */}
             <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col justify-center items-center order-2 md:order-2">
-                {!showPlayer ? (
-                  <img
-                    className="w-full max-w-sm md:max-w-none rounded-lg shadow-xl hover:scale-105 transition-transform duration-200 cursor-pointer"
-                    src="/images/videohero.gif"
-                    alt="Animação de destaque da Rádio Braba"
-                    onClick={handleGifClick}
-                  />
-                ) : (
-                  <RadioPlayerHero />
-                )}
+                {/* O IFRAME agora é responsivo: */}
+                <iframe
+                  src="https://player.xcast.com.br/player-icast/9186"
+                  frameBorder="0"
+                  // Removemos width="428" e height="444" fixos
+                  // Em vez disso, usamos classes e estilo para responsividade:
+                  className="w-full rounded-lg shadow-xl" // w-full faz ele ocupar 100% da largura do pai
+                  style={{
+                      aspectRatio: '428 / 444', // Mantém a proporção original (largura / altura)
+                      maxWidth: '428px', // Garante que não fique maior que as dimensões originais em telas grandes
+                      height: 'auto', // Ajusta a altura automaticamente com base na largura e aspect-ratio
+                      margin: '0 auto' // Centraliza o iframe dentro do seu contêiner
+                  }}
+                  allow="autoplay"
+                ></iframe>
             </div>
 
             {/* Bloco do Parágrafo, Botões e Player - Ordem 3 no mobile, Ordem 1 no desktop */}
-            {/* No desktop, este bloco e o anterior (Título/Span) formarão a coluna esquerda */}
-             <div className="w-full md:w-1/2 text-white text-center md:text-left order-3 md:order-1"> {/* order-3 para mobile, md:order-1 para desktop */}
+             <div className="w-full md:w-1/2 text-white text-center md:text-left order-3 md:order-1">
                 <p className="mt-4 text-lg sm:text-xl max-w-lg mx-auto md:mx-0">
                     Transmitindo o melhor da música brasileira e internacional 24 horas por dia.
                     Conecte-se à melhor experiência musical do Brasil.
@@ -83,7 +80,7 @@ export function Hero() {
                 </div>
 
                 <div className="mt-8 max-w-md mx-auto md:mx-0">
-                    
+                    {/* Este div pode ser removido ou usado para outros elementos se necessário */}
                 </div>
             </div>
 
