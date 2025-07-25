@@ -13,6 +13,7 @@ import { LoginPage } from '@/components/LoginPage/LoginPage'; // Importar LoginP
 import { RegisterPage } from '@/components/RegisterPage/RegisterPage'; // Importar RegisterPage do novo caminho
 import { RadioPlayerProvider } from "@/context/RadioPlayerContext";
 
+
 function App() {
   const [mounted, setMounted] = useState(false);
   
