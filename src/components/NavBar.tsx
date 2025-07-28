@@ -77,7 +77,7 @@ export function NavBar() {
                 <Radio className="h-5 w-5" />
               </Button> */}
               <ThemeToggle />
-              <Button asChild variant="default">
+              <Button asChild variant="default" className="transition-all hover:bg-pink-500">
                 <Link to="/login">Login</Link>
               </Button>
             </div>
@@ -130,10 +130,10 @@ export function NavBar() {
                       <Button
                         asChild
                         variant="default"
-                        className="w-full"
+                        className="w-full hover:bg-pink-500"
                         onClick={closeMobileMenu}
                       >
-                        <Link to="/login" className="flex justify-center">
+                        <Link to="/login" className="flex justify-center transition-all hover:bg-pink-500">
                           Login
                         </Link>
                       </Button>

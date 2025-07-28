@@ -15,116 +15,116 @@ interface Locutor {
 
 // Expandindo a lista para ter 18 locutores (3x6)
 const locutores: Locutor[] = [
-  {
-    id: 1,
-    nome: "Lais Moraes",
-    programa: "",
-    foto: "/images/LaisMoraes.png",
-    biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
-    aniversario: "18/12",
-    banda: "Evanescence / Miley Cyrus",
-    musica: "Good Enough - Amy Lee",
-    instagram: "@laismoraesv"
-  },
-  {
-    id: 2,
-    nome: "Marco Nissani",
-    programa: "",
-    foto: "/images/MarcoNissani.png",
-    biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
-    aniversario: "19/12",
-    banda: "Victor e Leo / Barão Vermelho",
-    musica: "Chuva de bruxaria - Victor e Leo",
-    instagram: "@marco_nissani"
-  },
-  {
-    id: 3,
-    nome: "Paulinho do Povo",
-    programa: "",
-    foto: "/images/PaulinhoPovo.png",
-    biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
-    aniversario: "19/02",
-    banda: "Gino & Geno",
-    musica: "Agita Aí - Gino & Geno",
-    instagram: "@paulinhodopovo104.9"
-  },
-  {
-    id: 4,
-    nome: "Felipe Branco",
-    programa: "",
-    foto: "/images/FelipeBranco.png",
-    biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
-    aniversario: "26/09",
-    banda: "Guns, Mamonas Assassinas",
-    musica: "Lá vem o Alemão - Mamonas Assassinas",
-    instagram: "@felipebrancostandup"
-  },
-  {
-    id: 5,
-    nome: "Toninho",
-    programa: "",
-    foto: "/images/Toninho.png",
-    biografia: "Locutor e radialista desde 2008, criador do programa 'Obrigado ao homem do campo', pois o homem, a mulher e seus filhos produzem o alimento que abastecem nossas mesas todos os dias, faça sol, faça chuva e enobrecem nosso país.",
-    aniversario: "30/08",
-    banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
-    musica: "Obrigado ao Homem do Campo - Dom & Ravel",
-    instagram: "@terra.tecnica"
-  },
-  {
-    id: 6,
-    nome: "Grídia Maria",
-    programa: "",
-    foto: "/images/GrídiaMaria.png",
-    biografia: "Orgulhosamente do interior, onde a vida é mais calma, os vizinhos são amigos e o café é sempre fresquinho.",
-    aniversario: "27/08",
-    banda: "Nhana e Cascantinha, Chitãozinho e Xororó, Padre Marcelo Rossi",
-    musica: "Meu primeiro amor (Nhana e Cascantinha)",
-    instagram: "@gridia.maria"
-  },
-  {
-    id: 7,
-    nome: "Sérgio Góes",
-    programa: "",
-    foto: "/images/SergioGoes.png",
-    biografia: "Comerciante e músico apaixonado por musica, sempre com uma história para contar.",
-    aniversario: "08/03",
-    banda: "Beatles / Deep Purple / Ultraje a Rigor",
-    musica: "For Whom the Bell Tolls - Metallica",
-    instagram: "@serggiogoes"
-  },
-  {
-    id: 8,
-    nome: "Fred",
-    programa: "",
-    foto: "/images/Fred.png",
-    biografia: "Busco ver possibilidades onde os outros veem obstáculos. Uso minha criatividade não só pra inovar, mas também encontrar soluções únicas aos problemas comuns do nosso cotidiano.",
-    aniversario: "23/11",
-    banda: "Charlie Brown Jr. / Supertramp / SOJA",
-    musica: "Bob Dylan - Hurricane",
-    instagram: "@fredericolc"
-  },
-  {
-    id: 9,
-    nome: "Gersinho",
-    programa: "",
-    foto: "/images/Gersinho.png",
-    biografia: "Iniciou a carreira de notícias em 2020 sendo o maior canal de notícias da cidade de Capela do Alto.",
-    aniversario: "05/05",
-    banda: "Roupa Nova / RPM",
-    musica: "Whisky à go-go-go - Roupa Nova",
-    instagram: "@gersinho_radio_tv"
-  },
-  {
-    id: 10,
-    nome: "Sandro Aparecido",
-    programa: "",
-    foto: "/images/SandroAparecido.png",
-    biografia: "Mais conhecido como Ksandra, vocalista da banda Rock Mesclado. Meu lema e 'Viver com alegria, um dia de cada vez'.",
-    aniversario: "18/04",
-    banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
-    musica: "November Rain - Guns N' Roses",
-    instagram: "@sandroaparecidomachado"
-  }
+    {
+        id: 1,
+        nome: "Felipe Branco",
+        programa: "",
+        foto: "/images/FelipeBranco.png",
+        biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
+        aniversario: "26/09",
+        banda: "Guns, Mamonas Assassinas",
+        musica: "Lá vem o Alemão - Mamonas Assassinas",
+        instagram: "@felipebrancostandup"
+    },
+    {
+        id: 2,
+        nome: "Lais Moraes",
+        programa: "",
+        foto: "/images/LaisMoraes.png",
+        biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
+        aniversario: "18/12",
+        banda: "Evanescence / Miley Cyrus",
+        musica: "Good Enough - Amy Lee",
+        instagram: "@laismoraesv"
+    },
+        {
+        id: 3,
+        nome: "Paulinho do Povo",
+        programa: "",
+        foto: "/images/PaulinhoPovo.png",
+        biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
+        aniversario: "19/02",
+        banda: "Gino & Geno",
+        musica: "Agita Aí - Gino & Geno",
+        instagram: "@paulinhodopovo104.9"
+    },
+        {
+        id: 4,
+        nome: "Toninho",
+        programa: "",
+        foto: "/images/Toninho.png",
+        biografia: "Locutor e radialista desde 2008, criador do programa 'Obrigado ao homem do campo', pois o homem, a mulher e seus filhos produzem o alimento que abastecem nossas mesas todos os dias, faça sol, faça chuva e enobrecem nosso país.",
+        aniversario: "30/08",
+        banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
+        musica: "Obrigado ao Homem do Campo - Dom & Ravel",
+        instagram: "@terra.tecnica"
+    },
+    {
+        id: 5,
+        nome: "Marco Nissani",
+        programa: "",
+        foto: "/images/MarcoNissani.png",
+        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
+        aniversario: "19/12",
+        banda: "Victor e Leo / Barão Vermelho",
+        musica: "Chuva de bruxaria - Victor e Leo",
+        instagram: "@marco_nissani"
+    },
+    {
+        id: 6,
+        nome: "Grídia Maria",
+        programa: "",
+        foto: "/images/GrídiaMaria.png",
+        biografia: "Orgulhosamente do interior, onde a vida é mais calma, os vizinhos são amigos e o café é sempre fresquinho.",
+        aniversario: "27/08",
+        banda: "Nhana e Cascantinha, Chitãozinho e Xororó, Padre Marcelo Rossi",
+        musica: "Meu primeiro amor (Nhana e Cascantinha)",
+        instagram: "@gridia.maria"
+    },
+    {
+        id: 7,
+        nome: "Sérgio Góes",
+        programa: "",
+        foto: "/images/SergioGoes.png",
+        biografia: "Comerciante e músico apaixonado por musica, sempre com uma história para contar.",
+        aniversario: "08/03",
+        banda: "Beatles / Deep Purple / Ultraje a Rigor",
+        musica: "For Whom the Bell Tolls - Metallica",
+        instagram: "@serggiogoes"
+    },
+    {
+        id: 8,
+        nome: "Fred",
+        programa: "",
+        foto: "/images/Fred.png",
+        biografia: "Busco ver possibilidades onde os outros veem obstáculos. Uso minha criatividade não só pra inovar, mas também encontrar soluções únicas aos problemas comuns do nosso cotidiano.",
+        aniversario: "23/11",
+        banda: "Charlie Brown Jr. / Supertramp / SOJA",
+        musica: "Bob Dylan - Hurricane",
+        instagram: "@fredericolc"
+    },
+    {
+      id: 9,
+      nome: "Gersinho",
+      programa: "",
+      foto: "/images/Gersinho.png",
+      biografia: "Iniciou a carreira de notícias em 2020 sendo o maior canal de notícias da cidade de Capela do Alto.",
+      aniversario: "05/05",
+      banda: "Roupa Nova / RPM",
+      musica: "Whisky à go-go-go - Roupa Nova",
+      instagram: "@gersinho_radio_tv"
+    },
+    {
+      id: 10,
+      nome: "Sandro Aparecido",
+      programa: "",
+      foto: "/images/SandroAparecido.png",
+      biografia: "Mais conhecido como Ksandra, vocalista da banda Rock Mesclado. Meu lema e 'Viver com alegria, um dia de cada vez'.",
+      aniversario: "18/04",
+      banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
+      musica: "November Rain - Guns N' Roses",
+      instagram: "@sandroaparecidomachado"
+    }
 ];
 
 const AnnouncerPage: React.FC = () => {
