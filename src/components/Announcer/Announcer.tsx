@@ -19,39 +19,6 @@ interface Locutor {
 const locutores: Locutor[] = [
     {
         id: 1,
-        nome: "Lais Moraes",
-        programa: "",
-        foto: "/images/LaisMoraes.png",
-        biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
-        aniversario: "18/12",
-        banda: "Evanescence / Miley Cyrus",
-        musica: "Good Enough - Amy Lee",
-        instagram: "@laismoraesv"
-    },
-    {
-        id: 2,
-        nome: "Marco Nissani",
-        programa: "",
-        foto: "/images/MarcoNissani.png",
-        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
-        aniversario: "19/12",
-        banda: "Victor e Leo / Barão Vermelho",
-        musica: "Chuva de bruxaria - Victor e Leo",
-        instagram: "@marco_nissani"
-    },
-    {
-        id: 3,
-        nome: "Paulinho do Povo",
-        programa: "",
-        foto: "/images/PaulinhoPovo.png",
-        biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
-        aniversario: "19/02",
-        banda: "Gino & Geno",
-        musica: "Agita Aí - Gino & Geno",
-        instagram: "@paulinhodopovo104.9"
-    },
-    {
-        id: 4,
         nome: "Felipe Branco",
         programa: "",
         foto: "/images/FelipeBranco.png",
@@ -62,7 +29,29 @@ const locutores: Locutor[] = [
         instagram: "@felipebrancostandup"
     },
     {
-        id: 5,
+        id: 2,
+        nome: "Lais Moraes",
+        programa: "",
+        foto: "/images/LaisMoraes.png",
+        biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
+        aniversario: "18/12",
+        banda: "Evanescence / Miley Cyrus",
+        musica: "Good Enough - Amy Lee",
+        instagram: "@laismoraesv"
+    },
+        {
+        id: 3,
+        nome: "Paulinho do Povo",
+        programa: "",
+        foto: "/images/PaulinhoPovo.png",
+        biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
+        aniversario: "19/02",
+        banda: "Gino & Geno",
+        musica: "Agita Aí - Gino & Geno",
+        instagram: "@paulinhodopovo104.9"
+    },
+        {
+        id: 4,
         nome: "Toninho",
         programa: "",
         foto: "/images/Toninho.png",
@@ -71,6 +60,17 @@ const locutores: Locutor[] = [
         banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
         musica: "Obrigado ao Homem do Campo - Dom & Ravel",
         instagram: "@terra.tecnica"
+    },
+    {
+        id: 5,
+        nome: "Marco Nissani",
+        programa: "",
+        foto: "/images/MarcoNissani.png",
+        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
+        aniversario: "19/12",
+        banda: "Victor e Leo / Barão Vermelho",
+        musica: "Chuva de bruxaria - Victor e Leo",
+        instagram: "@marco_nissani"
     },
     {
         id: 6,

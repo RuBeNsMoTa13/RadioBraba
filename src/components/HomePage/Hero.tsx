@@ -24,7 +24,7 @@ export function Hero() {
             <div className="w-full md:w-1/2 text-white text-center md:text-left order-1 md:order-1">
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl mb-4">
                     Rádio Braba FM
-                    <span className="block text-emphasis">Música para sua vida</span>
+                    <span className="block text-emphasis">104,9 FM</span>
                 </h1>
             </div>
 
@@ -58,7 +58,7 @@ export function Hero() {
                     <Button
                         asChild
                         size="lg"
-                        className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+                        className="font-semibold bg-card text-black border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 dark:text-primary"
                     >
                         <Link to="/programacao">
                             Ver Programação
@@ -70,7 +70,7 @@ export function Hero() {
                         asChild
                         variant="secondary"
                         size="lg"
-                        className="font-semibold bg-white text-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-black"
+                        className="font-semibold bg-card text-black border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 dark:text-primary"
                     >
                         <Link to="/premios">
                             Prêmios e Sorteios
