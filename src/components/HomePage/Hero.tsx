@@ -24,7 +24,7 @@ export function Hero() {
             <div className="w-full md:w-1/2 text-white text-center md:text-left order-1 md:order-1">
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl mb-4">
                     Rádio Braba FM
-                    <span className="block text-emphasis">Música para sua vida</span>
+                    <span className="block text-emphasis">104,9 FM</span>
                 </h1>
             </div>
 
