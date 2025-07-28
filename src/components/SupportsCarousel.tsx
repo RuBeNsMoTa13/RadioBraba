@@ -134,6 +134,12 @@ export const SupportsCarousel = React.forwardRef<
       { name: "Apoiador 5", logo: "images/Apoiadores/5.png" },
       { name: "Apoiador 6", logo: "images/Apoiadores/6.png" },
       { name: "Apoiador 7", logo: "images/Apoiadores/7.png" },
+      { name: "Apoiador 8", logo: "images/Apoiadores/8.png" },
+      { name: "Apoiador 9", logo: "images/Apoiadores/9.png" },
+      { name: "Apoiador 10", logo: "images/Apoiadores/10.png" },
+      { name: "Apoiador 11", logo: "images/Apoiadores/11.png" },
+      { name: "Apoiador 12", logo: "images/Apoiadores/12.png" },
+      { name: "Apoiador 12", logo: "images/Apoiadores/13.png" },
 
     ];
 
@@ -160,7 +166,7 @@ export const SupportsCarousel = React.forwardRef<
           {...props}
         >
         {/* Título centralizado, com cor primária e padding inferior */}
-        <h1 className="text-center text-primary font-bold text-2xl pb-8">Apoiadores</h1> {/* Alterado mb-0 para pb-4 */}
+        <h1 className="text-center text-primary font-bold text-2xl pb-8 mt-2">Apoiadores</h1> {/* Alterado mb-0 para pb-4 */}
         {/* Fim do título */}
 
           <SupportsCarouselContent>
