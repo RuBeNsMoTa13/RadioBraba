@@ -37,7 +37,7 @@ export function ViewPage() {
       <div className="fixed inset-0 z-50 flex-col items-center justify-center bg-black/90 text-white text-center p-8 block md:hidden">
         <h2 className="text-2xl font-bold mb-4">Página indisponível para dispositivos móveis</h2>
         <p className="text-lg">Acesse pelo computador para uma melhor experiência.</p>
-        <p className="text-lg">Desculpe o transtorno, nossa equipe está trabalhando para melhorar a experiência.</p>
+        <p className="text-lg">Desculpe o transtorno, nossa equipe está trabalhando para a melhor experiência.</p>
         <button
           onClick={() => navigate('/')}
           className="w-[120px] h-[80px] mt-4 px-4 py-2 bg-primary text-black rounded font-bold"
