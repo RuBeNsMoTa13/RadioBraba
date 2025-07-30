@@ -26,28 +26,29 @@ export default function DynamicInfo() {
     return () => clearInterval(timer);
   }, []);
 
-  // 🔹 Busca dados do clima usando useEffect
+
+  // 🔹 Busca dados do clima usando API OpenWeather
   useEffect(() => {
     const fetchWeather = async () => {
-      const apiKey = "321e647d854e73a9b6edd3e50bf77801"; // Use sua chave de API
+      const apiKey = "321e647d854e73a9b6edd3e50bf77801";
       const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
 
       try {
         const apiInfo = await axios.get(url);
-        const fetchedTemperature = apiInfo.data.main.temp;
+        const fetchedTemperature = apiInfo.data.main.temp; 
 
         console.log("Informações completas da API:", apiInfo.data);
+        console.log("Temperatura atual:", fetchedTemperature, "°C");
 
         setTemperature(fetchedTemperature);
+
       } catch (error) {
         console.error("Erro ao buscar dados do clima:", error);
-        setTemperature(null);
+        setTemperature(null); // Set to null on error
       }
     };
 
     fetchWeather();
-    const interval = setInterval(fetchWeather, 300000); // Atualiza a cada 5 minutos
-    return () => clearInterval(interval);
   }, []);
 
   // 🔹 Busca cotação do dólar
@@ -88,28 +89,11 @@ export default function DynamicInfo() {
       icon: <Lightbulb size={24} className="text-yellow-500" />,
     },
     {
-      type: "fact",
-      label: "Curiosidade",
-      value: "A cidade já conta com mais de 23.597 habitantes.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "O município tem a área principal e mais um distrito, chamado Porto. É como ter um 'anexo' da cidade.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Antes de ser cidade, Capela do Alto era tipo um 'posto de gasolina' pra tropeiros que vinham do Sul do Brasil. Eles paravam pra descansar.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "A história de quem fundou Capela do Alto é meio que um 'causo'. Ninguém tem os nomes certinhos, mas a lenda fala das famílias Menck, Wincler, Plens e Popst.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
+      type: "weather",
+      label: "Temperatura",
+      value: temperature !== null ? temperature.toFixed(0) : "--",
+      unit: "°C",
+      icon: <Cloud size={24} className="text-blue-400" />,
     },
     {
       type: "fact",
