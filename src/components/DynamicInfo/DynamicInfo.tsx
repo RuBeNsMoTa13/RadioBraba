@@ -193,11 +193,11 @@ export default function DynamicInfo() {
     },
   ];
 
-  // 🔹 Alterna item a cada 5s
+  // 🔹 Alterna item a cada 10s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentInfoIndex((prevIndex) => (prevIndex + 1) % infoItems.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [infoItems.length]);
 

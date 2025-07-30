@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
-import { SupportsCarousel } from '@/components/SupportsCarousel'; // Seu carrossel de apoiadores
+import { SupportsCarouselView } from '@/components/SupportsCarouselView'; // Seu carrossel de apoiadores
 import DynamicInfo from '@/components/DynamicInfo/DynamicInfo';
 
 export function ViewPage() {
@@ -51,24 +51,33 @@ export function ViewPage() {
 
       {/* Grid Principal */}
       <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
+
         {/* Coluna da Esquerda (Player rádio) */}
-        <div className="col-span-1 bg-primary flex flex-col items-center justify-center p-4">
-          <div className="w-full max-w-md">
-            {/* Embed do player de rádio */}
-            <iframe
-              src="https://player.xcast.com.br/player-icast/9186"
-              frameBorder="0"
-              className="w-full rounded-lg shadow-xl"
-              style={{
-                aspectRatio: '428 / 444',
-                maxWidth: '428px',
-                height: 'auto',
-                margin: '0 auto'
-              }}
-              allow="autoplay"
-            ></iframe>
+        <div className="bg-primary flex flex-col items-center justify-center"> 
+          <div className="w-full flex flex-col items-center justify-center gap-8">
+            <img
+              src="./public/images/RadioBraba.png"
+              alt="Logo da Radio Braba"
+              className="w-[350px] h-[350px] object-contain rounded-lg"
+            />
           </div>
-        </div>
+            <div className="w-full">
+              {/* Embed do player de rádio */}
+              <iframe
+                src="https://player.xcast.com.br/player-icast/9186"
+                frameBorder="0"
+                className="w-full rounded-lg"
+                style={{
+                  aspectRatio: '428 / 444',
+                  maxWidth: '428px',
+                  height: 'auto',
+                  margin: '0 auto'
+                }}
+                allow="autoplay"
+              ></iframe>
+            </div>
+          </div>
+
 
         {/* Colunas da Direita (Apoiadores e Info Dinâmica) */}
         <div className="col-span-2 flex flex-col">
@@ -76,8 +85,8 @@ export function ViewPage() {
           {/* Parte Superior: Apoiadores) */}
           <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
             <div className="w-full">
-              <h2 className="text-white text-3xl font-bold mb-4">Apoie nosso comércio local</h2>
-              <SupportsCarousel className="w-full" /> {/* Ajuste a largura máxima conforme necessário */}
+              <h2 className="text-center text-white text-4xl font-bold">Apoie nosso comércio local!</h2>
+              <SupportsCarouselView className="w-full" /> {/* Ajuste a largura máxima conforme necessário */}
             </div>
           </div>
 
