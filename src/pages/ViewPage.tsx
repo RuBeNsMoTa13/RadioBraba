@@ -17,7 +17,7 @@ export function ViewPage() {
     }
     exitButtonTimeoutRef.current = setTimeout(() => {
       setShowExitButton(false);
-    }, 500); 
+    }, 500);
   }, []);
 
   // Efeito para adicionar e remover listeners de movimento do mouse
@@ -53,30 +53,34 @@ export function ViewPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
 
         {/* Coluna da Esquerda (Player rádio) */}
-        <div className="bg-primary flex flex-col items-center justify-center"> 
+        <div className="bg-primary flex flex-col items-center justify-center">
           <div className="w-full flex flex-col items-center justify-center gap-8">
+            <h6 className="text-white text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+              Rádio Braba FM
+              <span className="block text-emphasis">104,9 FM</span>
+            </h6>
             <img
               src="./public/images/RadioBraba.png"
               alt="Logo da Radio Braba"
-              className="w-[350px] h-[350px] object-contain rounded-lg"
+              className="w-[300px] h-[300px] object-contain rounded-lg"
             />
           </div>
-            <div className="w-full">
-              {/* Embed do player de rádio */}
-              <iframe
-                src="https://player.xcast.com.br/player-icast/9186"
-                frameBorder="0"
-                className="w-full rounded-lg"
-                style={{
-                  aspectRatio: '428 / 444',
-                  maxWidth: '428px',
-                  height: 'auto',
-                  margin: '0 auto'
-                }}
-                allow="autoplay"
-              ></iframe>
-            </div>
+          <div className="w-full mb-24">
+            {/* Embed do player de rádio */}
+            <iframe
+              src="https://player.xcast.com.br/player-icast/9186"
+              frameBorder="0"
+              className="w-full rounded-lg"
+              style={{
+                aspectRatio: '428 / 444',
+                maxWidth: '428px',
+                height: 'auto',
+                margin: '0 auto'
+              }}
+              allow="autoplay"
+            ></iframe>
           </div>
+        </div>
 
 
         {/* Colunas da Direita (Apoiadores e Info Dinâmica) */}
@@ -92,7 +96,7 @@ export function ViewPage() {
 
           {/* Parte Inferior: Informações Dinâmicas */}
           <div className="h-1/2 flex items-center justify-center p-4">
-              <DynamicInfo />
+            <DynamicInfo />
             <div className="flex flex-col items-center justify-center text-center text-white">
             </div>
           </div>

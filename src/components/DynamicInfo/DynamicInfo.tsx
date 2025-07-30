@@ -67,28 +67,8 @@ export default function DynamicInfo() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔹 Lista dinâmica (agora com todas as curiosidades)
+  // 🔹 Lista dinâmica (agora só curiosidades)
   const infoItems: DynamicInfoItem[] = [
-    {
-      type: "city",
-      label: "Localização",
-      value: "Capela do Alto, SP",
-      icon: <MapPin size={24} className="text-primary" />,
-    },
-    {
-      type: "weather",
-      label: "Temperatura",
-      value: temperature !== null ? temperature.toFixed(0) : "--",
-      unit: "°C",
-      icon: <Cloud size={24} className="text-blue-400" />,
-    },
-    {
-      type: "currency",
-      label: "Dólar Comercial",
-      value: usdRate !== null ? usdRate.toFixed(2) : "--",
-      unit: "BRL",
-      icon: <DollarSign size={24} className="text-green-500" />,
-    },
     {
       type: "fact",
       label: "Curiosidade",
@@ -185,12 +165,6 @@ export default function DynamicInfo() {
       value: "Um grande dia foi 20 de junho de 1954, quando a energia elétrica chegou no então distrito.",
       icon: <Lightbulb size={24} className="text-yellow-500" />,
     },
-    {
-      type: "time",
-      label: "Horário Local",
-      value: time,
-      icon: <Clock size={24} className="text-purple-500" />,
-    },
   ];
 
   // 🔹 Alterna item a cada 10s
@@ -204,22 +178,43 @@ export default function DynamicInfo() {
   const currentInfo = infoItems[currentInfoIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full bg-card-foreground rounded-xl shadow-lg p-4 transition-all duration-500">
-      <div className="flex items-center justify-center text-center text-gray-100 mb-2">
-        {currentInfo.icon && <span className="mr-3">{currentInfo.icon}</span>}
-        <h3 className="text-2xl sm:text-2xl font-bold">{currentInfo.label}</h3>
+    <>
+      <div className="flex flex-col items-center justify-center w-full h-full bg-card-foreground rounded-xl shadow-lg p-4 transition-all duration-500">
+        <div className="flex items-center justify-center text-center text-gray-100 mb-2">
+          {currentInfo.icon && <span className="mr-3">{currentInfo.icon}</span>}
+          <h3 className="text-2xl sm:text-2xl font-bold">{currentInfo.label}</h3>
+        </div>
+        <p
+          className={
+            currentInfo.type === "fact"
+              ? "text-base sm:text-xl md:text-2xl font-normal text-primary text-center max-w-md mx-auto"
+              : "text-3xl sm:text-4xl font-extrabold text-primary"
+          }
+        >
+          {currentInfo.value}
+          {currentInfo.unit && <span className="text-xl sm:text-2xl font-normal ml-2">{currentInfo.unit}</span>}
+        </p>
+        {currentInfo.source && <span className="text-xs text-gray-500 mt-1">{currentInfo.source}</span>}
       </div>
-      <p
-        className={
-          currentInfo.type === "fact"
-            ? "text-base sm:text-xl md:text-2xl font-normal text-primary text-center max-w-md mx-auto"
-            : "text-3xl sm:text-4xl font-extrabold text-primary"
-        }
-      >
-        {currentInfo.value}
-        {currentInfo.unit && <span className="text-xl sm:text-2xl font-normal ml-2">{currentInfo.unit}</span>}
-      </p>
-      {currentInfo.source && <span className="text-xs text-gray-500 mt-1">{currentInfo.source}</span>}
-    </div>
+      {/* Nova div fixa no canto inferior direito */}
+      <div className="fixed bottom-6 right-6 z-50 bg-black/80 text-white rounded-xl shadow-lg p-4 flex flex-row gap-6 min-w-[220px]">
+        <div className="flex items-center gap-2">
+          <MapPin size={20} className="text-primary" />
+          <span>Capela do Alto, SP</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Cloud size={20} className="text-blue-400" />
+          <span>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <DollarSign size={20} className="text-green-500" />
+          <span>{usdRate !== null ? `R$ ${usdRate.toFixed(2)}` : "--"}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Clock size={20} className="text-purple-500" />
+          <span>{time}</span>
+        </div>
+      </div>
+    </>
   );
 }
