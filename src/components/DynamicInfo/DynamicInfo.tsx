@@ -5,7 +5,7 @@ import { MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
 type DynamicInfoItem = {
   type: string;
   label: string;
-  value: string | number;
+  value: string | number | null; // Alterado para 'null' também
   unit?: string;
   icon?: JSX.Element;
   source?: string;
@@ -21,24 +21,34 @@ export default function DynamicInfo() {
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
-      setTime(now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }));
+      setTime(now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
+  // 🔹 Busca dados do clima usando useEffect
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const apiKey = "321e647d854e73a9b6edd3e50bf77801"; // Use sua chave de API
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
 
-
-async function fetchWeather() {
-        const apiKey = "321e647d854e73a9b6edd3e50bf77801"; 
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
-
+      try {
         const apiInfo = await axios.get(url);
-        setTemperature(apiInfo.data);
+        const fetchedTemperature = apiInfo.data.main.temp;
 
-        const temperature = apiInfo.data.main.temp;
-        console.log(apiInfo);
-}
-fetchWeather();
+        console.log("Informações completas da API:", apiInfo.data);
+
+        setTemperature(fetchedTemperature);
+      } catch (error) {
+        console.error("Erro ao buscar dados do clima:", error);
+        setTemperature(null);
+      }
+    };
+
+    fetchWeather();
+    const interval = setInterval(fetchWeather, 300000); // Atualiza a cada 5 minutos
+    return () => clearInterval(interval);
+  }, []);
 
   // 🔹 Busca cotação do dólar
   useEffect(() => {
@@ -49,18 +59,26 @@ fetchWeather();
         setUsdRate(parseFloat(data.USDBRL.bid));
       } catch (error) {
         console.error("Erro ao buscar dólar:", error);
+        setUsdRate(null);
       }
     };
     fetchDollar();
+    const interval = setInterval(fetchDollar, 600000); // Atualiza a cada 10 minutos
+    return () => clearInterval(interval);
   }, []);
 
-  // 🔹 Lista dinâmica
+  // 🔹 Lista dinâmica (agora com todas as curiosidades)
   const infoItems: DynamicInfoItem[] = [
-    { type: "city", label: "Localização", value: "Tatuí, SP", icon: <MapPin size={24} className="text-primary" /> },
+    {
+      type: "city",
+      label: "Localização",
+      value: "Capela do Alto, SP",
+      icon: <MapPin size={24} className="text-primary" />,
+    },
     {
       type: "weather",
       label: "Temperatura",
-      value: temperature !== null ? temperature.toFixed(1) : "--",
+      value: temperature !== null ? temperature.toFixed(0) : "--",
       unit: "°C",
       icon: <Cloud size={24} className="text-blue-400" />,
     },
@@ -71,7 +89,102 @@ fetchWeather();
       unit: "BRL",
       icon: <DollarSign size={24} className="text-green-500" />,
     },
-    { type: "fact", label: "Curiosidade", value: "Tatuí é conhecida como a Capital da Música!", icon: <Lightbulb size={24} className="text-yellow-500" /> },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Sabia que o nome 'Capela do Alto' não foi à toa? A galera da beira do Rio Sarapuí já falava 'bora pra capela do alto' pra ir na capelinha lá no ponto mais alto.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Quase que a cidade tinha uns nomes como 'Cruz do Monge' ou 'Guarapiranga'! Rolou uma eleição apertada, e 'Capela do Alto' ganhou por só 5 votos.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Capela do Alto fica bem localizada, na Região Metropolitana de Sorocaba, tipo um pedacinho importante do mapa paulista.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "A cidade já conta com mais de 23.597 habitantes.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "O município tem a área principal e mais um distrito, chamado Porto. É como ter um 'anexo' da cidade.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Antes de ser cidade, Capela do Alto era tipo um 'posto de gasolina' pra tropeiros que vinham do Sul do Brasil. Eles paravam pra descansar.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "A história de quem fundou Capela do Alto é meio que um 'causo'. Ninguém tem os nomes certinhos, mas a lenda fala das famílias Menck, Wincler, Plens e Popst.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Reza a lenda que um crime triplo rolou por lá, e por isso foram erguidas três cruzes. Meio macabro, né?",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Depois das três cruzes, um monge 'misterioso' do Ipanema apareceu e colocou mais onze, totalizando 14! Elas eram usadas pra Via Sacra na Quaresma até 1960.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "O tal monge do Ipanema tinha uns poderes especiais, dizem! O lugar onde ele morava e a pedra onde ele dormia viraram quase pontos turísticos de tão visitados.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "A cidade se deu bem porque a estrada São Paulo-Paraná, que ligava Sorocaba a Itapetininga passou por ali e virou a rua principal do pedaço.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Em 1950, a cidade ganhou seu próprio Distrito Policial. A lei chegou pra ficar!",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Quatro anos depois, em 1954, criaram o Distrito de Paz, e o primeiro chefe foi o Sr. Heleno Lopes Plens.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "E esse mesmo Heleno Lopes Plens, que era o chefe do Distrito de Paz, se tornou o primeiro Prefeito de Capela do Alto.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "A cidade só conseguiu ser 'independente' em 26 de março de 1965. Antes, ela era tipo 'filha' de Araçoiaba da Serra.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
+    {
+      type: "fact",
+      label: "Curiosidade",
+      value: "Um grande dia foi 20 de junho de 1954, quando a energia elétrica chegou no então distrito.",
+      icon: <Lightbulb size={24} className="text-yellow-500" />,
+    },
     {
       type: "time",
       label: "Horário Local",
@@ -91,12 +204,18 @@ fetchWeather();
   const currentInfo = infoItems[currentInfoIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center h-48 sm:h-64 bg-card rounded-xl shadow-lg p-4 transition-all duration-500">
-      <div className="flex items-center justify-center text-center text-gray-800 dark:text-gray-100 mb-2">
+    <div className="flex flex-col items-center justify-center w-full h-full bg-card-foreground rounded-xl shadow-lg p-4 transition-all duration-500">
+      <div className="flex items-center justify-center text-center text-gray-100 mb-2">
         {currentInfo.icon && <span className="mr-3">{currentInfo.icon}</span>}
-        <h3 className="text-xl sm:text-2xl font-bold">{currentInfo.label}</h3>
+        <h3 className="text-2xl sm:text-2xl font-bold">{currentInfo.label}</h3>
       </div>
-      <p className="text-3xl sm:text-4xl font-extrabold text-primary">
+      <p
+        className={
+          currentInfo.type === "fact"
+            ? "text-base sm:text-xl md:text-2xl font-normal text-primary text-center max-w-md mx-auto"
+            : "text-3xl sm:text-4xl font-extrabold text-primary"
+        }
+      >
         {currentInfo.value}
         {currentInfo.unit && <span className="text-xl sm:text-2xl font-normal ml-2">{currentInfo.unit}</span>}
       </p>

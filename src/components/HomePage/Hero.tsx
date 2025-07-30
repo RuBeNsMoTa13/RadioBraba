@@ -72,15 +72,11 @@ export function Hero() {
                         size="lg"
                         className="font-semibold bg-card text-black border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 dark:text-primary"
                     >
-                        <Link to="/premios">
-                            Prêmios e Sorteios
+                        <Link to="/exibicao">
+                            Modo Exibição
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
-                </div>
-
-                <div className="mt-8 max-w-md mx-auto md:mx-0">
-                    {/* Este div pode ser removido ou usado para outros elementos se necessário */}
                 </div>
             </div>
 

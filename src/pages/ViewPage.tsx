@@ -1,53 +1,91 @@
-// src/pages/LiveDisplayPage.tsx
-import React, { useState, useEffect } from 'react';
-import { SupportsCarousel } from '@/components/SupportsCarousel';
-import { RadioPlayerHero } from '@/components/RadioPlayerHero';
-import Announcer from '@/components/Announcer/Announcer';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
+import { SupportsCarousel } from '@/components/SupportsCarousel'; // Seu carrossel de apoiadores
 import DynamicInfo from '@/components/DynamicInfo/DynamicInfo';
 
 export function ViewPage() {
-  return (
-    // Removendo NavBar e Footer via layout, e usando min-h-screen para preencher a tela
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 p-4 sm:p-6 md:p-8">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-2rem)] md:h-[calc(100vh-4rem)]"> {/* Adjust h to account for page padding */}
+  const navigate = useNavigate();
+  const [showExitButton, setShowExitButton] = useState(false);
+  const exitButtonTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-        {/* Coluna da Esquerda (Apoiadores) */}
-        <div className="lg:col-span-1 bg-card rounded-xl shadow-lg p-4 flex flex-col items-center justify-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6 text-center">Nossos Apoiadores</h2>
-          {/* O SupportsCarousel já vem com título, mas podemos reestilizá-lo */}
-          <div className="w-full flex-1 flex items-center justify-center">
-            <SupportsCarousel opts={{ loop: true, align: "center", duration: 100, dragFree: true }} />
-          </div>
-          {/* Se quiser adicionar outro carrossel de locutores aqui, para "encher" a coluna */}
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mt-8 mb-4 text-center">Conheça Nossos Locutores</h2>
-          <div className="w-full h-96"> {/* Defina uma altura para o carrossel de locutores */}
-             <Announcer />
+  // Função para lidar com o movimento do mouse
+  const handleMouseMove = useCallback(() => {
+    setShowExitButton(true);
+    if (exitButtonTimeoutRef.current) {
+      clearTimeout(exitButtonTimeoutRef.current);
+    }
+    exitButtonTimeoutRef.current = setTimeout(() => {
+      setShowExitButton(false);
+    }, 500); 
+  }, []);
+
+  // Efeito para adicionar e remover listeners de movimento do mouse
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (exitButtonTimeoutRef.current) {
+        clearTimeout(exitButtonTimeoutRef.current);
+      }
+    };
+  }, [handleMouseMove]);
+
+  return (
+    <div
+      className="relative flex h-screen w-screen bg-card-foreground overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Botão de Saída (X) */}
+      <button
+        onClick={() => navigate('/')}
+        className={`fixed top-4 right-4 z-50 bg-black/50 text-white rounded-full p-2 transition-opacity duration-300 ${showExitButton ? 'opacity-100' : 'opacity-0'
+          }`}
+        aria-label="Voltar para a página inicial"
+      >
+        <div className="flex items-center gap-2">
+          <X size={24} />
+          <h4>Voltar para a página inicial</h4>
+        </div>
+      </button>
+
+      {/* Grid Principal */}
+      <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
+        {/* Coluna da Esquerda (Player rádio) */}
+        <div className="col-span-1 bg-primary flex flex-col items-center justify-center p-4">
+          <div className="w-full max-w-md">
+            {/* Embed do player de rádio */}
+            <iframe
+              src="https://player.xcast.com.br/player-icast/9186"
+              frameBorder="0"
+              className="w-full rounded-lg shadow-xl"
+              style={{
+                aspectRatio: '428 / 444',
+                maxWidth: '428px',
+                height: 'auto',
+                margin: '0 auto'
+              }}
+              allow="autoplay"
+            ></iframe>
           </div>
         </div>
 
-        {/* Coluna da Direita */}
-        <div className="lg:col-span-2 grid grid-rows-3 gap-6">
+        {/* Colunas da Direita (Apoiadores e Info Dinâmica) */}
+        <div className="col-span-2 flex flex-col">
 
-          {/* Linha 1: Player da Rádio (topo) */}
-          <div className="row-span-1 bg-card rounded-xl shadow-lg p-4 flex items-center justify-center">
-            <RadioPlayerHero className="w-full h-full flex flex-col items-center justify-center text-center" />
-          </div>
-
-          {/* Linha 2: Feed de Instagram */}
-          <div className="row-span-1 bg-card rounded-xl shadow-lg p-4 flex flex-col justify-center items-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4 text-center">Nosso Instagram</h2>
-            {/* O InstaFeed precisa de um div com id="instafeed" para renderizar */}
-            <div className="w-full h-full flex items-center justify-center">
-               {/* Habilitando OwlCarousel no InstaFeed.tsx é importante */}
-               {/* Temporariamente comentando InstaFeed direto aqui, pois ele assume que o OwlCarousel está ativado e pode causar erros de renderização inicial se não estiver configurado corretamente no index.html e main.tsx para inicializar. No seu `InstaFeed.tsx` ele está comentado. */}
-               {/* <InstaFeed /> */}
-               <p className="text-gray-500 dark:text-gray-400">Conteúdo do Instagram virá aqui (verifique InstaFeed.tsx e dependências).</p>
+          {/* Parte Superior: Apoiadores) */}
+          <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
+            <div className="w-full">
+              <h2 className="text-white text-3xl font-bold mb-4">Apoie nosso comércio local</h2>
+              <SupportsCarousel className="w-full" /> {/* Ajuste a largura máxima conforme necessário */}
             </div>
           </div>
 
-          {/* Linha 3: Informações Dinâmicas (Cidade, Dólar, Temperatura, Fatos Curiosos) */}
-          <div className="row-span-1 bg-card rounded-xl shadow-lg p-4 flex items-center justify-center">
-            <DynamicInfo />
+          {/* Parte Inferior: Informações Dinâmicas */}
+          <div className="h-1/2 flex items-center justify-center p-4">
+              <DynamicInfo />
+            <div className="flex flex-col items-center justify-center text-center text-white">
+            </div>
           </div>
         </div>
       </div>
