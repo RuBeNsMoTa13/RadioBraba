@@ -27,18 +27,29 @@ export default function DynamicInfo() {
   }, []);
 
 
+  // 🔹 Busca dados do clima usando API OpenWeather
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const apiKey = "321e647d854e73a9b6edd3e50bf77801";
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
 
-async function fetchWeather() {
-        const apiKey = "321e647d854e73a9b6edd3e50bf77801"; 
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
-
+      try {
         const apiInfo = await axios.get(url);
-        setTemperature(apiInfo.data);
+        const fetchedTemperature = apiInfo.data.main.temp; 
 
-        const temperature = apiInfo.data.main.temp;
-        console.log(apiInfo);
-}
-fetchWeather();
+        console.log("Informações completas da API:", apiInfo.data);
+        console.log("Temperatura atual:", fetchedTemperature, "°C");
+
+        setTemperature(fetchedTemperature);
+
+      } catch (error) {
+        console.error("Erro ao buscar dados do clima:", error);
+        setTemperature(null); // Set to null on error
+      }
+    };
+
+    fetchWeather();
+  }, []);
 
   // 🔹 Busca cotação do dólar
   useEffect(() => {
@@ -60,7 +71,7 @@ fetchWeather();
     {
       type: "weather",
       label: "Temperatura",
-      value: temperature !== null ? temperature.toFixed(1) : "--",
+      value: temperature !== null ? temperature.toFixed(0) : "--",
       unit: "°C",
       icon: <Cloud size={24} className="text-blue-400" />,
     },
