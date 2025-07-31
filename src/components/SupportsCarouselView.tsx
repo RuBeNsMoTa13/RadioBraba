@@ -53,6 +53,9 @@ export function SupportsCarouselView({
     { name: "Apoiador 11", logo: "/images/Apoiadores/11.png" },
     { name: "Apoiador 12", logo: "/images/Apoiadores/12.png" },
     { name: "Apoiador 13", logo: "/images/Apoiadores/13.png" },
+    { name: "Apoiador 14", logo: "/images/Apoiadores/14.png" },
+    { name: "Apoiador 15", logo: "/images/Apoiadores/15.png" },
+    { name: "Apoiador 16", logo: "/images/Apoiadores/16.png" },
   ];
 
   return (
@@ -61,7 +64,6 @@ export function SupportsCarouselView({
       role="region"
       aria-roledescription="carousel"
     >        
-    <h1 className="text-center text-primary font-bold text-2xl pb-8">Apoiadores</h1> 
 
       <div ref={carouselRef} className="overflow-hidden">
         <div className="flex gap-x-4">

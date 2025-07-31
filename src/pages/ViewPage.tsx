@@ -1,10 +1,47 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
-import { SupportsCarouselView } from '@/components/SupportsCarouselView'; // Seu carrossel de apoiadores
+import { X, MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
+import { SupportsCarouselView } from '@/components/SupportsCarouselView';
+import axios from "axios";
 import DynamicInfo from '@/components/DynamicInfo/DynamicInfo';
 
 export function ViewPage() {
+  const [temperature, setTemperature] = useState<number | null>(null);
+  const [time, setTime] = useState<string>("");
+
+  // 🔹 Atualiza hora em tempo real
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+
+  // 🔹 Busca dados do clima usando API OpenWeather
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const apiKey = "321e647d854e73a9b6edd3e50bf77801";
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=${apiKey}&lang=pt_br&units=metric`;
+
+      try {
+        const apiInfo = await axios.get(url);
+        const fetchedTemperature = apiInfo.data.main.temp;
+
+        console.log("Informações completas da API:", apiInfo.data);
+        console.log("Temperatura atual:", fetchedTemperature, "°C");
+
+        setTemperature(fetchedTemperature);
+
+      } catch (error) {
+        console.error("Erro ao buscar dados do clima:", error);
+        setTemperature(null); 
+      }
+    };
+
+    fetchWeather();
+  }, []);
   const navigate = useNavigate();
   const [showExitButton, setShowExitButton] = useState(false);
   const exitButtonTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -65,17 +102,20 @@ export function ViewPage() {
         {/* Grid Principal */}
         <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
 
-          {/* Coluna da Esquerda (Player rádio) */}
+          {/* Coluna da Esquerda (Logo, Player rádio e Informações) */}
+
+          {/* Parte Superior: Logo da Rádio */}
           <div className="bg-primary flex flex-col items-center justify-center">
             <div className="w-full flex flex-col items-center justify-center gap-8">
               <img
-                src="/images/RadioBraba.png"
+                src="./public/images/RadioBrabaHero.png"
+
                 alt="Logo da Radio Braba"
-                className="w-[450px] h-[450px] object-contain rounded-lg"
+                className="w-[450px] h-[350px] object-contain rounded-lg"
               />
             </div>
-            <div className="w-full mb-24">
-              {/* Embed do player de rádio */}
+            {/* Remova os <br /> extras e use gap para espaçamento controlado */}
+            <div className="w-full p-12">
               <iframe
                 src="https://player.xcast.com.br/player-icast/9186"
                 frameBorder="0"
@@ -89,22 +129,33 @@ export function ViewPage() {
                 allow="autoplay"
               ></iframe>
             </div>
+            {/* Parte Inferior: Informações */}
+            <div className="z-50 bg-black/80 text-white rounded-xl shadow-lg p-4 flex gap-6 min-w-[220px]">
+              <div className="flex items-center gap-2">
+                <Cloud size={20} className="text-primary text-5xl w-12 h-12" />
+                <span className='text-5xl font-semibold'>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={20} className="text-primary text-5xl w-12 h-12" />
+                <span className='text-5xl font-semibold'>{time}</span>
+              </div>
+            </div>
           </div>
 
 
-          {/* Colunas da Direita (Apoiadores e Info Dinâmica) */}
+          {/* Colunas da Direita (Apoiadores e Curiosidades) */}
           <div className="col-span-2 flex flex-col">
 
             {/* Parte Superior: Apoiadores) */}
             <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
               <div className="w-full">
-                <h2 className="text-center text-white text-4xl font-bold">Apoie nosso comércio local!</h2>
-                <SupportsCarouselView className="w-full" /> {/* Ajuste a largura máxima conforme necessário */}
+                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoie nosso comércio local!</h2>
+                <SupportsCarouselView className="w-full" />
               </div>
             </div>
 
-            {/* Parte Inferior: Informações Dinâmicas */}
-            <div className="bg-[#00060A] h-1/2 flex items-center justify-center p-4">
+            {/* Parte Inferior: Curiosidades */}
+            <div className="bg-gray-800 h-1/2 flex items-center justify-center p-4">
               <DynamicInfo />
             </div>
           </div>
