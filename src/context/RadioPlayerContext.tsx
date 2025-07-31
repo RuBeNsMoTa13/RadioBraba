@@ -2,10 +2,9 @@ import { createContext, useContext, useEffect, useRef, useState, ReactNode } fro
 import { radioStations } from '@/lib/data';
 
 // --- CONFIGURAÇÃO ---
-// URL da API da XCast com a chave fornecida
 const XCAST_API_URL = "https://xcast.com.br/api-json/VkRGU1JrNUZOVzVRVkRBOStS";
-// Intervalo de consulta ajustado para cumprir a exigência da API (> 15 segundos)
-const API_POLLING_INTERVAL = 16000; // 16 segundos
+const XCAST_DEFAULT_COVER_URL = "https://player.xcast.com.br/img/img-capa-artista-padrao.png"; // URL padrão da capa da XCast
+const API_POLLING_INTERVAL = 16000;
 const RECONNECT_DELAY_MS = 3000;
 const MAX_RECONNECT_ATTEMPTS = 5;
 // --- FIM DA CONFIGURAÇÃO ---
@@ -30,29 +29,23 @@ export function useRadioPlayer() {
   return ctx;
 }
 
-// Funções para corrigir a codificação dos caracteres
 function decodeHtml(text: any) {
   if (!text) return "";
-  // Mapeamento de caracteres mal codificados (ISO-8859-1 lido como UTF-8) para os caracteres corretos em PT-BR
   const replacements = {
     'Ã¡': 'á', 'Ã©': 'é', 'Ã­': 'í', 'Ã³': 'ó', 'Ãº': 'ú',
     'Ã£': 'ã', 'Ãµ': 'õ', 'Ã¢': 'â', 'Ãª': 'ê', 'Ã§': 'ç',
     'Ã': 'Á', 'Ã‰': 'É', 'Ã': 'Í', 'Ã“': 'Ó', 'Ãš': 'Ú',
     'Ãƒ': 'Ã', 'Ã•': 'Õ', 'Ã‚': 'Â', 'ÃŠ': 'Ê', 'Ã‡': 'Ç',
-    // Adicionado tratamento de casos específicos que podem aparecer
-    'VÃ­deo': 'Vídeo', 
+    'VÃ­deo': 'Vídeo',
     'Ãudio': 'Áudio',
-    // ... adicione mais substituições conforme for encontrando
   };
-
   let decodedText = text;
-  // Itera sobre o mapa de substituições e aplica todas elas
   for (const [malformed, correct] of Object.entries(replacements)) {
-    // Usamos new RegExp para criar uma expressão regular dinâmica
     decodedText = decodedText.replace(new RegExp(malformed, 'g'), correct);
   }
   return decodedText;
 }
+
 export function RadioPlayerProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(() => {
@@ -83,8 +76,14 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
 
         const data = await response.json();
         
-        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo"); // APLICAÇÃO DA CORREÇÃO DE CODIFICAÇÃO
-        setCurrentSongImage(data.capa_musica || "/images/RadioBraba.png");
+        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
+
+        // NOVIDADE: Lógica para substituir a capa padrão da XCast pela logo da rádio Braba
+        if (data.capa_musica && data.capa_musica !== XCAST_DEFAULT_COVER_URL) {
+            setCurrentSongImage(data.capa_musica);
+        } else {
+            setCurrentSongImage("/images/RadioBraba.png");
+        }
         
         console.log("Dados da XCast API atualizados:", data);
 
@@ -95,7 +94,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL); // Intervalo corrigido
+    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
     fetchXcastData();
 
     return () => clearInterval(intervalId);

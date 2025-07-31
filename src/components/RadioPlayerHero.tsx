@@ -46,7 +46,7 @@ export function RadioPlayerHero({ className }: { className?: string }) {
       <div className="relative z-10 flex flex-col items-center w-full">
         {/* A imagem da música como logo/capa principal */}
         {currentSongImage ? (
-          <img src={currentSongImage} alt="Capa da música" className="rounded-lg shadow border object-cover mb-3 w-48 h-48" />
+          <img src={currentSongImage} alt="Capa da música" className="rounded-lg shadow  object-cover mb-3 w-48 h-48" />
         ) : (
           <img src="/images/RadioBraba.png" alt="Logo Rádio Braba" className="rounded-xl shadow border-4 object-cover mb-3 w-48 h-48" />
         )}
