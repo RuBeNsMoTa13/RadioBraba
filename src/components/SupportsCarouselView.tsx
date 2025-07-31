@@ -64,7 +64,6 @@ export function SupportsCarouselView({
       role="region"
       aria-roledescription="carousel"
     >        
-    <h1 className="text-center text-primary font-bold text-2xl pb-8">Apoiadores</h1> 
 
       <div ref={carouselRef} className="overflow-hidden">
         <div className="flex gap-x-4">

@@ -131,16 +131,12 @@ export function ViewPage() {
             {/* Parte Inferior: Informações */}
             <div className="z-50 bg-black/80 text-white rounded-xl shadow-lg p-4 flex gap-6 min-w-[220px]">
               <div className="flex items-center gap-2">
-                <MapPin size={20} className="text-primary" />
-                <span>Capela do Alto, SP</span>
+                <Cloud size={20} className="text-primary text-5xl w-12 h-12" />
+                <span className='text-5xl font-semibold'>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Cloud size={20} className="text-blue-400" />
-                <span>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock size={20} className="text-purple-500" />
-                <span>{time}</span>
+                <Clock size={20} className="text-primary text-5xl w-12 h-12" />
+                <span className='text-5xl font-semibold'>{time}</span>
               </div>
             </div>
           </div>
@@ -152,7 +148,7 @@ export function ViewPage() {
             {/* Parte Superior: Apoiadores) */}
             <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
               <div className="w-full">
-                <h2 className="text-center text-white text-4xl font-bold">Apoie nosso comércio local!</h2>
+                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoie nosso comércio local!</h2>
                 <SupportsCarouselView className="w-full" />
               </div>
             </div>
