@@ -1,6 +1,14 @@
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
 import { radioStations } from '@/lib/data';
 
+// --- CONFIGURAÇÃO ---
+const XCAST_API_URL = "https://xcast.com.br/api-json/VkRGU1JrNUZOVzVRVkRBOStS";
+const XCAST_DEFAULT_COVER_URL = "https://player.xcast.com.br/img/img-capa-artista-padrao.png"; // URL padrão da capa da XCast
+const API_POLLING_INTERVAL = 16000;
+const RECONNECT_DELAY_MS = 3000;
+const MAX_RECONNECT_ATTEMPTS = 5;
+// --- FIM DA CONFIGURAÇÃO ---
+
 interface RadioPlayerContextType {
   isPlaying: boolean;
   setIsPlaying: (v: boolean) => void;
@@ -15,129 +23,228 @@ const RadioPlayerContext = createContext<RadioPlayerContextType | undefined>(und
 
 export function useRadioPlayer() {
   const ctx = useContext(RadioPlayerContext);
-  if (!ctx) throw new Error('useRadioPlayer deve ser usado dentro de RadioPlayerProvider');
+  if (ctx === undefined) {
+    throw new Error('useRadioPlayer deve ser usado dentro de um RadioPlayerProvider');
+  }
   return ctx;
+}
+
+function decodeHtml(text: any) {
+  if (!text) return "";
+  const replacements = {
+    'Ã¡': 'á', 'Ã©': 'é', 'Ã­': 'í', 'Ã³': 'ó', 'Ãº': 'ú',
+    'Ã£': 'ã', 'Ãµ': 'õ', 'Ã¢': 'â', 'Ãª': 'ê', 'Ã§': 'ç',
+    'Ã': 'Á', 'Ã‰': 'É', 'Ã': 'Í', 'Ã“': 'Ó', 'Ãš': 'Ú',
+    'Ãƒ': 'Ã', 'Ã•': 'Õ', 'Ã‚': 'Â', 'ÃŠ': 'Ê', 'Ã‡': 'Ç',
+    'VÃ­deo': 'Vídeo',
+    'Ãudio': 'Áudio',
+  };
+  let decodedText = text;
+  for (const [malformed, correct] of Object.entries(replacements)) {
+    decodedText = decodedText.replace(new RegExp(malformed, 'g'), correct);
+  }
+  return decodedText;
 }
 
 export function RadioPlayerProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [currentSong, setCurrentSong] = useState(radioStations[0].currentSong || 'Sem informação');
-  const [currentSongImage, setCurrentSongImage] = useState(radioStations[0].currentSongImage || '');
+  const [volume, setVolume] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedVolume = localStorage.getItem('radio_volume');
+      return savedVolume ? parseFloat(savedVolume) : 0.5;
+    }
+    return 0.5;
+  });
+  const [currentSong, setCurrentSong] = useState(radioStations[0].currentSong || 'Carregando...');
+  const [currentSongImage, setCurrentSongImage] = useState(radioStations[0].currentSongImage || '/images/RadioBraba.png');
   const [status, setStatus] = useState<'idle' | 'connecting' | 'playing' | 'error'>('idle');
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const reconnectTimeout = useRef<NodeJS.Timeout | null>(null);
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectAttemptCounter = useRef(0);
+
   const station = radioStations[0];
 
-  // Atualiza música/capa (mock, substitua por fetch real se houver endpoint)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSong(station.currentSong || 'Sem informação');
-      setCurrentSongImage(station.currentSongImage || '');
-    }, 10000);
-    setCurrentSong(station.currentSong || 'Sem informação');
-    setCurrentSongImage(station.currentSongImage || '');
-    return () => clearInterval(interval);
-  }, [station]);
+    const fetchXcastData = async () => {
+      try {
+        const response = await fetch(XCAST_API_URL);
 
-  // Controle do <audio> global
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
+
+        // NOVIDADE: Lógica para substituir a capa padrão da XCast pela logo da rádio Braba
+        if (data.capa_musica && data.capa_musica !== XCAST_DEFAULT_COVER_URL) {
+            setCurrentSongImage(data.capa_musica);
+        } else {
+            setCurrentSongImage("/images/RadioBraba.png");
+        }
+        
+        console.log("Dados da XCast API atualizados:", data);
+
+      } catch (error) {
+        console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
+        setCurrentSong("Falha ao carregar");
+        setCurrentSongImage("/images/RadioBraba.png");
+      }
+    };
+
+    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
+    fetchXcastData();
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const initiateReconnect = () => {
+    if (reconnectTimeoutRef.current) {
+      clearTimeout(reconnectTimeoutRef.current);
+    }
+    reconnectAttemptCounter.current += 1;
+    setStatus('connecting');
+
+    if (reconnectAttemptCounter.current <= MAX_RECONNECT_ATTEMPTS) {
+      console.log(`Tentando reconectar #${reconnectAttemptCounter.current}...`);
+      reconnectTimeoutRef.current = setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.load();
+          audioRef.current.play().then(() => {
+            console.log("Reconexão bem-sucedida!");
+            setStatus('playing');
+            reconnectAttemptCounter.current = 0;
+          }).catch(error => {
+            console.error("Falha na tentativa de reconexão:", error);
+          });
+        }
+      }, RECONNECT_DELAY_MS);
+    } else {
+      console.error("Máximo de tentativas de reconexão atingido. Tente novamente manualmente.");
+      setStatus('error');
+      setIsPlaying(false);
+      reconnectAttemptCounter.current = 0;
+    }
+  };
+
   useEffect(() => {
     if (!audioRef.current) {
-      audioRef.current = new Audio();
-      audioRef.current.oncanplay = () => {
+      const audio = new Audio();
+      audioRef.current = audio;
+
+      const handleCanPlay = () => {
         if (audioRef.current && !audioRef.current.paused) {
           setStatus('playing');
         } else {
           setStatus('idle');
         }
       };
-      audioRef.current.onplaying = () => setStatus('playing');
-      audioRef.current.onpause = () => setStatus('idle');
-      audioRef.current.onended = () => {
-        setStatus('error');
-        tentarReconectar();
+      const handlePlaying = () => setStatus('playing');
+      const handlePause = () => setStatus('idle');
+      const handleEnded = () => {
+        console.log("Stream terminou.");
+        setIsPlaying(false);
+        initiateReconnect();
       };
-      audioRef.current.onerror = () => {
+      const handleError = (e: Event) => {
+        const error = audio.error;
+        console.error("Erro no áudio:", error, "Código:", error?.code, "Evento:", e);
         setStatus('error');
-        tentarReconectar();
+        setIsPlaying(false);
+        initiateReconnect();
       };
-      audioRef.current.onstalled = () => {
+      const handleStalled = () => {
+        console.warn("Stream travou (stalled).");
         setStatus('connecting');
-        tentarReconectar();
+        initiateReconnect();
+      };
+
+      audio.addEventListener('canplay', handleCanPlay);
+      audio.addEventListener('playing', handlePlaying);
+      audio.addEventListener('pause', handlePause);
+      audio.addEventListener('ended', handleEnded);
+      audio.addEventListener('error', handleError);
+      audio.addEventListener('stalled', handleStalled);
+
+      return () => {
+        audio.removeEventListener('canplay', handleCanPlay); audio.removeEventListener('playing', handlePlaying);
+        audio.removeEventListener('pause', handlePause); audio.removeEventListener('ended', handleEnded);
+        audio.removeEventListener('error', handleError); audio.removeEventListener('stalled', handleStalled);
+        audio.pause(); audio.src = ''; audio.load();
+        if (reconnectTimeoutRef.current) {
+          clearTimeout(reconnectTimeoutRef.current);
+        }
       };
     }
+
     if (audioRef.current.src !== station.streamUrl) {
       setStatus('connecting');
       audioRef.current.src = station.streamUrl;
       audioRef.current.load();
-      if (isPlaying) {
-        audioRef.current.play().catch(() => {
-          setStatus('error');
-          setIsPlaying(false);
-        });
-      }
+      if (isPlaying) { audioRef.current.pause(); }
     }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = '';
-        audioRef.current.load();
-        audioRef.current.oncanplay = null;
-        audioRef.current.onplaying = null;
-        audioRef.current.onpause = null;
-        audioRef.current.onended = null;
-        audioRef.current.onerror = null;
-        audioRef.current.onstalled = null;
-      }
-      if (reconnectTimeout.current) {
-        clearTimeout(reconnectTimeout.current);
-      }
-    };
-  }, [station.streamUrl]);
-
-  function tentarReconectar() {
-    setStatus('connecting');
-    if (reconnectTimeout.current) clearTimeout(reconnectTimeout.current);
-    reconnectTimeout.current = setTimeout(() => {
-      if (audioRef.current && isPlaying) {
-        audioRef.current.load();
-        audioRef.current.play().catch(() => {
-          setStatus('error');
-          setIsPlaying(false);
-        });
-      }
-    }, 3000);
-  }
+  }, [station.streamUrl, setIsPlaying]);
 
   useEffect(() => {
     if (!audioRef.current) return;
     if (isPlaying) {
       setStatus('connecting');
-      audioRef.current.play().then(() => setStatus('playing')).catch(() => {
-        setStatus('error');
+      audioRef.current.play().then(() => {
+        setStatus('playing');
+        reconnectAttemptCounter.current = 0;
+      }).catch(error => {
+        console.error("Erro ao tentar reproduzir áudio (play):", error);
+        if (error.name === "NotAllowedError" || error.name === "AbortError") {
+          console.warn("Reprodução automática bloqueada.");
+          setStatus('idle');
+        } else {
+          setStatus('error');
+        }
         setIsPlaying(false);
       });
     } else {
       audioRef.current.pause();
       setStatus('idle');
+      reconnectAttemptCounter.current = 0;
     }
-  }, [isPlaying]);
+  }, [isPlaying, setIsPlaying]);
 
   useEffect(() => {
-    if (!audioRef.current) return;
-    audioRef.current.volume = volume;
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
   }, [volume]);
 
-  // Persistência do volume no localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('radio_volume', String(volume));
     }
   }, [volume]);
 
+  const contextValue = {
+    isPlaying,
+    setIsPlaying,
+    volume,
+    setVolume,
+    currentSong,
+    currentSongImage,
+    status,
+  };
+
   return (
-    <RadioPlayerContext.Provider value={{ isPlaying, setIsPlaying, volume, setVolume, currentSong, currentSongImage, status }}>
+    <RadioPlayerContext.Provider value={contextValue}>
       {children}
+      <audio
+        ref={audioRef}
+        style={{ display: 'none' }}
+        preload="auto"
+      >
+        <source src={station.streamUrl} type="audio/aac" />
+        <source src={station.streamUrl} type="audio/mpeg" />
+        Seu navegador não suporta o elemento de áudio.
+      </audio>
     </RadioPlayerContext.Provider>
   );
-} 
+}

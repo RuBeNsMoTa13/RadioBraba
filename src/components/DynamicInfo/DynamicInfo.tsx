@@ -20,6 +20,7 @@ export default function DynamicInfo() {
       label: "",
       value: null,
       image: "./public/images/Curiosidades/Monge.png",
+
     },
       {
       type: "fact",
@@ -27,6 +28,7 @@ export default function DynamicInfo() {
       value: null,
       image: "./public/images/Curiosidades/Monge.png",
     }
+
   ];
 
   // 🔹 Alterna item a cada 10s
