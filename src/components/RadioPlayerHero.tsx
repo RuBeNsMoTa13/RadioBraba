@@ -8,31 +8,27 @@ import { useRadioPlayer } from "@/context/RadioPlayerContext"; // Importa o hook
 
 export function RadioPlayerHero({ className }: { className?: string }) {
   const { isPlaying, setIsPlaying, volume, setVolume, currentSong, currentSongImage, status } = useRadioPlayer();
-
   const [previousVolume, setPreviousVolume] = useState(volume); 
 
   const togglePlay = () => setIsPlaying(!isPlaying);
-
   const handleVolumeChange = (value: number[]) => {
     setVolume(value[0]);
     if (value[0] > 0) setPreviousVolume(value[0]); 
   };
-
   const toggleMute = () => {
     if (volume === 0) {
-      setVolume(previousVolume || 0.5); // Volta para volume anterior ou 0.5 se não tiver anterior
+      setVolume(previousVolume || 0.5);
     } else {
-      setPreviousVolume(volume); // Salva o volume atual antes de mutar
-      setVolume(0); // Muta
+      setPreviousVolume(volume);
+      setVolume(0);
     }
   };
 
-  // Determina qual imagem usar para o background (capa da música ou logo padrão)
   const backgroundImageSrc = currentSongImage || "/images/RadioBraba.png";
 
   return (
     <div className={cn(
-      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full",
+      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full max-w-sm",
       className
     )}>
       {/* Camada de Fundo Blur da Imagem */}
@@ -56,10 +52,19 @@ export function RadioPlayerHero({ className }: { className?: string }) {
         )}
         
         {/* Título e Informações da Música */}
-        <h3 className="font-bold text-lg text-center mb-1 truncate w-full">Brabo FM</h3>
-        <p className="text-pink-500 text-base font-medium text-center mb-2 truncate w-full">
-          {currentSong ? `♪ Tocando agora: ${currentSong}` : '♪ Tocando agora: Ao vivo'}
-        </p>
+        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Brabo FM</h3>
+
+        {/* --- ALTERAÇÃO AQUI: NOME DA MÚSICA COM CARROSSEL --- */}
+        <div className="text-pink-500 text-base font-medium mb-2 w-full overflow-hidden">
+          {currentSong ? (
+            <p className="whitespace-nowrap animate-marquee">
+              ♪ Tocando agora: {currentSong}
+            </p>
+          ) : (
+            <p>♪ Tocando agora: Ao vivo</p>
+          )}
+        </div>
+        {/* --- FIM DA ALTERAÇÃO --- */}
 
         {/* Status da Conexão */}
         {status === 'connecting' && <span className="text-xs text-yellow-600 mb-2">Conectando...</span>}
@@ -80,12 +85,12 @@ export function RadioPlayerHero({ className }: { className?: string }) {
           <div className="flex items-center gap-2 mt-2">
             <Button
               onClick={toggleMute}
-              variant="secondary" // <--- CORREÇÃO AQUI: Mudado de "ghost" para "secondary"
+              variant="ghost"
               size="icon"
-              className="h-12 w-12 rounded-full bg-white hover:bg-gray-100 shadow-lg border-2 text-black hover:text-pink-500 transition-colors" // Adicionei rounded-full e border-2 para ficar igual ao play/pause
+              className="h-12 w-12 rounded-full text-white hover:text-pink-500 hover:bg-gray-100/30 transition-colors"
               aria-label={volume === 0 ? "Desmutar" : "Mutar"}
             >
-              {volume === 0 ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              {volume === 0 ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
               <span className="sr-only">Mute</span>
             </Button>
             <div className="w-40 bg-gray-100 rounded-full p-1 shadow-inner">

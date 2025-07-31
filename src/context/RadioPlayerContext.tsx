@@ -1,10 +1,14 @@
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
-import { radioStations } from '@/lib/data'; // Certifique-se que o caminho e o conteúdo estão corretos
+import { radioStations } from '@/lib/data';
 
-// A URL da API da XCast para pegar os dados da rádio
-const XCAST_API_URL = "https://xcast.com.br/api-json/VDFSRk5FNW5QVDA9KzU=";
-const RECONNECT_DELAY_MS = 3000; // Atraso de 3 segundos antes de tentar reconectar
-const MAX_RECONNECT_ATTEMPTS = 5; // Limite de tentativas de reconexão
+// --- CONFIGURAÇÃO ---
+// URL da API da XCast com a chave fornecida
+const XCAST_API_URL = "https://xcast.com.br/api-json/VkRGU1JrNUZOVzVRVkRBOStS";
+// Intervalo de consulta ajustado para cumprir a exigência da API (> 15 segundos)
+const API_POLLING_INTERVAL = 16000; // 16 segundos
+const RECONNECT_DELAY_MS = 3000;
+const MAX_RECONNECT_ATTEMPTS = 5;
+// --- FIM DA CONFIGURAÇÃO ---
 
 interface RadioPlayerContextType {
   isPlaying: boolean;
@@ -26,6 +30,29 @@ export function useRadioPlayer() {
   return ctx;
 }
 
+// Funções para corrigir a codificação dos caracteres
+function decodeHtml(text: any) {
+  if (!text) return "";
+  // Mapeamento de caracteres mal codificados (ISO-8859-1 lido como UTF-8) para os caracteres corretos em PT-BR
+  const replacements = {
+    'Ã¡': 'á', 'Ã©': 'é', 'Ã­': 'í', 'Ã³': 'ó', 'Ãº': 'ú',
+    'Ã£': 'ã', 'Ãµ': 'õ', 'Ã¢': 'â', 'Ãª': 'ê', 'Ã§': 'ç',
+    'Ã': 'Á', 'Ã‰': 'É', 'Ã': 'Í', 'Ã“': 'Ó', 'Ãš': 'Ú',
+    'Ãƒ': 'Ã', 'Ã•': 'Õ', 'Ã‚': 'Â', 'ÃŠ': 'Ê', 'Ã‡': 'Ç',
+    // Adicionado tratamento de casos específicos que podem aparecer
+    'VÃ­deo': 'Vídeo', 
+    'Ãudio': 'Áudio',
+    // ... adicione mais substituições conforme for encontrando
+  };
+
+  let decodedText = text;
+  // Itera sobre o mapa de substituições e aplica todas elas
+  for (const [malformed, correct] of Object.entries(replacements)) {
+    // Usamos new RegExp para criar uma expressão regular dinâmica
+    decodedText = decodedText.replace(new RegExp(malformed, 'g'), correct);
+  }
+  return decodedText;
+}
 export function RadioPlayerProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(() => {
@@ -45,7 +72,6 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
 
   const station = radioStations[0];
 
-  // Lógica para buscar informações da música da API da XCast
   useEffect(() => {
     const fetchXcastData = async () => {
       try {
@@ -57,10 +83,8 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
 
         const data = await response.json();
         
-        setCurrentSong(data.musica_atual || "Ao vivo");
-        // AQUI: A capa da música é sempre a padrão da XCast por algum motivo.
-        // O problema não é o código abaixo, mas a fonte da informação.
-        setCurrentSongImage(data.capa_musica || "/images/RadioBraba.png"); 
+        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo"); // APLICAÇÃO DA CORREÇÃO DE CODIFICAÇÃO
+        setCurrentSongImage(data.capa_musica || "/images/RadioBraba.png");
         
         console.log("Dados da XCast API atualizados:", data);
 
@@ -71,14 +95,12 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    // CORREÇÃO CRÍTICA: Mudar o intervalo para MAIS DE 15 segundos, como a API da XCast exige.
-    const intervalId = setInterval(fetchXcastData, 16000); // 16 segundos, para ser superior a 15s
-    fetchXcastData(); // Busca inicial imediatamente na montagem do provedor
+    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL); // Intervalo corrigido
+    fetchXcastData();
 
     return () => clearInterval(intervalId);
-  }, []); // Este efeito roda apenas uma vez (na montagem e desmontagem do provedor)
+  }, []);
 
-  // Função auxiliar para iniciar o processo de reconexão controlada
   const initiateReconnect = () => {
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
@@ -108,7 +130,6 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // 1. useEffect principal para controle do <audio> e seus listeners
   useEffect(() => {
     if (!audioRef.current) {
       const audio = new Audio();
@@ -149,36 +170,26 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       audio.addEventListener('stalled', handleStalled);
 
       return () => {
-        audio.removeEventListener('canplay', handleCanPlay);
-        audio.removeEventListener('playing', handlePlaying);
-        audio.removeEventListener('pause', handlePause);
-        audio.removeEventListener('ended', handleEnded);
-        audio.removeEventListener('error', handleError);
-        audio.removeEventListener('stalled', handleStalled);
-        
-        audio.pause();
-        audio.src = '';
-        audio.load();
+        audio.removeEventListener('canplay', handleCanPlay); audio.removeEventListener('playing', handlePlaying);
+        audio.removeEventListener('pause', handlePause); audio.removeEventListener('ended', handleEnded);
+        audio.removeEventListener('error', handleError); audio.removeEventListener('stalled', handleStalled);
+        audio.pause(); audio.src = ''; audio.load();
         if (reconnectTimeoutRef.current) {
           clearTimeout(reconnectTimeoutRef.current);
         }
       };
     }
 
-    // Define a URL do stream se ela mudar (ex: se tiver várias estações)
     if (audioRef.current.src !== station.streamUrl) {
       setStatus('connecting');
       audioRef.current.src = station.streamUrl;
       audioRef.current.load();
-      // CORREÇÃO: Removido o play() daqui. O useEffect de isPlaying é quem controla o play/pause.
-      // if (isPlaying) { audioRef.current.pause(); } // Pausa anterior se já tocando
+      if (isPlaying) { audioRef.current.pause(); }
     }
   }, [station.streamUrl, setIsPlaying]);
 
-  // 2. useEffect para controlar play/pause baseado no estado 'isPlaying'
   useEffect(() => {
     if (!audioRef.current) return;
-
     if (isPlaying) {
       setStatus('connecting');
       audioRef.current.play().then(() => {
@@ -187,7 +198,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       }).catch(error => {
         console.error("Erro ao tentar reproduzir áudio (play):", error);
         if (error.name === "NotAllowedError" || error.name === "AbortError") {
-          console.warn("Reprodução automática bloqueada. O usuário precisa interagir.");
+          console.warn("Reprodução automática bloqueada.");
           setStatus('idle');
         } else {
           setStatus('error');
@@ -201,14 +212,12 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     }
   }, [isPlaying, setIsPlaying]);
 
-  // 3. useEffect para sincronizar o volume do HTMLAudioElement
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
   }, [volume]);
 
-  // 4. useEffect para persistir o volume no localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('radio_volume', String(volume));
