@@ -71,24 +71,24 @@ export default function DynamicInfo() {
 
   // 🔹 Lista dinâmica (agora só curiosidades)
   const infoItems: DynamicInfoItem[] = [
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Sabia que o nome 'Capela do Alto' não foi à toa? A galera da beira do Rio Sarapuí já falava 'bora pra capela do alto' pra ir na capelinha lá no ponto mais alto.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Quase que a cidade tinha uns nomes como 'Cruz do Monge' ou 'Guarapiranga'! Rolou uma eleição apertada, e 'Capela do Alto' ganhou por só 5 votos.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Capela do Alto fica bem localizada, na Região Metropolitana de Sorocaba, tipo um pedacinho importante do mapa paulista.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Sabia que o nome 'Capela do Alto' não foi à toa? A galera da beira do Rio Sarapuí já falava 'bora pra capela do alto' pra ir na capelinha lá no ponto mais alto.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Quase que a cidade tinha uns nomes como 'Cruz do Monge' ou 'Guarapiranga'! Rolou uma eleição apertada, e 'Capela do Alto' ganhou por só 5 votos.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Capela do Alto fica bem localizada, na Região Metropolitana de Sorocaba, tipo um pedacinho importante do mapa paulista.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
     // {
     //   type: "weather",
     //   label: "Temperatura",
@@ -96,54 +96,54 @@ export default function DynamicInfo() {
     //   unit: "°C",
     //   icon: <Cloud size={24} className="text-blue-400" />,
     // },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Reza a lenda que um crime triplo rolou por lá, e por isso foram erguidas três cruzes. Meio macabro, né?",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Depois das três cruzes, um monge 'misterioso' do Ipanema apareceu e colocou mais onze, totalizando 14! Elas eram usadas pra Via Sacra na Quaresma até 1960.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "O tal monge do Ipanema tinha uns poderes especiais, dizem! O lugar onde ele morava e a pedra onde ele dormia viraram quase pontos turísticos de tão visitados.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "A cidade se deu bem porque a estrada São Paulo-Paraná, que ligava Sorocaba a Itapetininga passou por ali e virou a rua principal do pedaço.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Em 1950, a cidade ganhou seu próprio Distrito Policial. A lei chegou pra ficar!",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "Quatro anos depois, em 1954, criaram o Distrito de Paz, e o primeiro chefe foi o Sr. Heleno Lopes Plens.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "E esse mesmo Heleno Lopes Plens, que era o chefe do Distrito de Paz, se tornou o primeiro Prefeito de Capela do Alto.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
-    {
-      type: "fact",
-      label: "Curiosidade",
-      value: "A cidade só conseguiu ser 'independente' em 26 de março de 1965. Antes, ela era tipo 'filha' de Araçoiaba da Serra.",
-      icon: <Lightbulb size={24} className="text-yellow-500" />,
-    },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Reza a lenda que um crime triplo rolou por lá, e por isso foram erguidas três cruzes. Meio macabro, né?",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Depois das três cruzes, um monge 'misterioso' do Ipanema apareceu e colocou mais onze, totalizando 14! Elas eram usadas pra Via Sacra na Quaresma até 1960.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "O tal monge do Ipanema tinha uns poderes especiais, dizem! O lugar onde ele morava e a pedra onde ele dormia viraram quase pontos turísticos de tão visitados.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "A cidade se deu bem porque a estrada São Paulo-Paraná, que ligava Sorocaba a Itapetininga passou por ali e virou a rua principal do pedaço.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Em 1950, a cidade ganhou seu próprio Distrito Policial. A lei chegou pra ficar!",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "Quatro anos depois, em 1954, criaram o Distrito de Paz, e o primeiro chefe foi o Sr. Heleno Lopes Plens.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "E esse mesmo Heleno Lopes Plens, que era o chefe do Distrito de Paz, se tornou o primeiro Prefeito de Capela do Alto.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
+    // {
+    //   type: "fact",
+    //   label: "Curiosidade",
+    //   value: "A cidade só conseguiu ser 'independente' em 26 de março de 1965. Antes, ela era tipo 'filha' de Araçoiaba da Serra.",
+    //   icon: <Lightbulb size={24} className="text-yellow-500" />,
+    // },
     {
       type: "fact",
       label: "Curiosidade",
@@ -154,19 +154,25 @@ export default function DynamicInfo() {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/FelipeBranco.png",
+      image: "./public/images/ImagemCapela.png",
     },
     {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Gersinho.png",
+      image: "./public/images/ImagemCapela2.png",
     },
     {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Fred.png",
+      image: "./public/images/ImagemCapela3.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "./public/images/ImagemCapela4.png",
     },
   ];
 
