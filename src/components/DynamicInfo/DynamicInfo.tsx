@@ -154,19 +154,19 @@ export default function DynamicInfo() {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/FelipeBranco.png",
+      image: "/images/FelipeBranco.png",
     },
     {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Gersinho.png",
+      image: "/images/Gersinho.png",
     },
     {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Fred.png",
+      image: "/images/Fred.png",
     },
   ];
 

@@ -24,7 +24,7 @@ export function Hero() {
                     <div className="w-full md:w-1/2 text-white text-center md:text-left order-1 md:order-1">
                         <div className="w-full flex flex-col items-center justify-center gap-8 mr-0 md:mr-12">
                             <img
-                                src="./public/images/RadioBrabaHero.png"
+                                src="/images/RadioBrabaHero.png"
                                 alt="Logo da Radio Braba"
                                 className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain rounded-lg"
                             />
