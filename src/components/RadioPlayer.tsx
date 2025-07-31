@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import { RadioState } from "@/lib/types";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { radioStations } from "@/lib/data"; // Certifique-se que esta URL está atualizada aqui!
 import { cn } from "@/lib/utils";

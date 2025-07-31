@@ -132,3 +132,16 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #d81b60; 
 }
+/* Animação para o efeito de letreiro/carrossel */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Classe aplicada ao texto da música para a animação */
+.animate-marquee {
+  white-space: nowrap; /* Impede que o texto quebre a linha */
+  display: inline-block; /* Garante que o elemento se ajuste ao tamanho do texto */
+  animation: marquee 15s linear infinite; /* 15s é a duração, 'linear' e 'infinite' para que seja contínua */
+  animation-delay: 1s; /* Opcional: Adiciona um pequeno atraso antes de começar a animação */
+}

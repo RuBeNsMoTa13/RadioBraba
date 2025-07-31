@@ -38,16 +38,7 @@ export interface Prize {
   endDate: Date;
 }
 
-export interface RadioState {
-  isPlaying: boolean;
-  volume: number;
-  station: {
-    name: string;
-    streamUrl: string;
-    currentSong?: string;
-    currentSongImage?: string;
-  };
-}
+
 
 export interface ContactFormData {
   name: string;

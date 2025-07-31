@@ -3,7 +3,7 @@ import { RadioPlayer } from "@/components/RadioPlayer"; // Mantido caso ainda se
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 // import { useState } from "react"; // Não é mais necessário
-// import { RadioPlayerHero } from "@/components/RadioPlayerHero"; // Não é mais necessário
+import { RadioPlayerHero } from "@/components/RadioPlayerHero";
 
 export function Hero() {
     return (
@@ -31,24 +31,12 @@ export function Hero() {
                         </div>
                     </div>
 
-                    {/* Bloco do IFRAME (Player da Rádio) - Ordem 2 no mobile, Ordem 2 no desktop (coluna direita) */}
-                    <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col justify-center items-center order-2 md:order-2">
-                        {/* O IFRAME agora é responsivo: */}
-                        <iframe
-                            src="https://player.xcast.com.br/player-icast/9186"
-                            frameBorder="0"
-                            // Removemos width="428" e height="444" fixos
-                            // Em vez disso, usamos classes e estilo para responsividade:
-                            className="w-full rounded-lg shadow-xl" // w-full faz ele ocupar 100% da largura do pai
-                            style={{
-                                aspectRatio: '428 / 444', // Mantém a proporção original (largura / altura)
-                                maxWidth: '428px', // Garante que não fique maior que as dimensões originais em telas grandes
-                                height: 'auto', // Ajusta a altura automaticamente com base na largura e aspect-ratio
-                                margin: '0 auto' // Centraliza o iframe dentro do seu contêiner
-                            }}
-                            allow="autoplay"
-                        ></iframe>
-                    </div>
+
+
+            <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col justify-center items-center order-2 md:order-2">
+               <RadioPlayerHero/>
+            </div>
+
 
                     {/* Bloco do Parágrafo, Botões e Player - Ordem 3 no mobile, Ordem 1 no desktop */}
                     <div className="w-full md:w-1/2 text-white text-center md:text-left order-3 md:order-1">
