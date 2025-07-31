@@ -15,7 +15,7 @@ export function SupportsCarouselView({
       loop: true,
       duration: 100,
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
 
   const scrollPrev = React.useCallback(() => api?.scrollPrev(), [api]);
@@ -81,7 +81,7 @@ export function SupportsCarouselView({
       </div>
 
       {/* Botão anterior */}
-      <Button
+      {/* <Button
         variant="outline"
         size="icon"
         className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full border-primary hover:bg-primary/20"
@@ -89,10 +89,10 @@ export function SupportsCarouselView({
         onClick={scrollPrev}
       >
         <ChevronLeft className="w-6 h-6" />
-      </Button>
+      </Button> */}
 
       {/* Botão próximo */}
-      <Button
+      {/* <Button
         variant="outline"
         size="icon"
         className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full border-primary hover:bg-primary/20"
@@ -100,7 +100,7 @@ export function SupportsCarouselView({
         onClick={scrollNext}
       >
         <ChevronRight className="w-6 h-6" />
-      </Button>
+      </Button> */}
     </div>
   );
 }
