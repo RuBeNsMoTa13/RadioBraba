@@ -19,14 +19,14 @@ export default function DynamicInfo() {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Curiosidades/Monge.png",
+      image: "/images/Curiosidades/Monge.png",
 
     },
       {
       type: "fact",
       label: "",
       value: null,
-      image: "./public/images/Curiosidades/Monge.png",
+      image: "/images/Curiosidades/Monge.png",
     }
 
   ];

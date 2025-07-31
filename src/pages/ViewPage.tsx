@@ -108,7 +108,7 @@ export function ViewPage() {
           <div className="bg-primary flex flex-col items-center justify-center">
             <div className="w-full flex flex-col items-center justify-center gap-8">
               <img
-                src="./public/images/RadioBrabaHero.png"
+                src="/images/RadioBrabaHero.png"
 
                 alt="Logo da Radio Braba"
                 className="w-[450px] h-[350px] object-contain rounded-lg"
