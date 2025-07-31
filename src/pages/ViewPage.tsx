@@ -68,14 +68,10 @@ export function ViewPage() {
           {/* Coluna da Esquerda (Player rádio) */}
           <div className="bg-primary flex flex-col items-center justify-center">
             <div className="w-full flex flex-col items-center justify-center gap-8">
-              <h6 className="text-white text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-                Rádio Braba FM
-                <span className="block text-emphasis">104,9 FM</span>
-              </h6>
               <img
                 src="./public/images/RadioBraba.png"
                 alt="Logo da Radio Braba"
-                className="w-[300px] h-[300px] object-contain rounded-lg"
+                className="w-[450px] h-[450px] object-contain rounded-lg"
               />
             </div>
             <div className="w-full mb-24">
@@ -108,10 +104,8 @@ export function ViewPage() {
             </div>
 
             {/* Parte Inferior: Informações Dinâmicas */}
-            <div className="h-1/2 flex items-center justify-center p-4">
+            <div className="bg-[#00060A] h-1/2 flex items-center justify-center p-4">
               <DynamicInfo />
-              <div className="flex flex-col items-center justify-center text-center text-white">
-              </div>
             </div>
           </div>
         </div>

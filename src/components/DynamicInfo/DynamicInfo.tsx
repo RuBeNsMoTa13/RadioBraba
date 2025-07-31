@@ -5,10 +5,11 @@ import { MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
 type DynamicInfoItem = {
   type: string;
   label: string;
-  value: string | number | null; // Alterado para 'null' também
+  value: string | number | null;
   unit?: string;
   icon?: JSX.Element;
   source?: string;
+  image?: string; // Caminho da imagem (opcional)
 };
 
 export default function DynamicInfo() {
@@ -88,13 +89,13 @@ export default function DynamicInfo() {
       value: "Capela do Alto fica bem localizada, na Região Metropolitana de Sorocaba, tipo um pedacinho importante do mapa paulista.",
       icon: <Lightbulb size={24} className="text-yellow-500" />,
     },
-    {
-      type: "weather",
-      label: "Temperatura",
-      value: temperature !== null ? temperature.toFixed(0) : "--",
-      unit: "°C",
-      icon: <Cloud size={24} className="text-blue-400" />,
-    },
+    // {
+    //   type: "weather",
+    //   label: "Temperatura",
+    //   value: temperature !== null ? temperature.toFixed(0) : "--",
+    //   unit: "°C",
+    //   icon: <Cloud size={24} className="text-blue-400" />,
+    // },
     {
       type: "fact",
       label: "Curiosidade",
@@ -149,6 +150,24 @@ export default function DynamicInfo() {
       value: "Um grande dia foi 20 de junho de 1954, quando a energia elétrica chegou no então distrito.",
       icon: <Lightbulb size={24} className="text-yellow-500" />,
     },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "./public/images/FelipeBranco.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "./public/images/Gersinho.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "./public/images/Fred.png",
+    },
   ];
 
   // 🔹 Alterna item a cada 10s
@@ -163,22 +182,30 @@ export default function DynamicInfo() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full bg-card-foreground rounded-xl shadow-lg p-4 transition-all duration-500">
-        <div className="flex items-center justify-center text-center text-gray-100 mb-2">
-          {currentInfo.icon && <span className="mr-3">{currentInfo.icon}</span>}
-          <h3 className="text-2xl sm:text-2xl font-bold">{currentInfo.label}</h3>
+      <div
+        className="relative flex flex-col items-center justify-center w-full h-full bg-[#00060A] rounded-xl p-4 transition-all duration-500 overflow-hidden"
+      >
+        {/* Imagem de fundo, se existir */}
+        {currentInfo.image && (
+          <img
+            src={currentInfo.image}
+            alt={currentInfo.label}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            style={{ zIndex: 0 }}
+          />
+        )}
+        {/* Conteúdo sobreposto */}
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+          <div className="flex items-center justify-center text-center text-gray-100 mb-2">
+            {currentInfo.icon && <span className="mr-3">{currentInfo.icon}</span>}
+            <h3 className="text-2xl sm:text-2xl font-bold">{currentInfo.label}</h3>
+          </div>
+          <p className="text-base sm:text-xl md:text-2xl font-normal text-primary text-center max-w-md mx-auto">
+            {currentInfo.value}
+            {currentInfo.unit && <span className="text-xl sm:text-2xl font-normal ml-2">{currentInfo.unit}</span>}
+          </p>
+          {currentInfo.source && <span className="text-xs text-gray-500 mt-1">{currentInfo.source}</span>}
         </div>
-        <p
-          className={
-            currentInfo.type === "fact"
-              ? "text-base sm:text-xl md:text-2xl font-normal text-primary text-center max-w-md mx-auto"
-              : "text-3xl sm:text-4xl font-extrabold text-primary"
-          }
-        >
-          {currentInfo.value}
-          {currentInfo.unit && <span className="text-xl sm:text-2xl font-normal ml-2">{currentInfo.unit}</span>}
-        </p>
-        {currentInfo.source && <span className="text-xs text-gray-500 mt-1">{currentInfo.source}</span>}
       </div>
       {/* Nova div fixa no canto inferior direito */}
       <div className="fixed bottom-6 right-6 z-50 bg-black/80 text-white rounded-xl shadow-lg p-4 flex flex-row gap-6 min-w-[220px]">
