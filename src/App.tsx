@@ -12,6 +12,7 @@ import AnnouncerPage from '@/pages/AnnouncerPage';
 import { LoginPage } from '@/components/LoginPage/LoginPage'; // Importar LoginPage do novo caminho
 import { RegisterPage } from '@/components/RegisterPage/RegisterPage'; // Importar RegisterPage do novo caminho
 import { RadioPlayerProvider } from "@/context/RadioPlayerContext";
+import  { ViewPage }  from '@/pages/ViewPage';
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -37,6 +38,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/cadastro" element={<RegisterPage />} />
             </Route>
+            <Route path="/exibicao" element={<ViewPage />} />
           </Routes>
         </BrowserRouter>
         <Toaster />
