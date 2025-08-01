@@ -91,7 +91,7 @@ export function RadioPlayer({ className }: { className?: string }) {
             <img src="/images/RadioBraba.png" alt="Logo Rádio Braba" className="w-12 h-12 rounded shadow border object-cover" />
           )}
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold truncate text-black">Brabo FM</h3>
+            <h3 className="font-bold truncate text-black">Braba FM</h3>
             <p className="text-xs text-pink-500 truncate font-medium">
               {currentSong ? `♪ Tocando agora: ${currentSong}` : '♪ Tocando agora: Ao vivo'}
             </p>

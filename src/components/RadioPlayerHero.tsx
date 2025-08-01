@@ -52,7 +52,7 @@ export function RadioPlayerHero({ className }: { className?: string }) {
         )}
         
         {/* Título e Informações da Música */}
-        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Brabo FM</h3>
+        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Braba FM</h3>
 
         {/* --- ALTERAÇÃO AQUI: NOME DA MÚSICA COM CARROSSEL --- */}
         <div className="text-pink-500 text-base font-medium mb-2 w-full overflow-hidden">
