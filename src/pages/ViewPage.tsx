@@ -108,19 +108,20 @@ export function ViewPage() {
           {/* Coluna da Esquerda (reorganizada) */}
           <div className="bg-primary flex flex-col justify-between items-center h-full p-4">
 
-            {/* 1. Previsão do Tempo no topo */}
-            <div className="flex flex-col items-center justify-center">
-                <div className="z-50 bg-white/70 text-gray-800 rounded-xl p-4 flex gap-6 min-w-[220px]">
-                    <div className="flex items-center gap-2">
-                        <Cloud size={20} className="text-primary text-5xl w-12 h-12" />
-                        <span className='text-5xl font-semibold'>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Clock size={20} className="text-primary text-5xl w-12 h-12" />
-                        <span className='text-5xl font-semibold'>{time}</span>
-                    </div>
-                </div>
-            </div>
+ {/* 1. Previsão do Tempo no topo */}
+<div className="flex flex-col items-center justify-center mb-6"> {/* ADICIONADO: mb-6 para espaçamento na parte de baixo */}
+    {/* CORREÇÃO: Removido min-w- e alterado tamanho das fontes para responsividade */}
+    <div className="z-50 bg-white/70 text-gray-800 rounded-xl p-2 flex gap-4 w-full max-w-sm">
+        <div className="flex items-center gap-2">
+            <Cloud size={20} className="text-primary w-8 h-8 md:w-10 md:h-10" />
+            <span className='text-lg md:text-xl lg:text-3xl font-semibold'>{temperature !== null ? `${temperature.toFixed(0)}°C` : "--°C"}</span>
+        </div>
+        <div className="flex items-center gap-2">
+            <Clock size={20} className="text-primary w-8 h-8 md:w-10 md:h-10" />
+            <span className='text-lg md:text-xl lg:text-3xl font-semibold'>{time}</span>
+        </div>
+    </div>
+</div>
 
             {/* 2. Player no meio */}
             <div className="w-full h-full flex justify-center items-center">

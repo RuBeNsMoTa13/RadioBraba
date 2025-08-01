@@ -146,7 +146,7 @@ export default function DynamicInfo() {
           <img
             src={currentInfo.image}
             alt={currentInfo.label}
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full  p-6 object-cover object-center"
             style={{ zIndex: 0 }}
           />
         )}
