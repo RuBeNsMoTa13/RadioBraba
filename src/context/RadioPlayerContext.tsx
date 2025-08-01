@@ -3,12 +3,13 @@ import { radioStations } from '@/lib/data';
 
 // --- CONFIGURAÇÃO ---
 const XCAST_API_URL = "https://xcast.com.br/api-json/VkRGU1JrNUZOVzVRVkRBOStS";
-const XCAST_DEFAULT_COVER_URL = "https://player.xcast.com.br/img/img-capa-artista-padrao.png"; // URL padrão da capa da XCast
+const XCAST_DEFAULT_COVER_URL = "https://player.xcast.com.br/img/img-capa-artista-padrao.png";
 const API_POLLING_INTERVAL = 16000;
 const RECONNECT_DELAY_MS = 3000;
 const MAX_RECONNECT_ATTEMPTS = 5;
 // --- FIM DA CONFIGURAÇÃO ---
 
+// Definição dos tipos para o Contexto
 interface RadioPlayerContextType {
   isPlaying: boolean;
   setIsPlaying: (v: boolean) => void;
@@ -29,6 +30,8 @@ export function useRadioPlayer() {
   return ctx;
 }
 
+// Função para corrigir a codificação de caracteres
+// Movida para fora do componente para melhor organização
 function decodeHtml(text: any) {
   if (!text) return "";
   const replacements = {
@@ -46,7 +49,10 @@ function decodeHtml(text: any) {
   return decodedText;
 }
 
+// Provedor do Contexto
 export function RadioPlayerProvider({ children }: { children: ReactNode }) {
+  // === ESTADOS E REFERÊNCIAS ===
+  // Estados principais do player
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -59,47 +65,15 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
   const [currentSongImage, setCurrentSongImage] = useState(radioStations[0].currentSongImage || '/images/RadioBraba.png');
   const [status, setStatus] = useState<'idle' | 'connecting' | 'playing' | 'error'>('idle');
 
+  // Referências para o elemento de áudio e reconexão
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const reconnectAttemptCounter = useRef(0);
 
-  const station = radioStations[0];
+  const station = radioStations[0]; // Assumindo apenas uma estação
 
-  useEffect(() => {
-    const fetchXcastData = async () => {
-      try {
-        const response = await fetch(XCAST_API_URL);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
-
-        // NOVIDADE: Lógica para substituir a capa padrão da XCast pela logo da rádio Braba
-        if (data.capa_musica && data.capa_musica !== XCAST_DEFAULT_COVER_URL) {
-            setCurrentSongImage(data.capa_musica);
-        } else {
-            setCurrentSongImage("/images/RadioBraba.png");
-        }
-        
-        console.log("Dados da XCast API atualizados:", data);
-
-      } catch (error) {
-        console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
-        setCurrentSong("Falha ao carregar");
-        setCurrentSongImage("/images/RadioBraba.png");
-      }
-    };
-
-    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
-    fetchXcastData();
-
-    return () => clearInterval(intervalId);
-  }, []);
-
+  // === LÓGICA DE RECONEXÃO ===
+  // Função auxiliar para iniciar o processo de reconexão controlada
   const initiateReconnect = () => {
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
@@ -129,37 +103,56 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // === EFEITOS (useEffects) ===
+
+  // Efeito 1: Busca de informações da música da API da XCast
+  // Roda uma vez na montagem do provedor e a cada API_POLLING_INTERVAL.
+  useEffect(() => {
+    const fetchXcastData = async () => {
+      try {
+        const response = await fetch(XCAST_API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
+        if (data.capa_musica && data.capa_musica !== XCAST_DEFAULT_COVER_URL) {
+            setCurrentSongImage(data.capa_musica);
+        } else {
+            setCurrentSongImage("/images/RadioBraba.png");
+        }
+        console.log("Dados da XCast API atualizados:", data);
+      } catch (error) {
+        console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
+        setCurrentSong("Falha ao carregar");
+        setCurrentSongImage("/images/RadioBraba.png");
+      }
+    };
+
+    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
+    fetchXcastData();
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Efeito 2: Inicialização do <audio> e gerenciamento de seus listeners
+  // Roda uma vez na montagem para configurar o elemento de áudio.
   useEffect(() => {
     if (!audioRef.current) {
       const audio = new Audio();
       audioRef.current = audio;
 
-      const handleCanPlay = () => {
-        if (audioRef.current && !audioRef.current.paused) {
-          setStatus('playing');
-        } else {
-          setStatus('idle');
-        }
-      };
+      // Listeners para eventos do elemento de áudio
+      const handleCanPlay = () => { if (audio.paused) { setStatus('idle'); } };
       const handlePlaying = () => setStatus('playing');
       const handlePause = () => setStatus('idle');
-      const handleEnded = () => {
-        console.log("Stream terminou.");
-        setIsPlaying(false);
-        initiateReconnect();
-      };
+      const handleEnded = () => { setIsPlaying(false); initiateReconnect(); };
       const handleError = (e: Event) => {
-        const error = audio.error;
-        console.error("Erro no áudio:", error, "Código:", error?.code, "Evento:", e);
-        setStatus('error');
-        setIsPlaying(false);
-        initiateReconnect();
+        console.error("Erro no áudio:", audio.error, "Código:", audio.error?.code, "Evento:", e);
+        setStatus('error'); setIsPlaying(false); initiateReconnect();
       };
-      const handleStalled = () => {
-        console.warn("Stream travou (stalled).");
-        setStatus('connecting');
-        initiateReconnect();
-      };
+      const handleStalled = () => { setStatus('connecting'); initiateReconnect(); };
 
       audio.addEventListener('canplay', handleCanPlay);
       audio.addEventListener('playing', handlePlaying);
@@ -173,20 +166,22 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
         audio.removeEventListener('pause', handlePause); audio.removeEventListener('ended', handleEnded);
         audio.removeEventListener('error', handleError); audio.removeEventListener('stalled', handleStalled);
         audio.pause(); audio.src = ''; audio.load();
-        if (reconnectTimeoutRef.current) {
-          clearTimeout(reconnectTimeoutRef.current);
-        }
+        if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current);
       };
     }
+  }, []);
 
-    if (audioRef.current.src !== station.streamUrl) {
+  // Efeito 3: Atualiza a URL do stream se a estação mudar
+  useEffect(() => {
+    if (audioRef.current && audioRef.current.src !== station.streamUrl) {
       setStatus('connecting');
       audioRef.current.src = station.streamUrl;
       audioRef.current.load();
       if (isPlaying) { audioRef.current.pause(); }
     }
-  }, [station.streamUrl, setIsPlaying]);
+  }, [station.streamUrl, isPlaying, setIsPlaying]);
 
+  // Efeito 4: Controla play/pause com base no estado 'isPlaying'
   useEffect(() => {
     if (!audioRef.current) return;
     if (isPlaying) {
@@ -211,12 +206,14 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     }
   }, [isPlaying, setIsPlaying]);
 
+  // Efeito 5: Sincroniza o volume do HTMLAudioElement
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
   }, [volume]);
 
+  // Efeito 6: Persiste o volume no localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('radio_volume', String(volume));
