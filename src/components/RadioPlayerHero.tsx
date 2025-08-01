@@ -28,7 +28,7 @@ export function RadioPlayerHero({ className }: { className?: string }) {
 
   return (
     <div className={cn(
-      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full h-full justify-between", // ADICIONADO: h-full e justify-between para fazer o componente crescer verticalmente
+      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full max-w-sm",
       className
     )}>
       {/* Camada de Fundo Blur da Imagem */}
@@ -46,18 +46,24 @@ export function RadioPlayerHero({ className }: { className?: string }) {
       <div className="relative z-10 flex flex-col items-center w-full">
         {/* A imagem da música como logo/capa principal */}
         {currentSongImage ? (
-          <img src={currentSongImage} alt="Capa da música" className="rounded-lg shadow border object-cover mb-3 w-48 h-48" />
+          <img src={currentSongImage} alt="Capa da música" className="rounded-lg shadow  object-cover mb-3 w-48 h-48" />
         ) : (
           <img src="/images/RadioBraba.png" alt="Logo Rádio Braba" className="rounded-xl shadow border-4 object-cover mb-3 w-48 h-48" />
         )}
         
         {/* Título e Informações da Música */}
-        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Braba FM</h3>
+        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Brabo FM</h3>
 
-        {/* --- ALTERAÇÃO AQUI: NOME DA MÚSICA FIXO E COM TRUNCATE --- */}
-        <p className="text-pink-500 text-base font-medium text-center mb-2 truncate w-full">
-          {currentSong ? `♪ Tocando agora: ${currentSong}` : '♪ Tocando agora: Ao vivo'}
-        </p>
+        {/* --- ALTERAÇÃO AQUI: NOME DA MÚSICA COM CARROSSEL --- */}
+        <div className="text-pink-500 text-base font-medium mb-2 w-full overflow-hidden">
+          {currentSong ? (
+            <p className="whitespace-nowrap animate-marquee">
+              ♪ Tocando agora: {currentSong}
+            </p>
+          ) : (
+            <p>♪ Tocando agora: Ao vivo</p>
+          )}
+        </div>
         {/* --- FIM DA ALTERAÇÃO --- */}
 
         {/* Status da Conexão */}
@@ -65,7 +71,7 @@ export function RadioPlayerHero({ className }: { className?: string }) {
         {status === 'error' && <span className="text-xs text-red-600 mb-2">Erro ao conectar. Tentando novamente...</span>}
         
         {/* Controles do Player */}
-        <div className="flex flex-col items-center w-full justify-center mt-auto mb-auto"> {/* ALTERAÇÃO: Adicionado mt-auto e mb-auto para centralizar os controles verticalmente */}
+        <div className="flex flex-col items-center w-full justify-center mt-2 gap-3">
           <Button
             onClick={togglePlay}
             variant="secondary"
