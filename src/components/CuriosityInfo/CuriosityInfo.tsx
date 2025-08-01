@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type DynamicInfoItem = {
+type CuriosityInfoItem = {
   type: string;
   label: string;
   value: string | number | null;
@@ -10,11 +10,11 @@ type DynamicInfoItem = {
   image?: string;
 };
 
-export default function DynamicInfo() {
+export default function CuriosityInfo() {
   const [currentInfoIndex, setCurrentInfoIndex] = useState(0);
 
   // 🔹 Lista dinâmica 
-  const infoItems: DynamicInfoItem[] = [
+  const infoItems: CuriosityInfoItem[] = [
     {
       type: "fact",
       label: "",
@@ -146,7 +146,7 @@ export default function DynamicInfo() {
           <img
             src={currentInfo.image}
             alt={currentInfo.label}
-            className="absolute inset-0 w-full h-full  p-6 object-cover object-center"
+            className="absolute inset-0 w-full h-full   object-cover object-center"
             style={{ zIndex: 0 }}
           />
         )}

@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { X, MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
 import { SupportsCarouselView } from '@/components/SupportsCarouselView';
 import axios from "axios";
-import DynamicInfo from '@/components/DynamicInfo/DynamicInfo';
+import DynamicInfo from '@/components/CuriosityInfo/CuriosityInfo';
 import { RadioPlayerHero } from '@/components/RadioPlayerHero';
+import CuriosityInfo from '@/components/CuriosityInfo/CuriosityInfo';
 
 export function ViewPage() {
   const [temperature, setTemperature] = useState<number | null>(null);
@@ -152,8 +153,8 @@ export function ViewPage() {
             </div>
 
             {/* Parte Inferior: DynamicInfo, agora no lado direito */}
-            <div className="bg-gray-800 h-1/2 flex items-center justify-center p-4">
-              <DynamicInfo />
+            <div className="bg-gray-800 h-1/2 flex items-center justify-center p-12 ">
+              <CuriosityInfo />
             </div>
           </div>
         </div>
