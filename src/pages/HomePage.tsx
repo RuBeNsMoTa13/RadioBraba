@@ -5,7 +5,7 @@ import { ScheduleSection } from "@/components/HomePage/ScheduleSection";
 import Announcer from "@/components/Announcer/Announcer";
 import { SupportsCarousel } from "@/components/SupportsCarousel"; // Importando apenas o componente principal
 import VideoGallery from "@/components/YoutubeAPI/VideoGallery"; 
-import  InstaFeed  from "@/components/InstaAPI/InstaFeed"; 
+import  { InstaFeed }  from "@/components/InstaAPI/InstaFeed"; 
 
 export function HomePage() {
   return (

@@ -19,23 +19,118 @@ export default function DynamicInfo() {
       type: "fact",
       label: "",
       value: null,
-      image: "/images/Curiosidades/Monge.png",
-
+      image: "/images/Curiosidades/1.png",
     },
-      {
+    {
       type: "fact",
       label: "",
       value: null,
-      image: "/images/Curiosidades/Monge.png",
-    }
+      image: "/images/Curiosidades/2.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/3.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/4.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/5.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/6.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/7.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/8.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/9.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/10.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/11.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/12.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/13.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/14.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/15.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/16.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/17.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/18.png",
+    },
 
   ];
 
-  // 🔹 Alterna item a cada 10s
+  // 🔹 Alterna item a cada 15s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentInfoIndex((prevIndex) => (prevIndex + 1) % infoItems.length);
-    }, 10000);
+    }, 15000);
     return () => clearInterval(interval);
   }, [infoItems.length]);
 

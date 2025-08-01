@@ -119,7 +119,7 @@ const VideoGallery: React.FC = () => {
                             </p>
                             <a className="text-primary text-sm line-clamp-3 mt-1"
                                 key={video.id}
-                                href={`http://youtube.com/watch?v=${video.id}`}
+                                href={`https://youtube.com/watch?v=${video.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer" >
                                 <h3>Acessar Video</h3>
