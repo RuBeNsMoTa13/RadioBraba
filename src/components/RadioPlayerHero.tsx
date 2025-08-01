@@ -28,7 +28,7 @@ export function RadioPlayerHero({ className }: { className?: string }) {
 
   return (
     <div className={cn(
-      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full max-w-sm",
+      "relative overflow-hidden bg-white text-black px-6 py-8 rounded-xl shadow-2xl border-0 flex flex-col items-center w-full",
       className
     )}>
       {/* Camada de Fundo Blur da Imagem */}

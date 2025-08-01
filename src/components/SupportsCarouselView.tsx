@@ -75,7 +75,7 @@ export function SupportsCarouselView({
               <img
                 src={apoiador.logo}
                 alt={apoiador.name}
-                className="w-[300px] h-[300px] object-contain rounded-lg shadow-lg p-4"
+                className="w-[300px] h-[300px] object-contain rounded-lg  p-4"
               />
             </div>
           ))}
