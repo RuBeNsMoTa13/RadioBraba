@@ -56,7 +56,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     return 0.5;
   });
   const [currentSong, setCurrentSong] = useState(radioStations[0].currentSong || 'Carregando...');
-  // A capa da rádio Braba é agora a imagem padrão
+  // A capa da rádio Braba será a imagem padrão, sem buscar da API
   const [currentSongImage, setCurrentSongImage] = useState('/images/RadioBraba.png'); 
   const [status, setStatus] = useState<'idle' | 'connecting' | 'playing' | 'error'>('idle');
 
@@ -83,7 +83,6 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       } catch (error) {
         console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
         setCurrentSong("Falha ao carregar");
-        // Mantemos a imagem padrão em caso de falha na busca
       }
     };
 
