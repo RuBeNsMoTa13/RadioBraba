@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [
     react(),
     legacy({
-      targets: ['defaults', 'ie 11', 'android >= 4.4'],
+      
+      targets: ['defaults', 'IE 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
     }),
   ],
