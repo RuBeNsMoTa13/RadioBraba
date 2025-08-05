@@ -117,12 +117,6 @@ export default function CuriosityInfo() {
       value: null,
       image: "/images/Curiosidades/17.png",
     },
-    {
-      type: "fact",
-      label: "",
-      value: null,
-      image: "/images/Curiosidades/18.png",
-    },
 
   ];
 
