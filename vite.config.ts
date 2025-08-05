@@ -1,17 +1,16 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy'; // Importamos o plugin legacy
+import legacy from '@vitejs/plugin-legacy';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     react(),
-    legacy({ // Adicionamos a configuração do plugin legacy
-      targets: ['defaults', 'not IE 11'],
+    legacy({
+      targets: ['last 2 versions', 'ie >= 11', 'android >= 4.4', 'not dead'],
     }),
   ],
   server: {
-    // ligar somente para testar na tv emulada
     host: true,
     port: 5173,
   },
