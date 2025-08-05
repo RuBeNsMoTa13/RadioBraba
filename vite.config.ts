@@ -7,8 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     legacy({
-      // AQUI: Forçamos a transpilação para ES5, garantindo a compatibilidade máxima a todos navegadores.
-      targets: ['defaults', 'not IE 11', 'es5'],
+      targets: ['defaults', 'ie 11', 'android >= 4.4'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
     }),
   ],
