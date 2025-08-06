@@ -87,8 +87,12 @@ const VideoGallery: React.FC = () => {
 
     return (
         <section className="container mx-auto p-4 md:p-8 min-h-screen">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary">Vídeos da Rádio Braba</h2>
-
+            <div className="px-6 py-4">
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary">ACOMPANHE NOSSO YOUTUBE</h2>
+                    <p className="text-xl text-secondary">Se inscreva e ligue o sininho.</p>
+                </div>
+            </div>
             <div className="mb-12">
                 <PlayerYoutube videoId={selectedVideoId || ''} />
             </div>

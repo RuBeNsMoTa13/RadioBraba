@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Layout } from '@/components/Layout';
 import { HomePage } from '@/pages/HomePage';
 import { SchedulePage } from '@/pages/SchedulePage';
-import { GalleryPage } from '@/pages/GalleryPage';
+import { InstaPage } from '@/pages/InstaPage';
 import { PrizesPage } from '@/pages/PrizesPage';
 import { ContactPage } from '@/pages/ContactPage';
 import AnnouncerPage from '@/pages/AnnouncerPage';
@@ -31,7 +31,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/programacao" element={<SchedulePage />} />
-              <Route path="/galeria" element={<GalleryPage />} />
+              <Route path="/galeria" element={<InstaPage />} />
               <Route path="/premios" element={<PrizesPage />} />
               <Route path="/contato" element={<ContactPage />} />
               <Route path="/locutores" element={<AnnouncerPage />} />
