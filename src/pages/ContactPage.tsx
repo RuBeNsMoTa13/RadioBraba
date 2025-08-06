@@ -72,7 +72,7 @@ export function ContactPage() {
       icon: <Phone size={24} />,
       title: 'WhatsApp',
       description: 'Resposta imediata durante o horário comercial',
-      value: '(15) 99615-6506',
+      value: '(15) 3191-2855',
       action: 'Enviar mensagem',
       color: 'bg-green-500' 
     },
