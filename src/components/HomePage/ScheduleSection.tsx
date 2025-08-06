@@ -18,16 +18,19 @@ export function ScheduleSection() {
 
   return (
     <section className="page-container bg-background py-8">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-6 gap-2">
-        <h2 className="section-title font-bold text-pink-600 text-xl xs:text-2xl sm:text-3xl md:text-4xl leading-tight break-words">
-          Programação da Semana
-        </h2>
+      <div className=" sm:flex-row sm:justify-between sm:items-baseline mb-6 gap-2">
+        <div className="px-6 pt-4">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center">PROGRAMAÇÃO DA SEMANA</h2>
+            <p className="text-xl text-secondary">Sintonize com nós todos os dias.</p>
+          </div>
         <Link
           to="/programacao"
           className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105 text-base xs:text-lg"
         >
           Ver Programação Completa
         </Link>
+        </div>
       </div>
 
       <div className="flex overflow-x-auto whitespace-nowrap gap-2 mb-8 p-2 custom-scrollbar">

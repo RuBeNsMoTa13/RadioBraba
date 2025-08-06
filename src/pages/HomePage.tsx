@@ -1,5 +1,4 @@
 import { Hero } from "@/components/HomePage/Hero";
-import { GalleryPreview } from "@/components/GalleryPage/GalleryPreview";
 import { PrizeSection } from "@/components/HomePage/PrizeSection";
 import { ScheduleSection } from "@/components/HomePage/ScheduleSection";
 import Announcer from "@/components/Announcer/Announcer";
@@ -17,7 +16,6 @@ export function HomePage() {
       <PrizeSection />
       <VideoGallery /> 
       <InstaFeed /> 
-      <GalleryPreview />
     </div>
   );
 }
