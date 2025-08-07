@@ -224,20 +224,12 @@ export const showsData: Show[] = [
     id: 24,
     title: "Manhã Sertaneja",
     host: "Paulinho do Povo",
-    time: "07:00 - 09:15",
+    time: "07:00 - 11:00",
     day: 3,
     description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
     image: "/images/Programas/manhaSertaneja.png",
   },
-  {
-    id: 25,
-    title: "Obrigado Homem do Campo",
-    host: "Toninho",
-    time: "09:30 - 11:00",
-    day: 3,
-    description: "Notícias, dicas e muita música para o homem do campo.",
-    image: "/images/Programas/homemCampo.png",
-  },
+
   {
     id: 26,
     title: "Na Braba Informa com Gersinho Rádio e TV",
@@ -424,7 +416,7 @@ export const showsData: Show[] = [
     id: 46,
     title: "Manhã Sertaneja",
     host: "Paulinho do Povo",
-    time: "07:00 - 09:15",
+    time: "07:00 - 11:00",
     day: 5,
     description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
     image: "/images/Programas/manhaSertaneja.png",
@@ -502,7 +494,17 @@ export const showsData: Show[] = [
     description: "",
     image: "/images/Programas/fimdeSemana.png",
   },
-  // Domingo (day: 0)
+    
+    // Domingo (day: 0)
+{
+    id: 54,
+    title: "Fique Ligado nos Eventos",
+    host: "",
+    time: "",
+    day: 0,
+    description: "",
+    image: "/images/Programas/fimdeSemana.png",
+}
 
 ];
 

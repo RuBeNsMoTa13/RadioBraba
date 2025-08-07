@@ -69,7 +69,7 @@ const AnnouncerPage: React.FC = () => {
           </div>
         </div>
       </div>
-Ruasaojoao26@
+
       {/* Modal */}
       {selectedLocutor && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">

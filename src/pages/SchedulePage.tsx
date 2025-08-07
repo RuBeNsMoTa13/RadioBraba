@@ -14,10 +14,10 @@ export function SchedulePage() {
 
   const dayShows = showsData.filter((show) => show.day === selectedDay);
 
-  const days = Array.from({ length: 7 }, (_, i) => ({
-    value: i,
-    label: getDayName(i), 
-  }));
+const days = [1, 2, 3, 4, 5, 6, 0].map((i) => ({
+  value: i,
+  label: getDayName(i),
+}));
 
   const filteredShows = showsData.filter((show: Show) => show.day === selectedDay);
 

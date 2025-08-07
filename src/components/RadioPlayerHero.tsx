@@ -50,12 +50,9 @@ export function RadioPlayerHero({ className }: { className?: string }) {
         ) : (
           <img src="/images/RadioBraba.png" alt="Logo Rádio Braba" className="rounded-xl shadow border-4 object-cover mb-3 w-48 h-48" />
         )}
-        
-        {/* Título e Informações da Música */}
-        <h3 className="font-bold text-lg text-center mb-1 truncate w-full text-white">Braba FM</h3>
 
         {/* --- ALTERAÇÃO AQUI: NOME DA MÚSICA COM CARROSSEL --- */}
-        <div className="text-pink-500 text-base font-medium mb-2 w-full overflow-hidden">
+        <div className="text-pink-500 text-2xl font-medium mb-2 w-full overflow-hidden">
           {currentSong ? (
             <p className="whitespace-nowrap animate-marquee">
               ♪ Tocando agora: {currentSong}
