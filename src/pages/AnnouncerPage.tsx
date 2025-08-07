@@ -146,8 +146,8 @@ const AnnouncerPage: React.FC = () => {
       <div className="px-6 py-4">
         <div className="text-center mb-10">
           {/* Títulos e subtítulos que mudam de cor */}
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-black dark:text-white">VOZES POR TRÁS DA RÁDIO</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">E onde os feras da voz se encontram.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center">VOZES POR TRÁS DA RÁDIO</h2>
+          <p className="text-xl text-secondary">E onde os feras da voz se encontram.</p>
         </div>
       </div>
 

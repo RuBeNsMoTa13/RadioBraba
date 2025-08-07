@@ -1,4 +1,4 @@
-import { GalleryImage, Prize, Show, Host } from "./types";
+import { Prize, Show } from "./types";
 
 export const radioStations = [
   {
@@ -9,210 +9,501 @@ export const radioStations = [
   }
 ];
 
-export const hostsData: Host[] = [
-  {
-    id: 1,
-    name: "Carlos Santos",
-    image: "https://images.pexels.com/photos/1844547/pexels-photo-1844547.jpeg",
-    bio: "Com mais de 15 anos de experiência em rádio, Carlos traz energia e alegria para suas manhãs.",
-    shows: ["Manhã Animada"],
-    socialMedia: {
-      instagram: "https://instagram.com/carlossantos",
-      twitter: "https://twitter.com/carlossantos"
-    }
-  },
-  {
-    id: 2,
-    name: "Ana Silva",
-    image: "https://images.pexels.com/photos/1898555/pexels-photo-1898555.jpeg",
-    bio: "Especialista em MPB e música brasileira contemporânea, Ana apresenta os melhores sons nacionais.",
-    shows: ["Tarde Brasileira"],
-    socialMedia: {
-      instagram: "https://instagram.com/anasilva",
-      facebook: "https://facebook.com/anasilva"
-    }
-  },
-  {
-    id: 3,
-    name: "Roberto Oliveira",
-    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
-    bio: "DJ e produtor musical, Roberto é a voz que anima suas noites com os melhores hits.",
-    shows: ["Show da Noite"],
-    socialMedia: {
-      instagram: "https://instagram.com/robertooliveira",
-      twitter: "https://twitter.com/robertooliveira"
-    }
-  },
-  {
-    id: 4,
-    name: "Juliana Paiva",
-    image: "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg",
-    bio: "Apresentadora e jornalista, Juliana traz as melhores seleções para seu domingo.",
-    shows: ["Domingo Relaxante"],
-    socialMedia: {
-      instagram: "https://instagram.com/julianapaiva",
-      facebook: "https://facebook.com/julianapaiva"
-    }
-  }
-];
-
 export const showsData: Show[] = [
   {
+    // Segunda-feira (day: 1)
     id: 1,
-    title: "Manhã Animada",
-    host: "Carlos Santos",
-    time: "06:00 - 09:00",
-    day: 1, // Monday
-    description: "Comece o dia com muita energia e as melhores músicas!",
-    image: "https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg"
+    title: "Classicos da Braba",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 1,
+    description: "Os clássicos que marcaram época, você ouve aqui!",
+    image: "/images/Programas/classicosBraba.png"
   },
   {
     id: 2,
-    title: "Tarde Brasileira",
-    host: "Ana Silva",
-    time: "12:00 - 15:00",
-    day: 1, // Monday
-    description: "O melhor da MPB para sua tarde de trabalho.",
-    image: "https://images.pexels.com/photos/4090902/pexels-photo-4090902.jpeg"
+    title: "Manhã Sertaneja",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 1,
+    description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
+    image: "/images/Programas/manhaSertaneja.png"
   },
   {
     id: 3,
-    title: "Show da Noite",
-    host: "Roberto Oliveira",
-    time: "19:00 - 22:00",
-    day: 1, // Monday
-    description: "Entretenimento e música para animar sua noite.",
-    image: "https://images.pexels.com/photos/3784221/pexels-photo-3784221.jpeg"
+    title: "Bom Dia Homem do Campo",
+    host: "Toninho",
+    time: "09:30 - 11:00",
+    day: 1,
+    description: "Notícias, dicas e muita música para o homem do campo.",
+    image: "/images/Programas/homemCampo.png"
   },
   {
     id: 4,
-    title: "Clássicos do Rock",
-    host: "Pedro Mendes",
-    time: "14:00 - 17:00",
-    day: 2, // Tuesday
-    description: "Os maiores sucessos do rock nacional e internacional.",
-    image: "https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg"
+    title: "Bate-Bola com Nenê Quevedo",
+    host: "",
+    time: "11:00 - 13:00",
+    day: 1,
+    description: "Tudo sobre futebol com os comentarios de Nenê Quevedo.",
+    image: "/images/Programas/bateBola.png"
   },
   {
     id: 5,
-    title: "Samba & Pagode",
-    host: "Fernanda Lima",
-    time: "15:00 - 18:00",
-    day: 3, // Wednesday
-    description: "O melhor do samba e pagode para animar seu dia.",
-    image: "https://images.pexels.com/photos/7280159/pexels-photo-7280159.jpeg"
+    title: "As Brabas do Momento 1ª Edição",
+    host: "Fred",
+    time: "13:00 - 14:30",
+    day: 1,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento1.png"
   },
   {
     id: 6,
-    title: "Bate-papo Cultural",
-    host: "Mariana Torres",
-    time: "09:00 - 12:00",
-    day: 4, // Thursday
-    description: "Discussões sobre cultura, música e entretenimento.",
-    image: "https://images.pexels.com/photos/5699519/pexels-photo-5699519.jpeg"
+    title: "Solta a Braba!",
+    host: "",
+    time: "14:30 - 17:00",
+    day: 1,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/soltaaBraba.png"
   },
   {
     id: 7,
-    title: "Sexta Eletrônica",
-    host: "DJ Felipe",
-    time: "22:00 - 01:00",
-    day: 5, // Friday
-    description: "As melhores batidas para começar seu fim de semana.",
-    image: "https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg"
+    title: "Hora do Rush",
+    host: "",
+    time: "17:00 - 18:00",
+    day: 1,
+    description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
+    image: "/images/Programas/horadoRush.png"
   },
   {
     id: 8,
-    title: "Madrugada Especial",
-    host: "Lucas Ferreira",
-    time: "00:00 - 03:00",
-    day: 6, // Saturday
-    description: "Músicas selecionadas para quem está acordado de madrugada.",
-    image: "https://images.pexels.com/photos/2111015/pexels-photo-2111015.jpeg"
+    title: "Tarde de Bençãos",
+    host: "",
+    time: "18:00 - 19:00",
+    day: 1,
+    description: "Músicas evangélicas para abençoar sua tarde.",
+    image: "/images/Programas/tardeBencaos.png"
   },
   {
     id: 9,
-    title: "Domingo Relaxante",
-    host: "Juliana Paiva",
-    time: "10:00 - 13:00",
-    day: 0, // Sunday
-    description: "Músicas calmas para um domingo tranquilo.",
-    image: "https://images.pexels.com/photos/634541/pexels-photo-634541.jpeg"
-  }
-];
+    title: "Na Xinxa Xou!",
+    host: "Felipe Branco",
+    time: "20:00 - 21:30",
+    day: 1,
+    description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
+    image: "/images/Programas/naXinxaXou.png"
+  },
+  {
+    id: 10,
+    title: "As Brabas do Momento 2ª Edição",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 1,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento2.png"
+  },
+  {
+    id: 11,
+    title: "Madrugada Braba",
+    host: "",
+    time: "00:00 - 04:00",
+    day: 1,
+    description: "Músicas para quem está acordado de madrugada.",
+    image: "/images/Programas/madrugadaBraba.png"
+  },
+    // Terça-Feira (day: 2)
+  {
+    id: 12,
+    title: "Classicos da Braba",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 2, 
+    description: "Os clássicos que marcaram época, você ouve aqui!",
+    image: "/images/Programas/classicosBraba.png"
+  },
+  {
+    id: 13,
+    title: "Manhã Sertaneja",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 2, 
+    description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
+    image: "/images/Programas/manhaSertaneja.png"
+  },
+  {
+    id: 14,
+    title: "Bom Dia Homem do Campo",
+    host: "Toninho",
+    time: "09:30 - 11:00",
+    day: 2, 
+    description: "Notícias, dicas e muita música para o homem do campo.",
+    image: "/images/Programas/homemCampo.png"
+  },
+  {
+    id: 15,
+    title: "Na Braba Informa com Gersinho Rádio e TV",
+    host: "Gersinho",
+    time: "11:00 - 13:00",
+    day: 2, 
+    description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
+    image: "/images/Programas/brabaInforma.png"
+  },
+  {
+    id: 16,
+    title: "As Brabas do Momento 1ª Edição",
+    host: "Fred",
+    time: "13:00 - 14:30",
+    day: 2, 
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento1.png"
+  },
+  {
+    id: 17,
+    title: "Solta a Braba!",
+    host: "",
+    time: "14:30 - 17:00",
+    day: 2, 
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/soltaaBraba.png"
+  },
+  {
+    id: 18,
+    title: "Hora do Rush",
+    host: "",
+    time: "17:00 - 18:00",
+    day: 2, 
+    description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
+    image: "/images/Programas/horadoRush.png"
+  },
+  {
+    id: 19,
+    title: "Tarde de Bençãos",
+    host: "",
+    time: "18:00 - 19:00",
+    day: 2, 
+    description: "Músicas evangélicas para abençoar sua tarde.",
+    image: "/images/Programas/tardeBencaos.png"
+  },
+  {
+    id: 20,
+    title: "Na Xinxa Xou!",
+    host: "Felipe Branco",
+    time: "20:00 - 21:30",
+    day: 2, 
+    description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
+    image: "/images/Programas/naXinxaXou.png"
+  },
+  {
+    id: 21,
+    title: "As Brabas do Momento 2ª Edição",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 2, 
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento2.png"
+  },
+  {
+    id: 22,
+    title: "Madrugada Braba",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 2, 
+    description: "Músicas para quem está acordado de madrugada.",
+    image: "/images/Programas/madrugadaBraba.png"
+  },
+  // Quarta-feira (day: 3)
+  {
+    id: 23,
+    title: "Classicos da Braba",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 3,
+    description: "Os clássicos que marcaram época, você ouve aqui!",
+    image: "/images/Programas/classicosBraba.png",
+  },
+  {
+    id: 24,
+    title: "Manhã Sertaneja",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 3,
+    description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
+    image: "/images/Programas/manhaSertaneja.png",
+  },
+  {
+    id: 25,
+    title: "Bom Dia Homem do Campo",
+    host: "Toninho",
+    time: "09:30 - 11:00",
+    day: 3,
+    description: "Notícias, dicas e muita música para o homem do campo.",
+    image: "/images/Programas/homemCampo.png",
+  },
+  {
+    id: 26,
+    title: "Na Braba Informa com Gersinho Rádio e TV",
+    host: "Gersinho",
+    time: "11:00 - 13:00",
+    day: 3,
+    description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
+    image: "/images/Programas/brabaInforma.png",
+  },
+  {
+    id: 27,
+    title: "As Brabas do Momento 1ª Edição",
+    host: "Fred",
+    time: "13:00 - 14:30",
+    day: 3,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento1.png",
+  },
+  {
+    id: 28,
+    title: "Solta a Braba!",
+    host: "",
+    time: "14:30 - 17:00",
+    day: 3,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/soltaaBraba.png",
+  },
+  {
+    id: 29,
+    title: "Hora do Rush",
+    host: "",
+    time: "17:00 - 18:00",
+    day: 3,
+    description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
+    image: "/images/Programas/horadoRush.png",
+  },
+  {
+    id: 30,
+    title: "Tarde de Bençãos",
+    host: "",
+    time: "18:00 - 19:00",
+    day: 3,
+    description: "Músicas evangélicas para abençoar sua tarde.",
+    image: "/images/Programas/tardeBencaos.png",
+  },
+  {
+    id: 31,
+    title: "Na Xinxa Xou!",
+    host: "Felipe Branco",
+    time: "20:00 - 21:30",
+    day: 3,
+    description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
+    image: "/images/Programas/naXinxaXou.png",
+  },
+  {
+    id: 32,
+    title: "As Brabas do Momento 2ª Edição",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 3,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento2.png",
+  },
+  {
+    id: 33,
+    title: "Madrugada Braba",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 3,
+    description: "Músicas para quem está acordado de madrugada.",
+    image: "/images/Programas/madrugadaBraba.png",
+  },
+  // Quinta-feira (day: 4)
+  {
+    id: 34,
+    title: "Classicos da Braba",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 4,
+    description: "Os clássicos que marcaram época, você ouve aqui!",
+    image: "/images/Programas/classicosBraba.png",
+  },
+  {
+    id: 35,
+    title: "Manhã Sertaneja",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 4,
+    description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
+    image: "/images/Programas/manhaSertaneja.png",
+  },
+  {
+    id: 36,
+    title: "Bom Dia Homem do Campo",
+    host: "Toninho",
+    time: "09:30 - 11:00",
+    day: 4,
+    description: "Notícias, dicas e muita música para o homem do campo.",
+    image: "/images/Programas/homemCampo.png",
+  },
+  {
+    id: 37,
+    title: "Bate-Bola com Nenê Quevedo",
+    host: "",
+    time: "11:00 - 13:00",
+    day: 4,
+    description: "Tudo sobre futebol com os comentarios de Nenê Quevedo.",
+    image: "/images/Programas/bateBola.png",
+  },
+  {
+    id: 38,
+    title: "As Brabas do Momento 1ª Edição",
+    host: "Fred",
+    time: "13:00 - 14:30",
+    day: 4,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento1.png",
+  },
+  {
+    id: 39,
+    title: "Solta a Braba!",
+    host: "",
+    time: "14:30 - 17:00",
+    day: 4,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/soltaaBraba.png",
+  },
+  {
+    id: 40,
+    title: "Hora do Rush",
+    host: "",
+    time: "17:00 - 18:00",
+    day: 4,
+    description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
+    image: "/images/Programas/horadoRush.png",
+  },
+  {
+    id: 41,
+    title: "Tarde de Bençãos",
+    host: "",
+    time: "18:00 - 19:00",
+    day: 4,
+    description: "Músicas evangélicas para abençoar sua tarde.",
+    image: "/images/Programas/tardeBencaos.png",
+  },
+  {
+    id: 42,
+    title: "Na Xinxa Xou!",
+    host: "Felipe Branco",
+    time: "20:00 - 21:30",
+    day: 4,
+    description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
+    image: "/images/Programas/naXinxaXou.png",
+  },
+  {
+    id: 43,
+    title: "As Brabas do Momento 2ª Edição",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 4,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento2.png",
+  },
+  {
+    id: 44,
+    title: "Madrugada Braba",
+    host: "",
+    time: "00:00 - 04:00",
+    day: 4,
+    description: "Músicas para quem está acordado de madrugada.",
+    image: "/images/Programas/madrugadaBraba.png",
+  },
+  // Sexta-feira (day: 5)
+  {
+    id: 45,
+    title: "Classicos da Braba",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 5,
+    description: "Os clássicos que marcaram época, você ouve aqui!",
+    image: "/images/Programas/classicosBraba.png",
+  },
+  {
+    id: 46,
+    title: "Manhã Sertaneja",
+    host: "Paulinho do Povo",
+    time: "07:00 - 09:15",
+    day: 5,
+    description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
+    image: "/images/Programas/manhaSertaneja.png",
+  },
+  {
+    id: 47,
+    title: "Na Braba Informa com Gersinho Rádio e TV",
+    host: "Gersinho",
+    time: "11:00 - 13:00",
+    day: 5,
+    description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
+    image: "/images/Programas/brabaInforma.png",
+  },
+  {
+    id: 48,
+    title: "As Brabas do Momento 1ª Edição",
+    host: "Fred",
+    time: "13:00 - 14:30",
+    day: 5,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento1.png",
+  },
+  {
+    id: 49,
+    title: "Solta a Braba!",
+    host: "",
+    time: "14:30 - 17:00",
+    day: 5,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/soltaaBraba.png",
+  },
+  {
+    id: 50,
+    title: "Hora do Rush",
+    host: "",
+    time: "17:00 - 18:00",
+    day: 5,
+    description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
+    image: "/images/Programas/horadoRush.png",
+  },
+  {
+    id: 51,
+    title: "Tarde de Bençãos",
+    host: "",
+    time: "18:00 - 19:00",
+    day: 5,
+    description: "Músicas evangélicas para abençoar sua tarde.",
+    image: "/images/Programas/tardeBencaos.png",
+  },
+  {
+    id: 52,
+    title: "As Brabas do Momento 2ª Edição",
+    host: "",
+    time: "21:30 - 00:00",
+    day: 5,
+    description: "As músicas mais tocadas do momento, você ouve aqui!",
+    image: "/images/Programas/brabasMomento2.png",
+  },
+  {
+    id: 53,
+    title: "Madrugada Braba",
+    host: "",
+    time: "00:00 - 04:00",
+    day: 5,
+    description: "Músicas para quem está acordado de madrugada.",
+    image: "/images/Programas/madrugadaBraba.png",
+  },
+  // Sábado (day: 6)
+  {
+    id: 54,
+    title: "Fique Ligado nos Eventos",
+    host: "",
+    time: "",
+    day: 6,
+    description: "",
+    image: "/images/Programas/fimdeSemana.png",
+  },
+  // Domingo (day: 0)
 
-export const galleryImages: GalleryImage[] = [
-  {
-    id: 1,
-    title: "Festival de Verão 2024",
-    src: "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg",
-    alt: "Festival de Verão 2024",
-    date: "15/01/2024",
-    event: "Festival de Verão"
-  },
-  {
-    id: 2,
-    title: "Show ao Vivo",
-    src: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg",
-    alt: "Show ao Vivo na Rádio",
-    date: "05/02/2024",
-    event: "Show ao Vivo"
-  },
-  {
-    id: 3,
-    title: "Entrevista Especial",
-    src: "https://images.pexels.com/photos/2747448/pexels-photo-2747448.jpeg",
-    alt: "Entrevista com Artista",
-    date: "20/02/2024",
-    event: "Entrevista"
-  },
-  {
-    id: 4,
-    title: "Carnaval 2024",
-    src: "https://images.pexels.com/photos/5319385/pexels-photo-5319385.jpeg",
-    alt: "Cobertura do Carnaval",
-    date: "13/02/2024",
-    event: "Carnaval"
-  },
-  {
-    id: 5,
-    title: "Lançamento de Álbum",
-    src: "https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg",
-    alt: "Evento de Lançamento",
-    date: "10/03/2024",
-    event: "Lançamento"
-  },
-  {
-    id: 6,
-    title: "Feira de Música",
-    src: "https://images.pexels.com/photos/2552130/pexels-photo-2552130.jpeg",
-    alt: "Stand na Feira de Música",
-    date: "25/03/2024",
-    event: "Feira"
-  },
-  {
-    id: 7,
-    title: "DJ Set Especial",
-    src: "https://images.pexels.com/photos/3784221/pexels-photo-3784221.jpeg",
-    alt: "DJ Set na Rádio",
-    date: "07/04/2024",
-    event: "DJ Set"
-  },
-  {
-    id: 8,
-    title: "Aniversário da Rádio",
-    src: "https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg",
-    alt: "Festa de Aniversário",
-    date: "15/04/2024",
-    event: "Aniversário"
-  },
-  {
-    id: 9,
-    title: "Sessão Acústica",
-    src: "https://images.pexels.com/photos/1813124/pexels-photo-1813124.jpeg",
-    alt: "Apresentação Acústica",
-    date: "22/04/2024",
-    event: "Acústico"
-  }
 ];
 
 export const prizesData: Prize[] = [

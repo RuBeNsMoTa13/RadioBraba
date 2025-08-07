@@ -24,12 +24,12 @@ export function ScheduleSection() {
             <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center">PROGRAMAÇÃO DA SEMANA</h2>
             <p className="text-xl text-secondary">Sintonize com nós todos os dias.</p>
           </div>
-        <Link
-          to="/programacao"
-          className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105 text-base xs:text-lg"
-        >
-          Ver Programação Completa
-        </Link>
+          <Link
+            to="/programacao"
+            className="font-semibold text-pink-600 underline-offset-4 decoration-pink-400 transition-all duration-300 hover:text-pink-900 hover:underline hover:scale-105 text-base xs:text-lg"
+          >
+            Ver Programação Completa
+          </Link>
         </div>
       </div>
 
@@ -40,12 +40,13 @@ export function ScheduleSection() {
             onClick={() => setSelectedDay(day.value)}
             variant={selectedDay === day.value ? "default" : "outline"}
             className={cn(
-              "rounded-full bg-background text-pink-600 border-2 border-pink-600 shadow-lg font-semibold transition-all duration-300 hover:bg-pink-300 hover:text-white hover:scale-105",
-              "shrink-0",
-              "px-3 py-1 text-xs",
-              "sm:px-4 sm:py-1 sm:text-sm",
+              "rounded-full bg-card text-pink-600 border-2 border-pink-600 shadow-lg font-semibold transition-all duration-300 hover:bg-pink-600 hover:text-white hover:scale-105",
+              "shrink-0", 
+              "px-3 py-1 text-xs", 
+              "sm:px-4 sm:py-1 sm:text-sm", 
               "md:px-6 md:py-2 md:text-base",
-              selectedDay === day.value && "bg-pink-500 text-white border-pink-600"
+
+              selectedDay === day.value && "bg-pink-300 text-white border-pink-300"
             )}
           >
             {day.label}
@@ -59,7 +60,13 @@ export function ScheduleSection() {
             key={show.id}
             className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <div className="w-full h-40 bg-cover bg-center" style={{ backgroundImage: `url(${show.image})` }} />
+            <div className="w-full aspect-[16/9] flex items-center justify-center bg-gray-100">
+              <img
+                src={show.image}
+                alt={show.title}
+                className="max-h-full bg-contain"
+              />
+            </div>
             <div className="p-4">
               <h3 className="text-lg font-bold text-primary mb-2">{show.title}</h3>
               <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
