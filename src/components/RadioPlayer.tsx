@@ -65,13 +65,13 @@ export function RadioPlayer({ className }: { className?: string }) {
   }, []);
 
   return (
-    <Card className={cn("bg-white text-black p-4 rounded-xl shadow-lg border-0", className)}>
+    <Card className={cn("bg-card text-primary p-4 rounded-xl shadow-lg border-0", className)}>
       <div className="flex items-center gap-4">
         <Button
           onClick={togglePlay}
           variant="secondary"
           size="icon"
-          className="h-12 w-12 rounded-full bg-white hover:bg-gray-100 shadow-lg border-0 text-black hover:text-pink-500 transition-colors"
+          className="h-12 w-12 rounded-full bg-card hover:bg-card shadow-lg border-0 text-primary hover:text-pink-500"
           aria-label={isPlaying ? "Pausar rádio" : "Tocar rádio"}
         >
           {isPlaying ? (
@@ -83,28 +83,29 @@ export function RadioPlayer({ className }: { className?: string }) {
             {isPlaying ? "Pause" : "Play"}
           </span>
         </Button>
-        <div className="flex-1 min-w-0 bg-white rounded-lg overflow-x-hidden flex items-center gap-2">
+        <div className="flex-1 min-w-0 bg-card rounded-lg overflow-x-hidden flex items-center gap-2">
           {/* Exibe a foto da música se houver */}
-          {currentSongImage ? (
-            <img src={currentSongImage} alt="Capa da música" className="w-12 h-12 rounded shadow border object-cover" />
+          {/* {currentSongImage ? (
+            <img src={currentSongImage} alt="Capa da música" className="w-12 h-12 rounded shadow object-cover" />
           ) : (
-            <img src="/images/RadioBraba.png" alt="Logo Rádio Braba" className="w-12 h-12 rounded shadow border object-cover" />
-          )}
-          <div className="flex-1 min-w-0">
-            <h3 className="font-bold truncate text-black">Braba FM</h3>
-            <p className="text-xs text-pink-500 truncate font-medium">
-              {currentSong ? `♪ Tocando agora: ${currentSong}` : '♪ Tocando agora: Ao vivo'}
+            <img src="/images/RadioBrabaHero.png" alt="Logo Rádio Braba" className="w-12 h-12 rounded shadow border object-cover" />
+          )} */}
+          <div className="flex-1 min-w-0 whitespace-nowrap animate-marquee-hero">
+          {currentSong ? (
+            <p className="whitespace-nowrap animate-marquee">
+              ♪ Tocando agora: {currentSong}
             </p>
-            {status === 'connecting' && <span className="text-xs text-yellow-600">Conectando...</span>}
-            {status === 'error' && <span className="text-xs text-red-600">Erro ao conectar. Tentando novamente...</span>}
+          ) : (
+            <p>♪ Tocando agora: Ao vivo</p>
+          )}
           </div>
         </div>
-        <div className="flex items-center h-16 bg-white rounded-lg">
+        <div className="flex items-center h-16 bg-card rounded-lg">
           <Button
             onClick={toggleMute}
             variant="ghost"
             size="icon"
-            className="text-black hover:text-pink-500 hover:bg-gray-100 transition-colors rounded-full"
+            className="text-primary hover:text-pink-500 hover:bg-card transition-colors rounded-full"
             aria-label={volume === 0 ? "Desmutar" : "Mutar"}
           >
             {volume === 0 ? (
@@ -114,13 +115,13 @@ export function RadioPlayer({ className }: { className?: string }) {
             )}
             <span className="sr-only">Mute</span>
           </Button>
-          <div className="w-12 bg-gray-100 rounded-full p-1 shadow-inner">
+          <div className="w-12 bg-card rounded-full p-1 shadow-inner">
             <Slider
               value={[volume]}
               max={1}
               step={0.01}
               onValueChange={handleVolumeChange}
-              className="w-full [&>span:first-child]:bg-gradient-to-r [&>span:first-child]:from-pink-400 [&>span:first-child]:to-pink-600 [&>span:first-child]:shadow-sm [&_[role=slider]]:bg-white [&_[role=slider]]:border-2 [&_[role=slider]]:border-pink-400 [&_[role=slider]]:shadow-md"
+              className="w-full [&>span:first-child]:bg-gradient-to-r [&>span:first-child]:from-pink-400 [&>span:first-child]:to-pink-600 [&>span:first-child]:shadow-sm [&_[role=slider]]:bg-card [&_[role=slider]]:border-2 [&_[role=slider]]:border-pink-400 [&_[role=slider]]:shadow-md"
               aria-label="Controle de volume"
             />
           </div>

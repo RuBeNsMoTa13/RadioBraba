@@ -12,17 +12,21 @@ import { Link } from "react-router-dom";
 export function SchedulePage() {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
 
-  const days = Array.from({ length: 7 }, (_, i) => ({
-    value: i,
-    label: getDayName(i), 
-  }));
+  const dayShows = showsData.filter((show) => show.day === selectedDay);
+
+const days = [1, 2, 3, 4, 5, 6, 0].map((i) => ({
+  value: i,
+  label: getDayName(i),
+}));
 
   const filteredShows = showsData.filter((show: Show) => show.day === selectedDay);
 
   return (
     <div className="page-container">
-      <h1 className="page-title text-primary">Programação</h1>
-
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center">PROGRAMAÇÃO DA SEMANA</h2>
+            <p className="text-xl text-secondary">Sintonize com nós todos os dias.</p>
+          </div>
       {/* Contêiner dos botões com scroll horizontal e responsividade */}
       <div className="flex overflow-x-auto whitespace-nowrap gap-2 mb-8 p-2 custom-scrollbar">
         {days.map((day) => (
@@ -47,40 +51,42 @@ export function SchedulePage() {
 
       {filteredShows.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredShows.map((show: Show) => (
-            // Conteúdo do ShowCard embutido diretamente aqui
-            <div
-              key={show.id} 
-              className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div
-                className="w-full h-40 bg-cover bg-center"
-                style={{ backgroundImage: `url(${show.image})` }}
+          {dayShows.map((show: Show) => (
+          <div
+            key={show.id}
+            className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+          >
+            <div className="w-full aspect-[16/9] flex items-center justify-center bg-gray-100">
+              <img
+                src={show.image}
+                alt={show.title}
+                className="max-h-full bg-contain"
               />
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-primary mb-2">{show.title}</h3>
-                <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
-                  <div className="flex items-center">
-                    <User className="h-4 w-4 mr-1" /> {show.host}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-1" /> {show.time}
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" /> {getDayName(show.day)}
-                  </div>
-                </div>
-                <p className="text-gray-600 text-sm mb-4">{show.description}</p>
-                <Link
-                  to={`/programacao/${show.id}`}
-                  className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
-                >
-                  Saiba mais
-                  <Calendar size={14} className="ml-1" />
-                </Link>
-              </div>
             </div>
-          ))}
+            <div className="p-4">
+              <h3 className="text-lg font-bold text-primary mb-2">{show.title}</h3>
+              <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
+                <div className="flex items-center">
+                  <User className="h-4 w-4 mr-1" /> {show.host}
+                </div>
+                <div className="flex items-center">
+                  <Clock className="h-4 w-4 mr-1" /> {show.time}
+                </div>
+                <div className="flex items-center">
+                  <Calendar className="h-4 w-4 mr-1" /> {getDayName(show.day)}
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">{show.description}</p>
+              <Link
+                to={`/programacao/${show.id}`}
+                className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
+              >
+                Saiba mais
+                <Calendar size={14} className="ml-1" />
+              </Link>
+            </div>
+          </div>
+        ))}
         </div>
       ) : (
         <div className="text-center py-12">
