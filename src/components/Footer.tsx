@@ -26,7 +26,7 @@ export function Footer() {
             <p className="text-popover-foreground mb-4">
               A rádio que fala como o povo fala. Música e bate-papo 24h por dia!
             </p>
-            <div className="flex space-x-4 mt-auto">
+            <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -62,6 +62,23 @@ export function Footer() {
               >
                 <Youtube size={20} className="text-white" />
                 <span className="sr-only">YouTube</span>
+              </a>
+            </div>
+
+            {/* Banner RadiosNet Adicionado Aqui */}
+            <div className="mt-8">
+              <a
+                href="https://radiosnet.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://img.radios.com.br/divulgue/app-radiosnet-234x60-a.jpg"
+                  alt="Ouça nossa rádio em seu celular ou tablet com Android ou no iPhone e iPads"
+                  width="234"
+                  height="60"
+                  className="border-0"
+                />
               </a>
             </div>
           </div>
@@ -185,10 +202,10 @@ export function Footer() {
               <li className="flex items-center">
                 <Phone size={18} className="text-pink-600 mr-2" />
                 <a
-                  href="tel:+551199999999"
+                  href="https://wa.me/551531912855"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  +55 15 99615-6506
+                  (15) 3191-2855
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </a>
               </li>
