@@ -15,7 +15,7 @@ export function PrizeSection() {
           <div className="flex-1">
             <h2 className="text-2xl font-bold mb-2">Prêmios e Promoções</h2>
             <p className="text-muted-foreground max-w-2xl">
-              Participe de nossas promoções exclusivas e concorra a prêmios incríveis! 
+              Participe de nossas promoções exclusivas e concorra a prêmios incríveis!
               São ingressos para shows, kits exclusivos e muito mais.
             </p>
           </div>
@@ -33,10 +33,13 @@ export function PrizeSection() {
             key={prize.id}
             className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <div
-              className="w-full h-40 bg-cover bg-center"
-              style={{ backgroundImage: `url(${prize.image})` }}
-            />
+            <div className="w-full aspect-[16/9] flex items-center justify-center bg-gray-100">
+              <img
+                src={prize.image}
+                alt={prize.title}
+                className="max-h-full bg-contain"
+              />
+            </div>
             <div className="p-4">
               <h3 className="text-lg font-bold text-primary mb-2">{prize.title}</h3>
               <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
