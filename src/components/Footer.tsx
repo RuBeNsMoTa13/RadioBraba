@@ -46,7 +46,7 @@ export function Footer() {
                 <span className="sr-only">Twitter</span>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/radiobraba"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-pink-600 rounded-full hover:bg-pink-700 transition-colors"
@@ -55,7 +55,7 @@ export function Footer() {
                 <span className="sr-only">Instagram</span>
               </a>
               <a
-                href="https://youtube.com"
+                href="https://youtube.com/@RadioBraba"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-pink-600 rounded-full hover:bg-pink-700 transition-colors"
@@ -144,7 +144,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Manhã Animada
+                  Manhã Sertaneja
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -153,7 +153,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Tarde Brasileira
+                  Hora do Rush
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -162,7 +162,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Show da Noite
+                  Na Xinxa Xou
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -171,7 +171,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Sexta Eletrônica
+                  As Brabas do Momento
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -180,7 +180,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Domingo Relaxante
+                  Obrigado Homem do Campo
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -194,7 +194,7 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin size={18} className="text-pink-600 mr-2 mt-0.5" />
                 <span className="text-popover-foreground">
-                  Rua do Cruzeiro, 70<br />
+                  Rua São Francisco, 7<br />
                   Capela do Alto - SP<br />
                   Brasil
                 </span>
