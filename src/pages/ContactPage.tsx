@@ -287,7 +287,7 @@ export function ContactPage() {
                     </div>
 
                     <a
-                      href="https://wa.me/5515996156506"
+                      href="https://wa.me/551531912855"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm"
@@ -439,7 +439,7 @@ export function ContactPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
-              href="https://wa.me/5515996156506"
+              href="https://wa.me/551531912855"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center bg-white text-[#F63A9C] px-5 py-2 sm:px-6 sm:py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors duration-200 text-sm sm:text-base"
@@ -449,7 +449,8 @@ export function ContactPage() {
             </a>
 
             <a
-              href="tel:+5515996156506"
+               href="https://wa.me/551531912855"
+
               className="flex items-center bg-transparent border-2 border-white text-white px-5 py-2 sm:px-6 sm:py-3 rounded-lg font-bold hover:bg-white hover:text-[#F63A9C] transition-colors duration-200 text-sm sm:text-base"
             >
               <Phone size={18} className="mr-2" />
