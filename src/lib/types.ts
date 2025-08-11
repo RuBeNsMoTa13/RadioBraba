@@ -37,3 +37,13 @@ export interface Locutor {
     musica: string;
     instagram?: string;
 }
+
+export type CuriosityInfoItem = {
+  type: string;
+  label: string;
+  value: string | number | null;
+  unit?: string;
+  icon?: JSX.Element;
+  source?: string;
+  image?: string;
+};

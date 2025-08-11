@@ -1,4 +1,4 @@
-import { Prize, Show, Locutor } from "./types";
+import { Prize, Show, Locutor, CuriosityInfoItem } from "./types";
 
 export const radioStations = [
   {
@@ -665,3 +665,109 @@ export const locutoresData: Locutor[] = [
     instagram: "@sandroaparecidomachado"
   }
 ];
+
+export const infoItemsData: CuriosityInfoItem[] = [
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/1.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/2.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/3.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/4.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/5.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/6.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/7.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/8.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/9.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/10.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/11.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/12.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/13.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/14.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/15.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/16.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/17.png",
+    },
+
+  ];
