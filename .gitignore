@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 # comentar a linha dist para fazer o  deploy automatico da main na hostgator 
-dist 
+#dist 
 dist-ssr
 *.local
 
