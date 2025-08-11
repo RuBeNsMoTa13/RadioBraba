@@ -1,4 +1,4 @@
-import { Prize, Show, Locutor, CuriosityInfoItem } from "./types";
+import { Prize, Show, Locutor, CuriosityInfoItem, ContactMethod, FAQ } from "./types";
 
 export const radioStations = [
   {
@@ -770,4 +770,66 @@ export const infoItemsData: CuriosityInfoItem[] = [
       image: "/images/Curiosidades/17.png",
     },
 
+  ];
+
+export const contactMethodsData: ContactMethod[] = [
+  {
+    id: 'whatsapp',
+    icon: "<Phone size={24} />",
+    title: 'WhatsApp',
+    description: 'Resposta imediata durante o horário comercial',
+    value: '(15) 3191-2855',
+    action: 'Enviar mensagem',
+    color: 'bg-green-500' 
+  },
+  {
+    id: 'phone',
+    icon: "<Phone size={24} />",
+    title: 'Telefone',
+    description: 'Ligue diretamente para nossa central',
+    value: '(15) 3191-2855',
+    action: 'Fazer ligação',
+    color: 'bg-blue-500' 
+  },
+  {
+    id: 'email',
+    icon: "<Mail size={24} />",
+    title: 'Email',
+    description: 'Envie sua mensagem detalhada',
+    value: 'contato@ifnc.com.br',
+    action: 'Enviar email',
+    color: 'bg-primary' 
+  },
+  {
+    id: 'radio',
+    icon: "<Radio size={24} />",
+    title: 'Ao Vivo',
+    description: 'Participe dos programas ao vivo',
+    value: 'Segunda à Sexta, 8h às 18h',
+    action: 'Participar agora',
+    color: 'bg-orange-500' 
+  }
+];
+
+export const faqsData: FAQ[] = [
+      {
+        id: 1,
+        question: 'Como posso participar dos programas ao vivo?',
+        answer: 'Você pode ligar durante os programas ou enviar mensagem via WhatsApp. Nossos locutores adoram interagir com os ouvintes!'
+      },
+      {
+        id: 2,
+        question: 'Vocês divulgam eventos da comunidade?',
+        answer: 'Sim! Adoramos divulgar eventos locais. Entre em contato conosco com antecedência para programarmos a divulgação.'
+      },
+      {
+        id: 3,
+        question: 'Como posso denunciar problemas na cidade?',
+        answer: 'Envie sua denúncia via WhatsApp com fotos e localização. Nossa equipe de jornalismo investigará e dará o devido encaminhamento.'
+      },
+      {
+        id: 4,
+        question: 'Qual o horário de funcionamento da rádio?',
+        answer: 'Nossa programação é 24h, mas o atendimento presencial é de segunda a sexta das 8h às 18h.'
+      }
   ];

@@ -47,3 +47,19 @@ export type CuriosityInfoItem = {
   source?: string;
   image?: string;
 };
+
+export interface ContactMethod {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  value: string;
+  action: string;
+  color: string;
+}
+
+export interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}

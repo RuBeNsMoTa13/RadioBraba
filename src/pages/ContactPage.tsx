@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { ContactFormData } from "@/lib/types";
 import {  Send, User, Mail, Phone, MessageSquare, MapPin, Clock, Radio, ChevronRight, Users, Heart, Building } from "lucide-react";
+import { contactMethodsData, faqsData } from "@/lib/data";
 
 // Esquema de validação do formulário com Zod
 const formSchema = z.object({
@@ -27,21 +28,6 @@ const formSchema = z.object({
 });
 
 // Interfaces para os dados
-interface ContactMethod {
-  id: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  value: string;
-  action: string;
-  color: string;
-}
-
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
 
 export function ContactPage() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
@@ -66,44 +52,7 @@ export function ContactPage() {
     form.reset(); // Limpa o formulário após o envio
   }
 
-  const contactMethods: ContactMethod[] = [
-    {
-      id: 'whatsapp',
-      icon: <Phone size={24} />,
-      title: 'WhatsApp',
-      description: 'Resposta imediata durante o horário comercial',
-      value: '(15) 3191-2855',
-      action: 'Enviar mensagem',
-      color: 'bg-green-500' 
-    },
-    {
-      id: 'phone',
-      icon: <Phone size={24} />,
-      title: 'Telefone',
-      description: 'Ligue diretamente para nossa central',
-      value: '(15) 3191-2855',
-      action: 'Fazer ligação',
-      color: 'bg-blue-500' 
-    },
-    {
-      id: 'email',
-      icon: <Mail size={24} />,
-      title: 'Email',
-      description: 'Envie sua mensagem detalhada',
-      value: 'contato@ifnc.com.br',
-      action: 'Enviar email',
-      color: 'bg-primary' 
-    },
-    {
-      id: 'radio',
-      icon: <Radio size={24} />,
-      title: 'Ao Vivo',
-      description: 'Participe dos programas ao vivo',
-      value: 'Segunda à Sexta, 8h às 18h',
-      action: 'Participar agora',
-      color: 'bg-orange-500' 
-    }
-  ];
+  
 
   // Dados para os horários de funcionamento
   const officeHours = [
@@ -113,28 +62,7 @@ export function ContactPage() {
   ];
 
   // Dados para as Perguntas Frequentes (FAQs)
-  const faqs: FAQ[] = [
-    {
-      id: 1,
-      question: 'Como posso participar dos programas ao vivo?',
-      answer: 'Você pode ligar durante os programas ou enviar mensagem via WhatsApp. Nossos locutores adoram interagir com os ouvintes!'
-    },
-    {
-      id: 2,
-      question: 'Vocês divulgam eventos da comunidade?',
-      answer: 'Sim! Adoramos divulgar eventos locais. Entre em contato conosco com antecedência para programarmos a divulgação.'
-    },
-    {
-      id: 3,
-      question: 'Como posso denunciar problemas na cidade?',
-      answer: 'Envie sua denúncia via WhatsApp com fotos e localização. Nossa equipe de jornalismo investigará e dará o devido encaminhamento.'
-    },
-    {
-      id: 4,
-      question: 'Qual o horário de funcionamento da rádio?',
-      answer: 'Nossa programação é 24h, mas o atendimento presencial é de segunda a sexta das 8h às 18h.'
-    }
-  ];
+  
 
   return (
     <div className="min-h-screen bg-background text-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -375,7 +303,7 @@ export function ContactPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12"> {/* Ajuste para 2 colunas em sm e 4 em lg */}
-            {contactMethods.map((method) => (
+            {contactMethodsData.map((method) => (
               <div
                 key={method.id}
                 className="bg-card rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
@@ -404,7 +332,7 @@ export function ContactPage() {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          {faqs.map((faq) => (
+          {faqsData.map((faq) => (
             <div
               key={faq.id}
               className="bg-card rounded-lg shadow-md mb-4 overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
