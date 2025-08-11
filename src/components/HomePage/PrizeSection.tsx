@@ -1,64 +1,95 @@
-// Tem que fazer logica de premios
-import { BadgeAlert, Gift } from "lucide-react";
-import { Link } from "react-router-dom";
+import { PrizeCard } from "@/components/PrizesPage/PrizeCard";
 import { prizesData } from "@/lib/data";
+import { Prize } from "@/lib/types";
+import { BadgeAlert, Gift, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 
 export function PrizeSection() {
+  const [selectedPrize, setSelectedPrize] = useState<Prize | null>(null);
+
+  // Lógica para filtrar apenas os prêmios ativos
+  const today = new Date();
+  const activePrizes = prizesData.filter((prize) => prize.endDate > today);
+
+  const openModal = (prize: Prize) => {
+    setSelectedPrize(prize);
+  };
+
+  const closeModal = () => {
+    setSelectedPrize(null);
+    document.body.style.overflow = '';
+  };
+
   return (
     <section className="page-container">
-      <div className="bg-card rounded-xl border shadow-sm p-8 mb-10">
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div className="bg-primary/10 rounded-full p-5">
-            <Gift className="h-10 w-10 text-primary" />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-2xl font-bold mb-2">Prêmios e Promoções</h2>
-            <p className="text-muted-foreground max-w-2xl">
-              Participe de nossas promoções exclusivas e concorra a prêmios incríveis!
-              São ingressos para shows, kits exclusivos e muito mais.
-            </p>
-          </div>
-          <Link
-            to="/premios"
-            className="font-semibold bg-card text-primary border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 text-black"
-          >
-            Ver Todos os Prêmios
-          </Link>
+      <div className="px-6 py-4">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary">Prêmios e Promoções</h2>
+          <p className="text-xl text-secondary">Participe de nossas promoções exclusivas e concorra a prêmios incríveis! São ingressos para shows, kits exclusivos e muito mais.</p>
         </div>
+        
       </div>
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-        {prizesData.map((prize) => (
-          <div
-            key={prize.id}
-            className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-          >
-            <div className="w-full aspect-[16/9] flex items-center justify-center bg-gray-100">
+      {activePrizes.length > 0 && (
+        <>
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
+            {activePrizes.map((prize: Prize) => (
+              <PrizeCard key={prize.id} prize={prize} isPast={false} onOpenModal={openModal} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {selectedPrize && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row transition-colors duration-300">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-[70] bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="md:w-1/2 relative">
               <img
-                src={prize.image}
-                alt={prize.title}
-                className="max-h-full bg-contain"
+                src={selectedPrize.image}
+                alt={selectedPrize.title}
+                className="w-full h-full object-cover relative z-10"
               />
             </div>
-            <div className="p-4">
-              <h3 className="text-lg font-bold text-primary mb-2">{prize.title}</h3>
-              <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
-                <div className="flex items-center">
-                  <BadgeAlert className="h-4 w-4 mr-1 text-primary" />
-                  Termina em {Math.ceil(Math.abs(prize.endDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))} dias
+
+            <div className="md:w-1/2 p-8 overflow-y-auto text-card-foreground">
+              <div className="mb-4">
+                <span className="bg-primary text-xs px-3 py-1 rounded text-primary-foreground font-medium">
+                  PRÊMIO
+                </span>
+              </div>
+
+              <h2 className="text-3xl font-bold mb-2 text-primary">{selectedPrize.title}</h2>
+              <p className="text-muted-foreground text-lg mb-6">{selectedPrize.description}</p>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Gift className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-primary">Status:</span>
+                  <span className={cn("text-muted-foreground", selectedPrize.endDate <= today ? "text-gray-500" : "text-primary")}>
+                    {selectedPrize.endDate <= today ? "Encerrado" : `Ativo até ${selectedPrize.endDate.toLocaleDateString()}`}
+                  </span>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-4">{prize.description}</p>
-              <Link
-                to={`/premios/${prize.id}`}
-                className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
-              >
-                Saiba mais
-                <Gift size={14} className="ml-1" />
-              </Link>
             </div>
           </div>
-        ))}
+        </div>
+      )}
+      <div className="flex justify-center mt-8">
+        <Link
+          to="/premios"
+          className="font-semibold bg-card text-primary border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 text-black"
+        >
+          Ver Todos os Prêmios
+        </Link>
       </div>
     </section>
   );

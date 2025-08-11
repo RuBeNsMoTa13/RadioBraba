@@ -114,8 +114,9 @@ const Announcer: React.FC = () => {
                     <Button
                         asChild
                         size="lg"
-                        className="font-semibold bg-primary border-[1px] border-primary shadow-lg rounded-full px-8 py-4 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:scale-105 text-foreground">
-                        <Link to="/locutores" className="">Ver Locutores Completo</Link>
+                        className="font-semibold bg-card text-primary border-[1px] border-primary shadow-lg rounded-full px-6 py-2 transition-all duration-300 hover:bg-pink-500 hover:text-white hover:border-pink-500 hover:scale-105 text-black"
+                    >
+                        <Link to="/locutores" className="text-primary">Ver Locutores Completo</Link>
                     </Button>
                 </div>
             </div>

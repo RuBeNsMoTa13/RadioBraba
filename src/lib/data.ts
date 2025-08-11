@@ -529,6 +529,27 @@ export const prizesData: Prize[] = [
     description: "Grave uma música profissionalmente em nosso estúdio com equipe técnica completa.",
     image: "/images/Programas/emBreve.png",
     endDate: new Date(2025, 7, 5) // August 5, 2025
+  },
+{
+    id: 4,
+    title: "Ingressos para o Cinema",
+    description: "Um par de ingressos para você e um acompanhante curtirem um filme de grande lançamento.",
+    image: "/images/Programas/emBreve.png",
+    endDate: new Date(2025, 8, 30) // September 30, 2025
+  },
+  {
+    id: 5,
+    title: "Vale-compras de R$ 200",
+    description: "Concorra a um vale-compras de R$ 200 em uma loja de artigos esportivos da cidade.",
+    image: "/images/Programas/emBreve.png",
+    endDate: new Date(2025, 9, 15) // October 15, 2025
+  },
+  {
+    id: 6,
+    title: "Café da Manhã Completo",
+    description: "Um café da manhã completo para duas pessoas em uma das melhores padarias da região.",
+    image: "/images/Programas/emBreve.png",
+    endDate: new Date(2025, 10, 20) // November 20, 2025
   }
 ];
 
