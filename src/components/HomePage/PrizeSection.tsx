@@ -1,7 +1,7 @@
 import { PrizeCard } from "@/components/PrizesPage/PrizeCard";
 import { prizesData } from "@/lib/data";
 import { Prize } from "@/lib/types";
-import { BadgeAlert, Gift, X } from "lucide-react";
+import { Gift, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { cn } from "@/lib/utils";

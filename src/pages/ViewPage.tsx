@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
+import { X, Cloud, Clock } from "lucide-react";
 import { SupportsCarouselView } from '@/components/SupportsCarouselView';
 import axios from "axios";
-import DynamicInfo from '@/components/CuriosityInfo/CuriosityInfo';
 import { RadioPlayerHero } from '@/components/RadioPlayerHero';
 import CuriosityInfo from '@/components/CuriosityInfo/CuriosityInfo';
 

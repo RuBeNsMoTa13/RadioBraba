@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Gift, ChevronRight, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 export function PrizesPage() {
   const [selectedPrize, setSelectedPrize] = useState<Prize | null>(null);

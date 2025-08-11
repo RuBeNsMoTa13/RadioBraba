@@ -1,5 +1,3 @@
-// src/components/SchedulePage/SchedulePage.tsx
-
 import { useState } from "react";
 import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";
