@@ -26,7 +26,7 @@ export function Footer() {
             <p className="text-popover-foreground mb-4">
               A rádio que fala como o povo fala. Música e bate-papo 24h por dia!
             </p>
-            <div className="flex space-x-4 mt-auto">
+            <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -46,7 +46,7 @@ export function Footer() {
                 <span className="sr-only">Twitter</span>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/radiobraba"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-pink-600 rounded-full hover:bg-pink-700 transition-colors"
@@ -55,13 +55,30 @@ export function Footer() {
                 <span className="sr-only">Instagram</span>
               </a>
               <a
-                href="https://youtube.com"
+                href="https://youtube.com/@RadioBraba"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-pink-600 rounded-full hover:bg-pink-700 transition-colors"
               >
                 <Youtube size={20} className="text-white" />
                 <span className="sr-only">YouTube</span>
+              </a>
+            </div>
+
+            {/* Banner RadiosNet Adicionado Aqui */}
+            <div className="mt-8">
+              <a
+                href="https://radiosnet.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://img.radios.com.br/divulgue/app-radiosnet-234x60-a.jpg"
+                  alt="Ouça nossa rádio em seu celular ou tablet com Android ou no iPhone e iPads"
+                  width="234"
+                  height="60"
+                  className="border-0"
+                />
               </a>
             </div>
           </div>
@@ -127,7 +144,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Manhã Animada
+                  Manhã Sertaneja
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -136,7 +153,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Tarde Brasileira
+                  Hora do Rush
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -145,7 +162,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Show da Noite
+                  Na Xinxa Xou
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -154,7 +171,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Sexta Eletrônica
+                  As Brabas do Momento
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -163,7 +180,7 @@ export function Footer() {
                   to="/programacao"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  Domingo Relaxante
+                  Obrigado Homem do Campo
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </Link>
               </li>
@@ -177,7 +194,7 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin size={18} className="text-pink-600 mr-2 mt-0.5" />
                 <span className="text-popover-foreground">
-                  Rua do Cruzeiro, 70<br />
+                  Rua São Francisco, 7<br />
                   Capela do Alto - SP<br />
                   Brasil
                 </span>
@@ -185,10 +202,10 @@ export function Footer() {
               <li className="flex items-center">
                 <Phone size={18} className="text-pink-600 mr-2" />
                 <a
-                  href="tel:+551199999999"
+                  href="https://wa.me/551531912855"
                   className="flex items-center gap-2 text-popover-foreground hover:text-pink-600 transition-colors font-[450]"
                 >
-                  +55 15 99615-6506
+                  (15) 3191-2855
                   <ExternalLink size={15} className="text-popover-foreground hover:text-pink-600 transition-colors font-[450]" />
                 </a>
               </li>

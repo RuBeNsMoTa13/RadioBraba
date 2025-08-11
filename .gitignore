@@ -8,7 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-# dist // deploy automatico da main na hostgator 
+# comentar a linha dist para fazer o  deploy automatico da main na hostgator 
+dist 
 dist-ssr
 *.local
 
