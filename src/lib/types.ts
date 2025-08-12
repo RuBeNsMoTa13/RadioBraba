@@ -37,3 +37,29 @@ export interface Locutor {
     musica: string;
     instagram?: string;
 }
+
+export type CuriosityInfoItem = {
+  type: string;
+  label: string;
+  value: string | number | null;
+  unit?: string;
+  icon?: JSX.Element;
+  source?: string;
+  image?: string;
+};
+
+export interface ContactMethod {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  value: string;
+  action: string;
+  color: string;
+}
+
+export interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}

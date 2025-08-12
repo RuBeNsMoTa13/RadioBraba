@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { RadioPlayer } from "@/components/RadioPlayer"; // Mantido caso ainda seja usado em outro lugar
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 // import { useState } from "react"; // Não é mais necessário

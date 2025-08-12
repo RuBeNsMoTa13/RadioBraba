@@ -1,50 +1,76 @@
-// src/components/PrizesPage/PrizeCard.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import { Prize } from "@/lib/types";
-import { BadgeAlert, Gift } from "lucide-react";
-import { Link } from "react-router-dom";
+import { BadgeAlert, Gift, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface PrizeCardProps {
   prize: Prize;
+  isPast: boolean;
+  onOpenModal: (prize: Prize) => void;
 }
 
-export function PrizeCard({ prize }: PrizeCardProps) {
-  // Calcula dias restantes até prize.endDate
-  const today = new Date();
-  const diffTime = Math.abs(prize.endDate.getTime() - today.getTime());
-  const daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+export function PrizeCard({ prize, isPast, onOpenModal }: PrizeCardProps) {
+  const [countdown, setCountdown] = useState<string>('');
+
+  useEffect(() => {
+    if (isPast) {
+      setCountdown("Encerrado");
+      return;
+    }
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = prize.endDate.getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        setCountdown("Encerrado");
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [prize.endDate, isPast]);
 
   return (
-    <Card className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-0">
-      {/* Capa com imagem do prêmio */}
+    <Card className={cn(
+        "bg-card rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 border-0",
+        isPast && "opacity-60"
+    )}>
       <div
-        className="w-full h-48 bg-cover bg-center"
+        className="relative w-full h-48 bg-cover bg-center"
         style={{ backgroundImage: `url(${prize.image})` }}
-      />
+      >
+      </div>
 
       <CardContent className="p-4">
-        {/* Título */}
-        <h3 className="text-lg font-bold text-gray-800 mb-2">{prize.title}</h3>
-
-        {/* Badge com dias restantes */}
-        <div className="flex flex-wrap gap-3 text-gray-500 mb-3 text-sm">
+        <h3 className="text-lg font-bold text-card-foreground mb-2">{prize.title}</h3>
+        <div className="flex flex-wrap gap-3 text-muted-foreground mb-3 text-sm">
           <div className="flex items-center">
-            <BadgeAlert className="h-4 w-4 mr-1 text-primary" />
-            Termina em {daysRemaining} dias
+            <BadgeAlert className={cn("h-4 w-4 mr-1", isPast ? "text-gray-500" : "text-primary")} />
+            {isPast ? "Encerrado" : `Termina em ${countdown}`}
           </div>
         </div>
-
-        {/* Descrição */}
-        <p className="text-gray-600 text-sm mb-4">{prize.description}</p>
-
-        {/* Link para detalhes */}
-        <Link
-          to={`/premios/${prize.id}`}
-          className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
+        <p className="text-muted-foreground text-sm mb-4">{prize.description}</p>
+        <Button
+          onClick={() => onOpenModal(prize)}
+          className={cn(
+              "inline-flex items-center text-primary text-sm font-medium bg-transparent",
+              isPast ? "pointer-events-none text-gray-500" : "hover:text-pink-800"
+          )}
         >
-          Saiba mais
-          <Gift size={14} className="ml-1" />
-        </Link>
+          {isPast ? "Saiba mais" : "Saiba mais"}
+          <ExternalLink size={14} className="ml-1" />
+        </Button>
       </CardContent>
     </Card>
   );
