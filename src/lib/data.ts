@@ -769,6 +769,60 @@ export const infoItemsData: CuriosityInfoItem[] = [
       value: null,
       image: "/images/Curiosidades/17.png",
     },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/18.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/19.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/20.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/21.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/22.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/23.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/24.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/25.png",
+    },
+
+
+
+
+
+    
 
   ];
 
