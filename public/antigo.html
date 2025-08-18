@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Radio Braba - Visualização Antiga</title>
+	<style>
+		/* NOVO: Estilização mais próxima da ViewPage */
+		body {
+			background: #18181b;
+			color: #fff;
+		}
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			height: 100vh;
+			width: 100vw;
+		}
+		.left {
+			background: #facc15;
+			color: #18181b;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			padding: 32px 16px;
+			min-width: 320px;
+		}
+		.weather {
+			background: rgba(255,255,255,0.7);
+			color: #18181b;
+			border-radius: 16px;
+			padding: 16px 32px;
+			margin-bottom: 32px;
+			font-size: 1.3em;
+			width: 100%;
+			max-width: 340px;
+			text-align: center;
+			box-shadow: 0 2px 8px #0002;
+		}
+		.player {
+			margin: 32px 0;
+			width: 100%;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.qr {
+			margin-top: 32px;
+			width: 100%;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.qr img {
+			width: 180px;
+			max-width: 220px;
+			border-radius: 16px;
+			box-shadow: 0 2px 8px #0002;
+		}
+		.right {
+			background: #23272f;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+		.supporters {
+			flex: 1;
+			background: #23272f;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: stretch;
+			height: 50%;
+			min-height: 0;
+		}
+		.supporters h2 {
+			color: #fff;
+			font-size: 2.2em;
+			margin: 0;
+			padding: 24px 0 0 0;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		.carousel {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 32px;
+			flex-wrap: wrap;
+			width: 100%;
+			height: 100%;
+			padding: 32px 0 32px 0;
+		}
+		.carousel img {
+			width: 28vw;
+			max-width: 200px;
+			height: 120px;
+			object-fit: contain;
+			border-radius: 12px;
+			padding: 4px;
+			background: transparent;
+			box-shadow: 0 2px 8px #0002;
+		}
+		.curiosities {
+			flex: 1;
+			color: #fff;
+			font-size: 1.1em;
+			background: #23272f;
+			border-radius: 16px;
+			margin-top: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 50%;
+			min-height: 0;
+			padding: 0;
+			overflow: hidden;
+			box-shadow: 0 2px 8px #0002;
+		}
+		#curiosity-text {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		@media (max-width: 900px) {
+			.container { grid-template-columns: 1fr; }
+			.left, .right { width: 100%; min-width: unset; }
+			.supporters, .curiosities { height: 50vh; }
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="left">
+			<div class="weather" id="weather">
+				<span id="temp">--°C</span> | <span id="clock">--:--:--</span>
+			</div>
+			<div class="player">
+				<div style="display:flex;flex-direction:column;align-items:center;">
+					<img src="images/RadioBraba.png" alt="Logo Rádio Braba" style="width:120px;height:auto;margin-bottom:10px;border-radius:12px;box-shadow:0 2px 8px #0003;">
+					<audio id="radio" controls style="width:90%;max-width:300px;border-radius:8px;">
+						<source src="https://stm16.xcast.com.br:9186/stream" type="audio/mpeg">
+						Seu navegador não suporta o player de rádio.
+					</audio>
+					<div style="margin-top:8px;font-size:1.05em;font-weight:bold;">Radio Braba - Ao Vivo</div>
+				</div>
+			</div>
+			<div class="qr">
+				<img id="qrCode" src="images/Apoiadores/QRcodeFollow.png" alt="QR Code">
+			</div>
+		</div>
+		<div class="right">
+			<div class="supporters">
+				<h2>Apoie nosso comércio local!</h2>
+				<div class="carousel" id="supporters-carousel">
+					<!-- Carrossel de apoiadores será preenchido via JS -->
+				</div>
+			</div>
+			<div class="curiosities" id="curiosity">
+				<span id="curiosity-text"><b>Curiosidade:</b> A Rádio Braba foi fundada para valorizar o comércio local e trazer informação de qualidade para Capela do Alto!</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		// Atualiza o relógio
+		function updateClock() {
+			var now = new Date();
+			var h = now.getHours().toString().padStart(2, '0');
+			var m = now.getMinutes().toString().padStart(2, '0');
+			var s = now.getSeconds().toString().padStart(2, '0');
+			document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+		}
+		setInterval(updateClock, 1000);
+		updateClock();
+
+		// Alterna QR Code
+		var qrImages = [
+			'images/Apoiadores/QRcodeFollow.png',
+			'images/Apoiadores/QRcodeListen.png'
+		];
+		var qrIndex = 0;
+		setInterval(function() {
+			qrIndex = (qrIndex + 1) % qrImages.length;
+			document.getElementById('qrCode').src = qrImages[qrIndex];
+		}, 5000);
+
+		// Carrossel de apoiadores
+		var supporterImgs = [
+			'images/Apoiadores/1.png', 'images/Apoiadores/2.png', 'images/Apoiadores/3.png',
+			'images/Apoiadores/4.png', 'images/Apoiadores/5.png', 'images/Apoiadores/6.png',
+			'images/Apoiadores/7.png', 'images/Apoiadores/8.png', 'images/Apoiadores/9.png',
+			'images/Apoiadores/10.png', 'images/Apoiadores/11.png', 'images/Apoiadores/12.png',
+			'images/Apoiadores/13.png', 'images/Apoiadores/14.png', 'images/Apoiadores/15.png',
+			'images/Apoiadores/16.png'
+		];
+		var supporterIndex = 0;
+		var supporterVisible = 3; // Agora mostra 3 por vez
+		function updateSupportersCarousel() {
+			var carousel = document.getElementById('supporters-carousel');
+			carousel.innerHTML = '';
+			for (var i = 0; i < supporterVisible; i++) {
+				var idx = (supporterIndex + i) % supporterImgs.length;
+				var img = document.createElement('img');
+				img.src = supporterImgs[idx];
+				img.alt = 'Apoiador ' + (idx + 1);
+				carousel.appendChild(img);
+			}
+		}
+		setInterval(function() {
+			supporterIndex = (supporterIndex + 1) % supporterImgs.length;
+			updateSupportersCarousel();
+		}, 3500);
+		updateSupportersCarousel();
+
+		// Carrossel de curiosidades visual
+		var curiosities = [
+			'images/Curiosidades/1.png',
+			'images/Curiosidades/2.png',
+			'images/Curiosidades/3.png',
+			'images/Curiosidades/4.png',
+			'images/Curiosidades/5.png',
+			'images/Curiosidades/6.png'
+		];
+		var curiosityIndex = 0;
+		function updateCuriosity() {
+			var el = document.getElementById('curiosity-text');
+			el.innerHTML = '<img src="' + curiosities[curiosityIndex] + '" alt="Curiosidade" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">';
+		}
+		setInterval(function() {
+			curiosityIndex = (curiosityIndex + 1) % curiosities.length;
+			updateCuriosity();
+		}, 5000);
+		updateCuriosity();
+
+		// Busca temperatura via OpenWeather (XHR para compatibilidade)
+		function fetchWeather() {
+			var apiKey = '321e647d854e73a9b6edd3e50bf77801';
+			var url = 'https://api.openweathermap.org/data/2.5/weather?q=capela+do+alto&appid=' + apiKey + '&lang=pt_br&units=metric';
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					try {
+						var data = JSON.parse(xhr.responseText);
+						var temp = Math.round(data.main.temp);
+						document.getElementById('temp').textContent = temp + '°C';
+					} catch (e) {
+						document.getElementById('temp').textContent = '--°C';
+					}
+				}
+			};
+			xhr.open('GET', url, true);
+			xhr.send();
+		}
+		fetchWeather();
+	</script>
+</body>
+</html>

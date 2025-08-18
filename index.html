@@ -8,6 +8,24 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
   <title>Radio Braba</title>
+
+<script>
+(function() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Verifica se a string do User-Agent contém "Tizen" ou se é um Internet Explorer
+  var isLegacyOrTizen = (
+    (userAgent.indexOf("MSIE ") > -1) ||
+    (userAgent.indexOf("Trident/") > -1) ||
+    (userAgent.indexOf("Tizen") > -1) // Corrigido para apenas "Tizen" para ser mais abrangente
+  );
+
+  if (isLegacyOrTizen) {
+    window.location.href = '/antigo.html';
+  }
+})();
+</script>
+  
 </head>
 
 <body>
