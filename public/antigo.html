@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/images/logoChorme.png">
 	<title>Radio Braba - Visualização Antiga</title>
 	<style>
 		/* NOVO: Estilização mais próxima da ViewPage */
@@ -336,9 +337,10 @@
 				<div class="player-content">
 					<img src="/images/RadioBraba.png" alt="Logo Rádio Braba" class="song-cover">
 
-					<div class="song-title-carousel">
-						<p class="song-title animate-marquee">♪ Tocando agora: Ao vivo</p>
-					</div>
+					 <div class="song-title-carousel">
+	<p id="song-title" class="song-title animate-marquee">♪ Tocando agora: Ao vivo</p>
+		 </div>
+			<span id="status-message" class="text-xs text-red-600 mb-2"></span>
 
 					<div class="player-controls">
 						<audio id="radio" style="display: none;">
@@ -515,42 +517,42 @@
 
 		// Adicione este código ao final do seu bloco de script existente
 
-const muteButton = document.getElementById('mute-button');
-const volumeIcon = muteButton.querySelector('svg');
-let isMuted = false;
-let lastVolume = 0.5; // Guarda o volume anterior antes de mutar
+		const muteButton = document.getElementById('mute-button');
+		const volumeIcon = muteButton.querySelector('svg');
+		let isMuted = false;
+		let lastVolume = 0.5; // Guarda o volume anterior antes de mutar
 
-muteButton.addEventListener('click', () => {
-    if (isMuted) {
-        // Desmutar: retorna o volume ao valor anterior
-        audio.muted = false;
-        audio.volume = lastVolume;
-        volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+		muteButton.addEventListener('click', () => {
+			if (isMuted) {
+				// Desmutar: retorna o volume ao valor anterior
+				audio.muted = false;
+				audio.volume = lastVolume;
+				volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
-    } else {
-        // Mutar: salva o volume atual e o define como 0
-        lastVolume = audio.volume;
-        audio.muted = true;
-        volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+			} else {
+				// Mutar: salva o volume atual e o define como 0
+				lastVolume = audio.volume;
+				audio.muted = true;
+				volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                 <line x1="23" y1="9" x2="17" y2="15"></line>
                                 <line x1="17" y1="9" x2="23" y2="15"></line>`;
-    }
-    isMuted = !isMuted;
-});
+			}
+			isMuted = !isMuted;
+		});
 
-// Para fazer o slider de volume funcionar junto
-const volumeSlider = document.querySelector('.volume-slider');
+		// Para fazer o slider de volume funcionar junto
+		const volumeSlider = document.querySelector('.volume-slider');
 
-volumeSlider.addEventListener('input', () => {
-    audio.volume = volumeSlider.value;
-    // Se o usuário move o slider, desmuta automaticamente
-    if (audio.muted && volumeSlider.value > 0) {
-        audio.muted = false;
-        isMuted = false;
-        volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+		volumeSlider.addEventListener('input', () => {
+			audio.volume = volumeSlider.value;
+			// Se o usuário move o slider, desmuta automaticamente
+			if (audio.muted && volumeSlider.value > 0) {
+				audio.muted = false;
+				isMuted = false;
+				volumeIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
-    }
-});
+			}
+		});
 	</script>
 </body>
 
