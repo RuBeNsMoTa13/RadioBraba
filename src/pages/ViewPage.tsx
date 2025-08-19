@@ -146,7 +146,7 @@ export function ViewPage() {
             {/* Parte Superior: Apoiadores) */}
             <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
               <div className="w-full">
-                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoie nossa Cultura local!</h2>
+                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoio cultural!</h2>
                 <SupportsCarouselView className="w-full" />
               </div>
             </div>

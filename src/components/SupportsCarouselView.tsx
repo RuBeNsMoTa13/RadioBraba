@@ -48,7 +48,9 @@ export function SupportsCarouselView({
     { name: "Apoiador 14", logo: "/images/Apoiadores/14.png" },
     { name: "Apoiador 15", logo: "/images/Apoiadores/15.png" },
     { name: "Apoiador 16", logo: "/images/Apoiadores/16.png" },
+    { name: "Apoiador 16", logo: "/images/Apoiadores/16.png" },
     { name: "Apoiador 16", logo: "/images/Apoiadores/17.png" },
+    { name: "Apoiador 16", logo: "/images/Apoiadores/18.png" },
   ];
 
   return (
