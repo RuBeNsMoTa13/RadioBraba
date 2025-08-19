@@ -2,8 +2,6 @@
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SupportsCarouselView({
@@ -18,15 +16,9 @@ export function SupportsCarouselView({
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
 
-  const scrollPrev = React.useCallback(() => api?.scrollPrev(), [api]);
-  const scrollNext = React.useCallback(() => api?.scrollNext(), [api]);
-  const [canScrollPrev, setCanScrollPrev] = React.useState(false);
-  const [canScrollNext, setCanScrollNext] = React.useState(false);
-
   const onSelect = React.useCallback(() => {
     if (!api) return;
-    setCanScrollPrev(api.canScrollPrev());
-    setCanScrollNext(api.canScrollNext());
+
   }, [api]);
 
   React.useEffect(() => {

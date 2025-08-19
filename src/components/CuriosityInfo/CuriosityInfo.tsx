@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
-
-type CuriosityInfoItem = {
-  type: string;
-  label: string;
-  value: string | number | null;
-  unit?: string;
-  icon?: JSX.Element;
-  source?: string;
-  image?: string;
-};
+import { infoItemsData } from "@/lib/data";
 
 export default function CuriosityInfo() {
   const [currentInfoIndex, setCurrentInfoIndex] = useState(0);
@@ -171,12 +162,12 @@ export default function CuriosityInfo() {
   // 🔹 Alterna item a cada 15s
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentInfoIndex((prevIndex) => (prevIndex + 1) % infoItems.length);
+      setCurrentInfoIndex((prevIndex) => (prevIndex + 1) % infoItemsData.length);
     }, 15000);
     return () => clearInterval(interval);
-  }, [infoItems.length]);
+  }, [infoItemsData.length]);
 
-  const currentInfo = infoItems[currentInfoIndex];
+  const currentInfo = infoItemsData[currentInfoIndex];
 
   return (
     <>
