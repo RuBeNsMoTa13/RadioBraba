@@ -143,6 +143,8 @@ export const SupportsCarousel = React.forwardRef<
       { name: "Apoiador 12", logo: "images/Apoiadores/14.png" },
       { name: "Apoiador 12", logo: "images/Apoiadores/15.png" },
       { name: "Apoiador 12", logo: "images/Apoiadores/16.png" },
+      { name: "Apoiador 12", logo: "images/Apoiadores/17.png" },
+      { name: "Apoiador 12", logo: "images/Apoiadores/18.png" },
 
     ];
 
