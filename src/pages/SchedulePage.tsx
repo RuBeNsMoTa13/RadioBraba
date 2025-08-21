@@ -1,16 +1,25 @@
-// src/components/SchedulePage/SchedulePage.tsx
-
 import { useState } from "react";
 import { showsData } from "@/lib/data";
 import { Show } from "@/lib/types";
 import { cn, getDayName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Clock, User, Calendar } from "lucide-react";
-import { Link } from "react-router-dom"; 
+import { Clock, User, Calendar, X } from "lucide-react";
 
 
 export function SchedulePage() {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
+  const [selectedShow, setSelectedShow] = useState<Show | null>(null);
+
+  const openModal = (show: Show) => {
+    setSelectedShow(show);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setSelectedShow(null);
+    document.body.style.overflow = '';
+  };
+
 
   const dayShows = showsData.filter((show) => show.day === selectedDay);
 
@@ -77,13 +86,14 @@ const days = [1, 2, 3, 4, 5, 6, 0].map((i) => ({
                 </div>
               </div>
               <p className="text-gray-600 text-sm mb-4">{show.description}</p>
-              <Link
-                to={`/programacao/${show.id}`}
+              <Button
+                onClick={() => openModal(show)}
                 className="inline-flex items-center text-pink-600 text-sm font-medium hover:text-pink-800 transition-colors"
+                variant="link"
               >
                 Saiba mais
                 <Calendar size={14} className="ml-1" />
-              </Link>
+              </Button>
             </div>
           </div>
         ))}
@@ -93,6 +103,50 @@ const days = [1, 2, 3, 4, 5, 6, 0].map((i) => ({
           <p className="text-xl text-muted-foreground">
             Nenhum programa agendado para este dia.
           </p>
+        </div>
+      )}
+      {/* Modal */}
+      {selectedShow && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row transition-colors duration-300">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-[70] bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="md:w-1/2 relative">
+              <img
+                src={selectedShow.image}
+                alt={selectedShow.title}
+                className="w-full h-full object-cover relative z-10"
+              />
+            </div>
+
+            <div className="md:w-1/2 p-8 overflow-y-auto text-card-foreground">
+              <h2 className="text-3xl font-bold mb-2 text-primary">{selectedShow.title}</h2>
+              <p className="text-muted-foreground text-lg mb-6">{selectedShow.description}</p>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <User className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-primary text-xl">Apresentador:</span>
+                  <span className="text-muted-foreground text-xl">{selectedShow.host}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-primary text-xl">Horário:</span>
+                  <span className="text-muted-foreground text-xl">{selectedShow.time}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Calendar className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-primary text-xl">Dia:</span>
+                  <span className="text-muted-foreground text-xl">{getDayName(selectedShow.day)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
