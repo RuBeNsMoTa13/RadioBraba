@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Cloud, Clock } from "lucide-react";
+import { X, MapPin, Cloud, DollarSign, Lightbulb, Clock } from "lucide-react";
 import { SupportsCarouselView } from '@/components/SupportsCarouselView';
 import axios from "axios";
+import DynamicInfo from '@/components/CuriosityInfo/CuriosityInfo';
 import { RadioPlayerHero } from '@/components/RadioPlayerHero';
 import CuriosityInfo from '@/components/CuriosityInfo/CuriosityInfo';
 
@@ -146,7 +147,7 @@ export function ViewPage() {
             {/* Parte Superior: Apoiadores) */}
             <div className="h-1/2 flex items-center justify-center bg-gray-800 p-4">
               <div className="w-full">
-                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoie nossa Cultura local!</h2>
+                <h2 className="text-center text-white text-4xl font-bold mb-6">Apoio cultural!</h2>
                 <SupportsCarouselView className="w-full" />
               </div>
             </div>
