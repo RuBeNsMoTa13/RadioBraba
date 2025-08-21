@@ -1,9 +1,9 @@
-import { Prize, Show, Locutor } from "./types";
+import { Prize, Show, Locutor, CuriosityInfoItem, ContactMethod, FAQ } from "./types";
 
 export const radioStations = [
   {
     name: "Brabo FM",
-    streamUrl: "https://stm16.xcast.com.br:9186/stream", 
+    streamUrl: "https://stm16.xcast.com.br:9186/stream",
     currentSong: "Sem informação",
     currentSongImage: ""
   }
@@ -110,13 +110,13 @@ export const showsData: Show[] = [
     description: "Músicas para quem está acordado de madrugada.",
     image: "/images/Programas/madrugadaBraba.jpg"
   },
-    // Terça-Feira (day: 2)
+  // Terça-Feira (day: 2)
   {
     id: 12,
     title: "Classicos da Braba",
     host: "Paulinho do Povo",
     time: "07:00 - 09:15",
-    day: 2, 
+    day: 2,
     description: "Os clássicos que marcaram época, você ouve aqui!",
     image: "/images/Programas/classicosBraba.jpg"
   },
@@ -125,7 +125,7 @@ export const showsData: Show[] = [
     title: "Manhã Sertaneja",
     host: "Paulinho do Povo",
     time: "07:00 - 09:15",
-    day: 2, 
+    day: 2,
     description: "Comece o dia com muita energia e as melhores músicas sertanejas!",
     image: "/images/Programas/manhaSertaneja.jpg"
   },
@@ -134,7 +134,7 @@ export const showsData: Show[] = [
     title: "Obrigado Homem do Campo",
     host: "Toninho",
     time: "09:30 - 11:00",
-    day: 2, 
+    day: 2,
     description: "Notícias, dicas e muita música para o homem do campo.",
     image: "/images/Programas/homemCampo.jpg"
   },
@@ -143,7 +143,7 @@ export const showsData: Show[] = [
     title: "Na Braba Informa com Gersinho Rádio e TV",
     host: "Gersinho",
     time: "11:00 - 13:00",
-    day: 2, 
+    day: 2,
     description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
     image: "/images/Programas/brabaInforma.jpg"
   },
@@ -152,7 +152,7 @@ export const showsData: Show[] = [
     title: "As Brabas do Momento 1ª Edição",
     host: "Fred",
     time: "13:00 - 14:30",
-    day: 2, 
+    day: 2,
     description: "As músicas mais tocadas do momento, você ouve aqui!",
     image: "/images/Programas/brabasMomento1.jpg"
   },
@@ -161,7 +161,7 @@ export const showsData: Show[] = [
     title: "Solta a Braba!",
     host: "Mariana Lopes",
     time: "14:30 - 17:00",
-    day: 2, 
+    day: 2,
     description: "As músicas mais tocadas do momento, você ouve aqui!",
     image: "/images/Programas/soltaaBraba.jpg"
   },
@@ -170,7 +170,7 @@ export const showsData: Show[] = [
     title: "Hora do Rush",
     host: "Fred",
     time: "17:00 - 18:00",
-    day: 2, 
+    day: 2,
     description: "Hora do Rush na Braba pra chegar em casa bem informado e bem acompanhado!",
     image: "/images/Programas/horadoRush.jpg"
   },
@@ -179,7 +179,7 @@ export const showsData: Show[] = [
     title: "Tarde de Bençãos",
     host: "Diversos",
     time: "18:00 - 19:00",
-    day: 2, 
+    day: 2,
     description: "Músicas evangélicas para abençoar sua tarde.",
     image: "/images/Programas/tardeBencaos.jpg"
   },
@@ -188,7 +188,7 @@ export const showsData: Show[] = [
     title: "Na Xinxa Xou!",
     host: "Felipe Branco",
     time: "20:00 - 21:30",
-    day: 2, 
+    day: 2,
     description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
     image: "/images/Programas/naXinxaXou.jpg"
   },
@@ -197,7 +197,7 @@ export const showsData: Show[] = [
     title: "As Brabas do Momento 2ª Edição",
     host: "",
     time: "21:30 - 00:00",
-    day: 2, 
+    day: 2,
     description: "As músicas mais tocadas do momento, você ouve aqui!",
     image: "/images/Programas/brabasMomento2.jpg"
   },
@@ -206,7 +206,7 @@ export const showsData: Show[] = [
     title: "Madrugada Braba",
     host: "",
     time: "21:30 - 00:00",
-    day: 2, 
+    day: 2,
     description: "Músicas para quem está acordado de madrugada.",
     image: "/images/Programas/madrugadaBraba.jpg"
   },
@@ -494,9 +494,9 @@ export const showsData: Show[] = [
     description: "",
     image: "/images/Programas/fimdeSemana.jpg",
   },
-    
-    // Domingo (day: 0)
-{
+
+  // Domingo (day: 0)
+  {
     id: 54,
     title: "Fique Ligado nos Eventos",
     host: "",
@@ -504,154 +504,332 @@ export const showsData: Show[] = [
     day: 0,
     description: "",
     image: "/images/Programas/fimdeSemana.jpg",
-}
+  }
 
 ];
 
 export const prizesData: Prize[] = [
   {
     id: 1,
+    title: "Fique Ligado",
+    description: "",
+    image: "/images/Programas/emBreve.jpg",
+    endDate: new Date(2025, 11, 31) // Dezember 31, 2025
+  },
+  {
+    id: 2,
     title: "Ingressos para Show Premium",
     description: "Ganhe um par de ingressos para o show especial que acontecerá no próximo mês.",
     image: "/images/Programas/emBreve.jpg",
     endDate: new Date(2025, 6, 15) // July 15, 2025
   },
-  {
-    id: 2,
-    title: "Kit Exclusivo",
-    description: "Concorra a um kit exclusivo com camiseta, boné e caneca personalizada da Rádio Brasil FM.",
-    image: "/images/Programas/emBreve.jpg",
-    endDate: new Date(2025, 5, 30) // June 30, 2025
-  },
-  {
-    id: 3,
-    title: "Sessão de Estúdio",
-    description: "Grave uma música profissionalmente em nosso estúdio com equipe técnica completa.",
-    image: "/images/Programas/emBreve.jpg",
-    endDate: new Date(2025, 7, 5) // August 5, 2025
-  }
+  // {
+  //   id: 3,
+  //   title: "Kit Exclusivo",
+  //   description: "Concorra a um kit exclusivo com camiseta, boné e caneca personalizada da Rádio Brasil FM.",
+  //   image: "/images/Programas/emBreve.jpg",
+  //   endDate: new Date(2025, 5, 30) // June 30, 2025
+  // },
+  // {
+  //   id: 4,
+  //   title: "Sessão de Estúdio",
+  //   description: "Grave uma música profissionalmente em nosso estúdio com equipe técnica completa.",
+  //   image: "/images/Programas/emBreve.jpg",
+  //   endDate: new Date(2025, 7, 5) // August 5, 2025
+  // },
+  // {
+  //   id: 5,
+  //   title: "Ingressos para o Cinema",
+  //   description: "Um par de ingressos para você e um acompanhante curtirem um filme de grande lançamento.",
+  //   image: "/images/Programas/emBreve.jpg",
+  //   endDate: new Date(2025, 8, 30) // September 30, 2025
+  // },
+  // {
+  //   id: 6,
+  //   title: "Vale-compras de R$ 200",
+  //   description: "Concorra a um vale-compras de R$ 200 em uma loja de artigos esportivos da cidade.",
+  //   image: "/images/Programas/emBreve.jpg",
+  //   endDate: new Date(2025, 9, 15) // October 15, 2025
+  // },
 ];
 
 export const locutoresData: Locutor[] = [
-    {
-        id: 1,
-        nome: "Felipe Branco",
-        programa: "",
-        foto: "/images/Locutores/FelipeBranco.png",
-        biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
-        aniversario: "26/09",
-        banda: "Guns, Mamonas Assassinas",
-        musica: "Lá vem o Alemão - Mamonas Assassinas",
-        instagram: "@felipebrancostandup"
-    },
-    {
-        id: 2,
-        nome: "Lais Moraes",
-        programa: "",
-        foto: "/images/Locutores/LaisMoraes.png",
-        biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
-        aniversario: "18/12",
-        banda: "Evanescence / Miley Cyrus",
-        musica: "Good Enough - Amy Lee",
-        instagram: "@laismoraesv"
-    },
-        {
-        id: 3,
-        nome: "Paulinho do Povo",
-        programa: "",
-        foto: "/images/Locutores/PaulinhoPovo.png",
-        biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
-        aniversario: "19/02",
-        banda: "Gino & Geno",
-        musica: "Agita Aí - Gino & Geno",
-        instagram: "@paulinhodopovo104.9"
-    },
-        {
-        id: 4,
-        nome: "Toninho",
-        programa: "",
-        foto: "/images/Locutores/Toninho.png",
-        biografia: "Locutor e radialista desde 2008, criador do programa 'Obrigado ao homem do campo', pois o homem, a mulher e seus filhos produzem o alimento que abastecem nossas mesas todos os dias, faça sol, faça chuva e enobrecem nosso país.",
-        aniversario: "30/08",
-        banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
-        musica: "Obrigado ao Homem do Campo - Dom & Ravel",
-        instagram: "@terra.tecnica"
-    },
-    {
-        id: 5,
-        nome: "Marco Nissani",
-        programa: "",
-        foto: "/images/Locutores/MarcoNissani.png",
-        biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
-        aniversario: "19/12",
-        banda: "Victor e Leo / Barão Vermelho",
-        musica: "Chuva de bruxaria - Victor e Leo",
-        instagram: "@marco_nissani"
-    },
-    {
-        id: 6,
-        nome: "Grídia Maria",
-        programa: "",
-        foto: "/images/Locutores/GridiaMaria.png",
-        biografia: "Orgulhosamente do interior, onde a vida é mais calma, os vizinhos são amigos e o café é sempre fresquinho.",
-        aniversario: "27/08",
-        banda: "Nhana e Cascantinha, Chitãozinho e Xororó, Padre Marcelo Rossi",
-        musica: "Meu primeiro amor (Nhana e Cascantinha)",
-        instagram: "@gridia.maria"
-    },
-    {
-        id: 7,
-        nome: "Sérgio Góes",
-        programa: "",
-        foto: "/images/Locutores/SergioGoes.png",
-        biografia: "Comerciante e músico apaixonado por musica, sempre com uma história para contar.",
-        aniversario: "08/03",
-        banda: "Beatles / Deep Purple / Ultraje a Rigor",
-        musica: "For Whom the Bell Tolls - Metallica",
-        instagram: "@serggiogoes"
-    },
-    {
-        id: 8,
-        nome: "Fred",
-        programa: "",
-        foto: "/images/Locutores/Fred.png",
-        biografia: "Busco ver possibilidades onde os outros veem obstáculos. Uso minha criatividade não só pra inovar, mas também encontrar soluções únicas aos problemas comuns do nosso cotidiano.",
-        aniversario: "23/11",
-        banda: "Charlie Brown Jr. / Supertramp / SOJA",
-        musica: "Bob Dylan - Hurricane",
-        instagram: "@fredericolc"
-    },
-    {
-      id: 9,
-      nome: "Gersinho",
-      programa: "",
-      foto: "/images/Locutores/Gersinho.png",
-      biografia: "Iniciou a carreira de notícias em 2020 sendo o maior canal de notícias da cidade de Capela do Alto.",
-      aniversario: "05/05",
-      banda: "Roupa Nova / RPM",
-      musica: "Whisky à go-go-go - Roupa Nova",
-      instagram: "@gersinho_radio_tv"
-    },
-    {
-      id: 10,
-      nome: "Tadeu Rabello",
-      programa: "",
-      foto: "/images/Locutores/TadeuRabello.png",
-      biografia: "Somos, cada um de nós, uma tarefa a ser realizada. A vida possuí sentido, sim! A Liderança é possível e convido você a trilhar este caminho comigo. E neste percurso quero que você colha bons e duradouros frutos na sua família, no seu trabalho e na sua comunidade.",
-      aniversario: "12/04",
-      banda: "Eugenio Jorge / Banda Dom / Roupa Nova",
-      musica: "Faço Novas Todas As Coisas - Eugenio Jorge / Civilização do Amor - Eros Biondini",
-      instagram: "@tadeurabellooficial"
-    },
-    {
-      id: 11,
-      nome: "Sandro Aparecido",
-      programa: "",
-      foto: "/images/Locutores/SandroAparecido.png",
-      biografia: "Mais conhecido como Ksandra, vocalista da banda Rock Mesclado. Meu lema e 'Viver com alegria, um dia de cada vez'.",
-      aniversario: "18/04",
-      banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
-      musica: "November Rain - Guns N' Roses",
-      instagram: "@sandroaparecidomachado"
-    }
+  {
+    id: 1,
+    nome: "Felipe Branco",
+    programa: "",
+    foto: "/images/Locutores/FelipeBranco.png",
+    biografia: " Comediante stand-up e roteirista, da zueira porque sabe que a vida é importante demais pra ser levada a sério",
+    aniversario: "26/09",
+    banda: "Guns, Mamonas Assassinas",
+    musica: "Lá vem o Alemão - Mamonas Assassinas",
+    instagram: "@felipebrancostandup"
+  },
+  {
+    id: 2,
+    nome: "Lais Moraes",
+    programa: "",
+    foto: "/images/Locutores/LaisMoraes.png",
+    biografia: "Iniciou a locução aos 14 anos na rádio comunitária Capela Fm e em eventos como o Baile da Rainha de Capela do Alto. Amante da música e cantora nas horas vagas.",
+    aniversario: "18/12",
+    banda: "Evanescence / Miley Cyrus",
+    musica: "Good Enough - Amy Lee",
+    instagram: "@laismoraesv"
+  },
+  {
+    id: 3,
+    nome: "Paulinho do Povo",
+    programa: "",
+    foto: "/images/Locutores/PaulinhoPovo.png",
+    biografia: "Amo rádio, apaixonado por modas sertanejas, clássicos, universitários, vanerão gaúcho.",
+    aniversario: "19/02",
+    banda: "Gino & Geno",
+    musica: "Agita Aí - Gino & Geno",
+    instagram: "@paulinhodopovo104.9"
+  },
+  {
+    id: 4,
+    nome: "Toninho",
+    programa: "",
+    foto: "/images/Locutores/Toninho.png",
+    biografia: "Locutor e radialista desde 2008, criador do programa 'Obrigado ao homem do campo', pois o homem, a mulher e seus filhos produzem o alimento que abastecem nossas mesas todos os dias, faça sol, faça chuva e enobrecem nosso país.",
+    aniversario: "30/08",
+    banda: "Pink Floyd / Trio Parada Dura / Zé Neto e Cristiano",
+    musica: "Obrigado ao Homem do Campo - Dom & Ravel",
+    instagram: "@terra.tecnica"
+  },
+  {
+    id: 5,
+    nome: "Marco Nissani",
+    programa: "",
+    foto: "/images/Locutores/MarcoNissani.png",
+    biografia: "Piloto de avião, técnico de ar condicionado e radialista.",
+    aniversario: "19/12",
+    banda: "Victor e Leo / Barão Vermelho",
+    musica: "Chuva de bruxaria - Victor e Leo",
+    instagram: "@marco_nissani"
+  },
+  {
+    id: 6,
+    nome: "Grídia Maria",
+    programa: "",
+    foto: "/images/Locutores/GridiaMaria.png",
+    biografia: "Orgulhosamente do interior, onde a vida é mais calma, os vizinhos são amigos e o café é sempre fresquinho.",
+    aniversario: "27/08",
+    banda: "Nhana e Cascantinha, Chitãozinho e Xororó, Padre Marcelo Rossi",
+    musica: "Meu primeiro amor (Nhana e Cascantinha)",
+    instagram: "@gridia.maria"
+  },
+  {
+    id: 7,
+    nome: "Sérgio Góes",
+    programa: "",
+    foto: "/images/Locutores/SergioGoes.png",
+    biografia: "Comerciante e músico apaixonado por musica, sempre com uma história para contar.",
+    aniversario: "08/03",
+    banda: "Beatles / Deep Purple / Ultraje a Rigor",
+    musica: "For Whom the Bell Tolls - Metallica",
+    instagram: "@serggiogoes"
+  },
+  {
+    id: 8,
+    nome: "Fred",
+    programa: "",
+    foto: "/images/Locutores/Fred.png",
+    biografia: "Busco ver possibilidades onde os outros veem obstáculos. Uso minha criatividade não só pra inovar, mas também encontrar soluções únicas aos problemas comuns do nosso cotidiano.",
+    aniversario: "23/11",
+    banda: "Charlie Brown Jr. / Supertramp / SOJA",
+    musica: "Bob Dylan - Hurricane",
+    instagram: "@fredericolc"
+  },
+  {
+    id: 9,
+    nome: "Gersinho",
+    programa: "",
+    foto: "/images/Locutores/Gersinho.png",
+    biografia: "Iniciou a carreira de notícias em 2020 sendo o maior canal de notícias da cidade de Capela do Alto.",
+    aniversario: "05/05",
+    banda: "Roupa Nova / RPM",
+    musica: "Whisky à go-go-go - Roupa Nova",
+    instagram: "@gersinho_radio_tv"
+  },
+  {
+    id: 10,
+    nome: "Sandro Aparecido",
+    programa: "",
+    foto: "/images/Locutores/SandroAparecido.png",
+    biografia: "Mais conhecido como Ksandra, vocalista da banda Rock Mesclado. Meu lema e 'Viver com alegria, um dia de cada vez'.",
+    aniversario: "18/04",
+    banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
+    musica: "November Rain - Guns N' Roses",
+    instagram: "@sandroaparecidomachado"
+  }
 ];
+
+export const infoItemsData: CuriosityInfoItem[] = [
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/1.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/2.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/3.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/4.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/5.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/6.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/7.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/8.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/9.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/10.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/11.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/12.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/13.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/14.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/15.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/16.png",
+    },
+    {
+      type: "fact",
+      label: "",
+      value: null,
+      image: "/images/Curiosidades/17.png",
+    },
+
+  ];
+
+export const contactMethodsData: ContactMethod[] = [
+  {
+    id: 'whatsapp',
+    icon: "<Phone size={24} />",
+    title: 'WhatsApp',
+    description: 'Resposta imediata durante o horário comercial',
+    value: '(15) 3191-2855',
+    action: 'Enviar mensagem',
+    color: 'bg-green-500' 
+  },
+  {
+    id: 'phone',
+    icon: "<Phone size={24} />",
+    title: 'Telefone',
+    description: 'Ligue diretamente para nossa central',
+    value: '(15) 3191-2855',
+    action: 'Fazer ligação',
+    color: 'bg-blue-500' 
+  },
+  {
+    id: 'email',
+    icon: "<Mail size={24} />",
+    title: 'Email',
+    description: 'Envie sua mensagem detalhada',
+    value: 'contato@ifnc.com.br',
+    action: 'Enviar email',
+    color: 'bg-primary' 
+  },
+  {
+    id: 'radio',
+    icon: "<Radio size={24} />",
+    title: 'Ao Vivo',
+    description: 'Participe dos programas ao vivo',
+    value: 'Segunda à Sexta, 8h às 18h',
+    action: 'Participar agora',
+    color: 'bg-orange-500' 
+  }
+];
+
+export const faqsData: FAQ[] = [
+      {
+        id: 1,
+        question: 'Como posso participar dos programas ao vivo?',
+        answer: 'Você pode ligar durante os programas ou enviar mensagem via WhatsApp. Nossos locutores adoram interagir com os ouvintes!'
+      },
+      {
+        id: 2,
+        question: 'Vocês divulgam eventos da comunidade?',
+        answer: 'Sim! Adoramos divulgar eventos locais. Entre em contato conosco com antecedência para programarmos a divulgação.'
+      },
+      {
+        id: 3,
+        question: 'Como posso denunciar problemas na cidade?',
+        answer: 'Envie sua denúncia via WhatsApp com fotos e localização. Nossa equipe de jornalismo investigará e dará o devido encaminhamento.'
+      },
+      {
+        id: 4,
+        question: 'Qual o horário de funcionamento da rádio?',
+        answer: 'Nossa programação é 24h, mas o atendimento presencial é de segunda a sexta das 8h às 18h.'
+      }
+  ];
