@@ -2,7 +2,7 @@ import { PrizeCard } from "@/components/PrizesPage/PrizeCard";
 import { prizesData} from "@/lib/data";
 import { Prize} from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { Gift, ChevronRight, X } from "lucide-react";
+import { Gift, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
