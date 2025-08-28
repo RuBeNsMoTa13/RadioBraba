@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, ReactNode, useMemo, useCallback } from 'react';
 import { radioStations } from '@/lib/data';
 
 // --- CONFIGURAÇÃO ---
@@ -29,15 +29,15 @@ export function useRadioPlayer() {
 }
 
 // Função para corrigir a codificação de caracteres
-function decodeHtml(text: any) {
+function decodeHtml(text: string): string {
   if (!text) return "";
   const replacements = {
     'Ã¡': 'á', 'Ã©': 'é', 'Ã­': 'í', 'Ã³': 'ó', 'Ãº': 'ú',
     'Ã£': 'ã', 'Ãµ': 'õ', 'Ã¢': 'â', 'Ãª': 'ê', 'Ã§': 'ç',
-    'Ã': 'Á', 'Ã‰': 'É', 'Ã': 'Í', 'Ã“': 'Ó', 'Ãš': 'Ú',
+    'Ã€': 'À', 'Ã‰': 'É', 'ÃŒ': 'Ì', 'Ã"': 'Ó', 'Ãš': 'Ú',
     'Ãƒ': 'Ã', 'Ã•': 'Õ', 'Ã‚': 'Â', 'ÃŠ': 'Ê', 'Ã‡': 'Ç',
     'VÃ­deo': 'Vídeo',
-    'Ãudio': 'Áudio',
+    'Ãudio': 'Áudio',
   };
   let decodedText = text;
   for (const [malformed, correct] of Object.entries(replacements)) {
@@ -57,42 +57,17 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
   });
   const [currentSong, setCurrentSong] = useState(radioStations[0].currentSong || 'Carregando...');
   // A capa da rádio Braba será a imagem padrão, sem buscar da API
-  const [currentSongImage, setCurrentSongImage] = useState('/images/RadioBraba.png'); 
+  const currentSongImage = '/images/RadioBraba.png';
   const [status, setStatus] = useState<'idle' | 'connecting' | 'playing' | 'error'>('idle');
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const reconnectAttemptCounter = useRef(0);
 
-  const station = radioStations[0];
+  const station = useMemo(() => radioStations[0], []);
 
-  useEffect(() => {
-    const fetchXcastData = async () => {
-      try {
-        const response = await fetch(XCAST_API_URL);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
-        // REMOVIDO: A lógica para buscar a capa da música foi removida.
-        
-      } catch (error) {
-        console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
-        setCurrentSong("Falha ao carregar");
-      }
-    };
-
-    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
-    fetchXcastData();
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const initiateReconnect = () => {
+  // Otimizar função de reconexão com useCallback
+  const initiateReconnect = useCallback(() => {
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
     }
@@ -119,7 +94,33 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       setIsPlaying(false);
       reconnectAttemptCounter.current = 0;
     }
-  };
+  }, []);
+
+  // Otimizar busca de dados com useCallback
+  const fetchXcastData = useCallback(async () => {
+    try {
+      const response = await fetch(XCAST_API_URL);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      setCurrentSong(decodeHtml(data.musica_atual) || "Ao vivo");
+      
+    } catch (error) {
+      console.error("Erro ao buscar dados da XCast API (provável CORS ou rede):", error);
+      setCurrentSong("Falha ao carregar");
+    }
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(fetchXcastData, API_POLLING_INTERVAL);
+    fetchXcastData();
+
+    return () => clearInterval(intervalId);
+  }, [fetchXcastData]);
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -177,7 +178,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       audioRef.current.load();
       if (isPlaying) { audioRef.current.pause(); }
     }
-  }, [station.streamUrl, setIsPlaying]);
+  }, [station.streamUrl, isPlaying, initiateReconnect]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -201,7 +202,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       setStatus('idle');
       reconnectAttemptCounter.current = 0;
     }
-  }, [isPlaying, setIsPlaying]);
+  }, [isPlaying]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -215,7 +216,8 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     }
   }, [volume]);
 
-  const contextValue = {
+  // Memorizar o valor do contexto para evitar re-renders desnecessários
+  const contextValue = useMemo(() => ({
     isPlaying,
     setIsPlaying,
     volume,
@@ -223,7 +225,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
     currentSong,
     currentSongImage,
     status,
-  };
+  }), [isPlaying, volume, currentSong, currentSongImage, status]);
 
   return (
     <RadioPlayerContext.Provider value={contextValue}>
@@ -231,7 +233,7 @@ export function RadioPlayerProvider({ children }: { children: ReactNode }) {
       <audio
         ref={audioRef}
         style={{ display: 'none' }}
-        preload="auto"
+        preload="metadata"
       >
         <source src={station.streamUrl} type="audio/aac" />
         <source src={station.streamUrl} type="audio/mpeg" />
