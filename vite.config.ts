@@ -1,16 +1,10 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     react(),
-    legacy({
-      
-      targets: ['defaults', 'IE 11'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-    }),
   ],
   server: {
     host: true,
@@ -23,11 +17,24 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
+    include: ['react', 'react-dom'], // Pre-bundle apenas o essencial
   },
   // Configuração de build otimizada para code splitting
   build: {
+    // Configurações de otimização melhoradas
+    target: 'es2022', // Mais moderno e otimizado
+    minify: 'esbuild',
+    cssMinify: true,
+    // Configurar thresholds para warnings de tamanho
+    chunkSizeWarningLimit: 1000,
+    // Otimizações adicionais
+    sourcemap: false, // Remove sourcemaps em produção
     rollupOptions: {
       output: {
+        // Otimizar nomes dos arquivos
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks: {
           // Chunk do React e dependências core
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
@@ -68,12 +75,6 @@ export default defineConfig({
           ]
         }
       }
-    },
-    // Configurações de otimização
-    target: 'esnext',
-    minify: 'esbuild',
-    cssMinify: true,
-    // Configurar thresholds para warnings de tamanho
-    chunkSizeWarningLimit: 1000
+    }
   },
 });
