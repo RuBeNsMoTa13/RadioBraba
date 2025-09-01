@@ -1,16 +1,10 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     react(),
-    legacy({
-      
-      targets: ['defaults', 'IE 11'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-    }),
   ],
   server: {
     host: true,
@@ -23,17 +17,64 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
+    include: ['react', 'react-dom'], // Pre-bundle apenas o essencial
   },
-  // ADICIONADO: Configuração de build para otimizar o tamanho dos arquivos (chunks)
+  // Configuração de build otimizada para code splitting
   build: {
+    // Configurações de otimização melhoradas
+    target: 'es2022', // Mais moderno e otimizado
+    minify: 'esbuild',
+    cssMinify: true,
+    // Configurar thresholds para warnings de tamanho
+    chunkSizeWarningLimit: 1000,
+    // Otimizações adicionais
+    sourcemap: false, // Remove sourcemaps em produção
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
+        // Otimizar nomes dos arquivos
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+        manualChunks: {
+          // Chunk do React e dependências core
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          
+          // Chunk das UI libraries
+          'ui-vendor': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-icons', 
+            '@radix-ui/react-label',
+            '@radix-ui/react-slider',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-toast',
+            'lucide-react'
+          ],
+          
+          // Chunk das libraries de carousel e animação
+          'carousel-vendor': [
+            'embla-carousel',
+            'embla-carousel-autoplay', 
+            'embla-carousel-react'
+          ],
+          
+          // Chunk das libraries de forma e validação
+          'form-vendor': [
+            'react-hook-form',
+            '@hookform/resolvers',
+            'zod'
+          ],
+          
+          // Chunk do Supabase e axios
+          'api-vendor': ['@supabase/supabase-js', 'axios'],
+          
+          // Chunk das utility libraries
+          'utils-vendor': [
+            'class-variance-authority',
+            'clsx', 
+            'tailwind-merge'
+          ]
         }
       }
     }
-  }
+  },
 });

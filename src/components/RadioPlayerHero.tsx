@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
-import { radioStations } from "@/lib/data"; // Mantido para referência, mas a URL do stream vem do Context
+// Mantido para referência, mas a URL do stream vem do Context
 import { cn } from "@/lib/utils";
 import { useRadioPlayer } from "@/context/RadioPlayerContext"; // Importa o hook do contexto
 

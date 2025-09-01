@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Prize } from "@/lib/types";
-import { BadgeAlert, Gift, ExternalLink } from "lucide-react";
+import { BadgeAlert, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
