@@ -45,7 +45,7 @@ export const showsData: Show[] = [
     time: "11:00 - 13:00",
     day: 1,
     description: "Tudo sobre futebol com os comentarios de Nenê Quevedo.",
-    image: "/images/Programas/bateBola.jpg"
+    image: "/images/Programas/bateBola2.jpg"
   },
   {
     id: 5,
@@ -90,7 +90,7 @@ export const showsData: Show[] = [
     time: "20:00 - 21:30",
     day: 1,
     description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
-    image: "/images/Programas/naXinxaXou.jpg"
+    image: "/images/Programas/naXinxaXou2.jpg"
   },
   {
     id: 10,
@@ -145,7 +145,7 @@ export const showsData: Show[] = [
     time: "11:00 - 13:00",
     day: 2,
     description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
-    image: "/images/Programas/brabaInforma.jpg"
+    image: "/images/Programas/brabaInforma2.jpg"
   },
   {
     id: 16,
@@ -190,7 +190,7 @@ export const showsData: Show[] = [
     time: "20:00 - 21:30",
     day: 2,
     description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
-    image: "/images/Programas/naXinxaXou.jpg"
+    image: "/images/Programas/naXinxaXou2.jpg"
   },
   {
     id: 21,
@@ -230,15 +230,15 @@ export const showsData: Show[] = [
     image: "/images/Programas/manhaSertaneja.jpg",
   },
 
-  {
-    id: 26,
-    title: "Na Braba Informa com Gersinho Rádio e TV",
-    host: "Gersinho",
-    time: "11:00 - 13:00",
-    day: 3,
-    description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
-    image: "/images/Programas/brabaInforma.jpg",
-  },
+  // {
+  //   id: 26,
+  //   title: "Na Braba Informa com Gersinho Rádio e TV",
+  //   host: "Gersinho",
+  //   time: "11:00 - 13:00",
+  //   day: 3,
+  //   description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
+  //   image: "/images/Programas/brabaInforma2.jpg",
+  // },
   {
     id: 27,
     title: "As Brabas do Momento 1ª Edição",
@@ -282,7 +282,7 @@ export const showsData: Show[] = [
     time: "20:00 - 21:30",
     day: 3,
     description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
-    image: "/images/Programas/naXinxaXou.jpg",
+    image: "/images/Programas/naXinxaXou2.jpg",
   },
   {
     id: 32,
@@ -337,7 +337,7 @@ export const showsData: Show[] = [
     time: "11:00 - 13:00",
     day: 4,
     description: "Tudo sobre futebol com os comentarios de Nenê Quevedo.",
-    image: "/images/Programas/bateBola.jpg",
+    image: "/images/Programas/bateBola2.jpg",
   },
   {
     id: 38,
@@ -382,7 +382,7 @@ export const showsData: Show[] = [
     time: "20:00 - 21:30",
     day: 4,
     description: "O humor e a irreverência de Felipe Branco para animar sua noite.",
-    image: "/images/Programas/naXinxaXou.jpg",
+    image: "/images/Programas/naXinxaXou2.jpg",
   },
   {
     id: 43,
@@ -428,25 +428,25 @@ export const showsData: Show[] = [
     time: "11:00 - 13:00",
     day: 5,
     description: "As principais notícias do dia com a credibilidade de Gersinho Rádio e TV.",
-    image: "/images/Programas/brabaInforma.jpg",
+    image: "/images/Programas/brabaInforma2.jpg",
   },
   {
     id: 48,
     title: "As Brabas do Momento 1ª Edição",
     host: "Fred",
-    time: "13:00 - 14:30",
+    time: "13:00 - 15:30",
     day: 5,
     description: "As músicas mais tocadas do momento, você ouve aqui!",
     image: "/images/Programas/brabasMomento1.jpg",
   },
   {
     id: 49,
-    title: "Solta a Braba!",
-    host: "Mariana Lopes",
-    time: "14:30 - 17:00",
+    title: "Rolê da Braba!",
+    host: "Lais Moraes",
+    time: "15:30 - 17:00",
     day: 5,
-    description: "As músicas mais tocadas do momento, você ouve aqui!",
-    image: "/images/Programas/soltaaBraba.jpg",
+    description: "Programa de entrevista realizado no Teatro Municipal, com convidados e temas divertidos.",
+    image: "/images/Programas/roleDaBraba.jpg",
   },
   {
     id: 50,
@@ -487,17 +487,17 @@ export const showsData: Show[] = [
   // Sábado (day: 6)
   {
     id: 54,
-    title: "Fique Ligado nos Eventos",
-    host: "",
+    title: "Fala Líder!",
+    host: "Tadeu Rabello",
     time: "",
     day: 6,
-    description: "",
-    image: "/images/Programas/fimdeSemana.jpg",
+    description: "Programa especial sobre liderança, dicas para conquistar a liderança em sua vida.",
+    image: "/images/Programas/falaLider.jpg",
   },
 
   // Domingo (day: 0)
   {
-    id: 54,
+    id: 55,
     title: "Fique Ligado nos Eventos",
     host: "",
     time: "",
@@ -663,6 +663,17 @@ export const locutoresData: Locutor[] = [
     banda: "Legião Urbana / Barão Vermelha / Cassia Eller",
     musica: "November Rain - Guns N' Roses",
     instagram: "@sandroaparecidomachado"
+  },
+  {
+    id: 11,
+    nome: "Tadeu Rabello",
+    programa: "",
+    foto: "/images/Locutores/TadeuRabello.png",
+    biografia: "Somos, cada um de nós, uma tarefa a ser realizada. A vida possuí sentido, sim! A Liderança é possível e convido você a trilhar este caminho comigo. E neste percurso quero que você colha bons e duradouros frutos na sua família, no seu trabalho e na sua comunidade.",
+    aniversario: "12/04",
+    banda: "Eugenio Jorge / Banda Dom / Roupa Nova",
+    musica: "Civilização do Amor - Eros Biondini",
+    instagram: "@tadeurabellooficial"
   }
 ];
 
